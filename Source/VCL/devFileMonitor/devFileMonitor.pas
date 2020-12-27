@@ -26,10 +26,6 @@ uses
   Windows, Messages, SysUtils, Classes, Forms, Controls,
   devMonitorThread, devMonitorTypes;
 //{$ENDIF}
-{$IFDEF LINUX}
-SysUtils, Classes, QForms, QControls,
-devMonitorThread, devMonitorTypes;
-{$ENDIF}
 
 type
   TdevFileMonitor = class(TWinControl)

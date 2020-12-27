@@ -218,7 +218,7 @@ implementation
 
 uses
   Vcl.ExtDlgs, {shlobj,} MultiLangSupport, devcfg, version, utils, math, CommCtrl, DateUtils, CodeInsList, DataFrm, IniFiles, editor,
-  main, posix.Unistd;
+  main {$IFNDEF MSWINDOWS}, posix.Unistd {$ENDIF};
 
 {$R *.dfm}
 const

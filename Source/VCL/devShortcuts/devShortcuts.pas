@@ -25,9 +25,6 @@ uses
 //{$IFDEF WIN32}
   Windows, Messages, SysUtils, Classes, Menus, Controls, IniFiles, Graphics, ActnList;
 //{$ENDIF}
-{$IFDEF LINUX}
-SysUtils, Classes, QMenus, QControls, IniFiles, QGraphics, QActnList;
-{$ENDIF}
 
 type
   TShortCutItem = record
@@ -65,10 +62,6 @@ implementation
 uses
   devShortcutsEditorForm, Forms;
 //{$ENDIF}
-{$IFDEF LINUX}
-uses
-  devShortcutsEditorForm, QForms;
-{$ENDIF}
 
 procedure Register;
 begin

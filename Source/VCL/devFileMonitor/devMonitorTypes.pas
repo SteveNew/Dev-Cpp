@@ -25,9 +25,6 @@ uses
 //{$IFDEF WIN32}
   Classes, Windows;
 //{$ENDIF}
-{$IFDEF LINUX}
-Classes;
-{$ENDIF}
 
 
 type

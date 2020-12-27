@@ -69,7 +69,7 @@ type
 implementation
 
 uses
-  System.UITypes, main, CppParser, MultiLangSupport, version, editor, devcfg, posix.Unistd;
+  System.UITypes, main, CppParser, MultiLangSupport, version, editor, devcfg;
 
 {$R *.dfm}
 

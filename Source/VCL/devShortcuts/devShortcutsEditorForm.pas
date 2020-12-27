@@ -26,10 +26,6 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ExtCtrls, ComCtrls, StdCtrls, Menus, devShortcuts, Vcl.Themes;
 //{$ENDIF}
-{$IFDEF LINUX}
-SysUtils, Variants, Classes, QGraphics, QControls, QForms,
-QDialogs, QExtCtrls, QComCtrls, QStdCtrls, QMenus;
-{$ENDIF}
 
 type
   TfrmShortcutsEditor = class(TForm)

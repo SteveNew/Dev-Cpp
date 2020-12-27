@@ -56,3 +56,5 @@ __history/
 *.~*
 MinGW64
 devcpp.exe
+OSX64
+Linux64

@@ -25,9 +25,6 @@ uses
 //{$IFDEF WIN32}
   Windows, Classes, SysUtils, StrUtils, ComCtrls, Math, IntList, cbutils, CharUtils;
 //{$ENDIF}
-{$IFDEF LINUX}
-Classes, SysUtils, StrUtils, QComCtrls;
-{$ENDIF}
 
 type
   PFile = ^TFile;

@@ -23,7 +23,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Buttons, StdCtrls, posix.Unistd;
+  Dialogs, Buttons, StdCtrls {$IFNDEF MSWINDOWS}, posix.Unistd {$ENDIF};
 
 type
   TImportCBForm = class(TForm)

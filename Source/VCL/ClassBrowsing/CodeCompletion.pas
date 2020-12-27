@@ -26,10 +26,6 @@ uses
   Windows, Classes, Forms, SysUtils, Controls, Graphics, CppParser,
   cbutils, IntList, StatementList;
 //{$ENDIF}
-{$IFDEF LINUX}
-Xlib, Classes, QForms, SysUtils, QControls, QGraphics, CppParser,
-U_IntList, QDialogs, Types;
-{$ENDIF}
 
 type
   TCodeCompletion = class(TComponent)

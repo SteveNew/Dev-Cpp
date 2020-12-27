@@ -25,9 +25,6 @@ uses
 //{$IFDEF WIN32}
   Windows, Classes, SysUtils, StrUtils, ComCtrls, Math, cbutils, CharUtils;
 //{$ENDIF}
-{$IFDEF LINUX}
-Classes, SysUtils, StrUtils, QComCtrls;
-{$ENDIF}
 
 type
   PToken = ^TToken;

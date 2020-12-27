@@ -5,6 +5,15 @@
     </ProjectExtensions>
     <PropertyGroup/>
     <ItemGroup Condition="'$(Platform)'=='Win32'">
+        <DeployFile Include="Images\New images\DEV C++ 48x48.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Assets\</RemoteDir>
+            <RemoteName>Logo44x44.png</RemoteName>
+            <DeployClass>UWP_DelphiLogo44</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="..\..\bin\devcpp.exe" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp\</RemoteDir>
             <RemoteName>devcpp.exe</RemoteName>
@@ -14,15 +23,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
             <Required>True</Required>
-        </DeployFile>
-        <DeployFile Include="Images\New images\DEV C++ 48x48.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp\Assets\</RemoteDir>
-            <RemoteName>Logo44x44.png</RemoteName>
-            <DeployClass>UWP_DelphiLogo44</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="Images\New images\DEV C++ 140x140.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp\Assets\</RemoteDir>
@@ -55,6 +55,33 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="..\devcpp.dSYM" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF\</RemoteDir>
+            <RemoteName>devcpp</RemoteName>
+            <DeployClass>ProjectOSXDebug</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(crossvcl)\Redist\libcrossvcl64.dylib">
+            <RemoteDir>devcpp.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>libcrossvcl64.dylib</RemoteName>
+            <DeployClass/>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(crossvcl)\Redist\crossvcl.icns">
+            <RemoteDir>devcpp.app\Contents\Resources\</RemoteDir>
+            <RemoteName>devcpp.icns</RemoteName>
+            <DeployClass/>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="..\devcpp.entitlements" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp.app\..\</RemoteDir>
             <RemoteName>devcpp.entitlements</RemoteName>
@@ -73,11 +100,20 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(crossvcl)\Redist\libcrossvcl64.dylib">
-            <RemoteDir>devcpp.app\Contents\MacOS\</RemoteDir>
-            <RemoteName>libcrossvcl64.dylib</RemoteName>
-            <DeployClass/>
-            <Operation>0</Operation>
+        <DeployFile Include="..\devcpp.entitlements" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\..\</RemoteDir>
+            <RemoteName>devcpp.entitlements</RemoteName>
+            <DeployClass>ProjectOSXEntitlements</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\devcpp.info.plist" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\</RemoteDir>
+            <RemoteName>Info.plist</RemoteName>
+            <DeployClass>ProjectOSXInfoPList</DeployClass>
+            <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -92,14 +128,24 @@
             <Overwrite>True</Overwrite>
             <Required>True</Required>
         </DeployFile>
-        <DeployFile Include="$(crossvcl)\Redist\crossvcl.icns">
-            <RemoteDir>devcpp.app\Contents\Resources\</RemoteDir>
-            <RemoteName>devcpp.icns</RemoteName>
-            <DeployClass/>
+        <DeployFile Include="LangIDs.inc" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\StartUp\</RemoteDir>
+            <RemoteName>LangIDs.inc</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\devcpp" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>devcpp</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
         </DeployFile>
         <DeployFile Include="..\devcpp.dSYM" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp.app\..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF\</RemoteDir>

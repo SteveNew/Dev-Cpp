@@ -26,10 +26,6 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, devMonitorTypes, Math, SyncObjs;
 //{$ENDIF}
-{$IFDEF LINUX}
-SysUtils, Variants, Classes, QGraphics, QControls, QForms,
-QDialogs, QStdCtrls, devMonitorTypes, SyncObjs;
-{$ENDIF}
 
 const
   WM_NOTIFYFILECHANGED = WM_USER + 1;

@@ -926,7 +926,8 @@ type
     procedure LoadStyle;
 {$IFDEF MSWINDOWS}
 // Windows-only code
-  procedure LoadThemeStyle;
+// CROSSVCL
+//  procedure LoadThemeStyle;
 {$ELSE}
 // CrossVcl code
 {$ENDIF}
@@ -989,7 +990,7 @@ uses
   ProfileAnalysisFrm, FilePropertiesFrm, AddToDoFrm, ViewToDoFrm,
   ImportMSVCFrm, ImportCBFrm, CPUFrm, FileAssocs, TipOfTheDayFrm,
   WindowListFrm, RemoveUnitFrm, ParamsFrm, ProcessListFrm, SynEditHighlighter,
-  ConsoleAppHostFrm, posix.Unistd;
+  ConsoleAppHostFrm {$IFNDEF MSWINDOWS}, posix.Unistd {$ENDIF};
 
 {$R *.dfm}
 
@@ -6121,12 +6122,12 @@ begin
   fFirstShow := true;
 
   // Backup PATH variable
-{$IFDEF MSWINDOWS}
+//{$IFDEF MSWINDOWS}
 // Windows-only code
-  devDirs.OriginalPath := GetEnvironmentVariable('PATH');
-{$ELSE}
+  devDirs.OriginalPath := System.SysUtils.GetEnvironmentVariable('PATH');
+//{$ELSE}
 // CrossVcl code
-{$ENDIF}
+//{$ENDIF}
 
   // Create a compiler
   fCompiler := TCompiler.Create;
@@ -6286,7 +6287,7 @@ begin
   // Try to fix the file associations. Needs write access to registry, which might cause exceptions to be thrown
 {$IFDEF MSWINDOWS}
 // Windows-only code
-  DDETopic := DevCppDDEServer.Name;
+//CROSSVCL  DDETopic := DevCppDDEServer.Name;
 {$ELSE}
 // CrossVcl code
 {$ENDIF}
@@ -7082,11 +7083,12 @@ begin
   LabelNumVersion.Font.Color := clRed;
 {$IFDEF MSWINDOWS}
 // Windows-only code
-  case devData.Style of
-    2, 3, 4, 5, 6: ImageEmbarcadero.ImageIndex := 1;
-  else
-    ImageEmbarcadero.ImageIndex := 0;
-  end;
+// CROSSVCL
+//  case devData.Style of
+//    2, 3, 4, 5, 6: ImageEmbarcadero.ImageIndex := 1;
+//  else
+//    ImageEmbarcadero.ImageIndex := 0;
+//  end;
 {$ELSE}
 // CrossVcl code
 {$ENDIF}
@@ -7094,51 +7096,52 @@ end;
 
 {$IFDEF MSWINDOWS}
 // Windows-only code
-  procedure TMainForm.LoadThemeStyle;
-  begin
-      dmMain.SVGImageListMenuStyle.DisabledGrayScale := False;
-      dmMain.SVGImageListMenuStyle.FixedColor := StringToColor(cSVGColor[devData.Style]);
-      dmMain.SVGImageListMessageStyle.FixedColor := StringToColor(cSVGColor[devData.Style]);
-      dmMain.SVGIconImageWelcomeScreen.FixedColor := StringToColor(cSVGColor[devData.Style]);
-
-      // Misc items images
-      ActionList.Images := dmMain.SVGImageListMenuStyle;
-      MainMenu.Images := dmMain.SVGImageListMenuStyle;
-      MessageControl.Images := dmMain.SVGImageListMessageStyle; //dmMain.SVGImageListMenuStyle;
-
-      // Set toolbar images
-      tbMain.Images := dmMain.SVGImageListMenuStyle;
-      tbCompile.Images := dmMain.SVGImageListMenuStyle;
-      tbProject.Images := dmMain.SVGImageListMenuStyle;
-      tbClasses.Images := dmMain.SVGImageListMenuStyle;
-      tbedit.Images := dmMain.SVGImageListMenuStyle;
-      tbSearch.Images := dmMain.SVGImageListMenuStyle;
-      tbSpecials.Images := dmMain.SVGImageListMenuStyle;
-      tbCompilers.Images := dmMain.SVGImageListMenuStyle;
-
-      // Set left control images
-      ProjectView.Images := dmMain.SVGImageListProjectStyle;
-      ClassBrowser.Images := dmMain.SVGImageListClassStyle;
-      DebugView.Images := dmMain.SVGImageListMenuStyle;
-
-      // Set left control and editor popup images
-      ProjectPopup.Images := dmMain.SVGImageListMenuStyle;
-      UnitPopup.Images := dmMain.SVGImageListMenuStyle;
-      FolderPopup.Images := dmMain.SVGImageListMenuStyle;
-      BrowserPopup.Images := dmMain.SVGImageListMenuStyle;
-      DebugPopup.Images := dmMain.SVGImageListMenuStyle;
-      EditorPopup.Images := dmMain.SVGImageListMenuStyle;
-
-      ButtonNewDocument.Images := dmMain.SVGIconImageWelcomeScreen;
-      ButtonNewDocument.ImageIndex := 0;
-      ButtonNewDocument.ImageAlignment := TImageAlignment(2);
-      ButtonOpenDocument.Images := dmMain.SVGIconImageWelcomeScreen;
-      ButtonOpenDocument.ImageIndex := 1;
-      ButtonOpenDocument.ImageAlignment := TImageAlignment(2);
-      ButtonOptions.Images := dmMain.SVGIconImageWelcomeScreen;
-      ButtonOptions.ImageIndex := 2;
-      ButtonOptions.ImageAlignment := TImageAlignment(2);
-  end;
+// CROSSVCL
+//  procedure TMainForm.LoadThemeStyle;
+//  begin
+//      dmMain.SVGImageListMenuStyle.DisabledGrayScale := False;
+//      dmMain.SVGImageListMenuStyle.FixedColor := StringToColor(cSVGColor[devData.Style]);
+//      dmMain.SVGImageListMessageStyle.FixedColor := StringToColor(cSVGColor[devData.Style]);
+//      dmMain.SVGIconImageWelcomeScreen.FixedColor := StringToColor(cSVGColor[devData.Style]);
+//
+//      // Misc items images
+//      ActionList.Images := dmMain.SVGImageListMenuStyle;
+//      MainMenu.Images := dmMain.SVGImageListMenuStyle;
+//      MessageControl.Images := dmMain.SVGImageListMessageStyle; //dmMain.SVGImageListMenuStyle;
+//
+//      // Set toolbar images
+//      tbMain.Images := dmMain.SVGImageListMenuStyle;
+//      tbCompile.Images := dmMain.SVGImageListMenuStyle;
+//      tbProject.Images := dmMain.SVGImageListMenuStyle;
+//      tbClasses.Images := dmMain.SVGImageListMenuStyle;
+//      tbedit.Images := dmMain.SVGImageListMenuStyle;
+//      tbSearch.Images := dmMain.SVGImageListMenuStyle;
+//      tbSpecials.Images := dmMain.SVGImageListMenuStyle;
+//      tbCompilers.Images := dmMain.SVGImageListMenuStyle;
+//
+//      // Set left control images
+//      ProjectView.Images := dmMain.SVGImageListProjectStyle;
+//      ClassBrowser.Images := dmMain.SVGImageListClassStyle;
+//      DebugView.Images := dmMain.SVGImageListMenuStyle;
+//
+//      // Set left control and editor popup images
+//      ProjectPopup.Images := dmMain.SVGImageListMenuStyle;
+//      UnitPopup.Images := dmMain.SVGImageListMenuStyle;
+//      FolderPopup.Images := dmMain.SVGImageListMenuStyle;
+//      BrowserPopup.Images := dmMain.SVGImageListMenuStyle;
+//      DebugPopup.Images := dmMain.SVGImageListMenuStyle;
+//      EditorPopup.Images := dmMain.SVGImageListMenuStyle;
+//
+//      ButtonNewDocument.Images := dmMain.SVGIconImageWelcomeScreen;
+//      ButtonNewDocument.ImageIndex := 0;
+//      ButtonNewDocument.ImageAlignment := TImageAlignment(2);
+//      ButtonOpenDocument.Images := dmMain.SVGIconImageWelcomeScreen;
+//      ButtonOpenDocument.ImageIndex := 1;
+//      ButtonOpenDocument.ImageAlignment := TImageAlignment(2);
+//      ButtonOptions.Images := dmMain.SVGIconImageWelcomeScreen;
+//      ButtonOptions.ImageIndex := 2;
+//      ButtonOptions.ImageAlignment := TImageAlignment(2);
+//  end;
 
 {$ELSE}
 // CrossVcl code

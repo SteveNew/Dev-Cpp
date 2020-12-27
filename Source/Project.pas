@@ -158,7 +158,7 @@ implementation
 
 uses
   main, MultiLangSupport, devcfg, ProjectOptionsFrm, DataFrm, utils,
-  RemoveUnitFrm, SynEdit, EditorList, posix.Unistd;
+  RemoveUnitFrm, SynEdit, EditorList{$IFNDEF MSWINDOWS}, posix.Unistd {$ENDIF};
 
 { TProjUnit }
 

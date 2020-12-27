@@ -26,10 +26,6 @@ uses
   Windows, Classes, SysUtils, IntList, StatementList, Controls, ComCtrls, Graphics,
   CppParser, Forms, Vcl.Themes, cbutils;
 //{$ENDIF}
-{$IFDEF LINUX}
-Classes, SysUtils, QControls, QComCtrls, QForms, QGraphics,
-CppParser;
-{$ENDIF}
 
 type
   TMemberSelectEvent = procedure(Sender: TObject; Filename: TFilename; Line: integer) of object;

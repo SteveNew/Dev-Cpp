@@ -118,7 +118,7 @@ type
 implementation
 
 uses
-  System.UITypes, MultiLangSupport, Macros, devExec, main, StrUtils, System.IOUtils, posix.Unistd;
+  System.UITypes, MultiLangSupport, Macros, devExec, main, StrUtils, System.IOUtils{$IFNDEF MSWINDOWS}, posix.Unistd {$ENDIF};
 
 procedure TCompiler.DoLogEntry(const msg: String);
 begin

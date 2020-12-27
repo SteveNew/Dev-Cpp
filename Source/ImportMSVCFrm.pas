@@ -81,7 +81,7 @@ type
 implementation
 
 uses
-  System.UITypes, IniFiles, StrUtils, version, MultiLangSupport, devcfg, utils, posix.Unistd;
+  System.UITypes, IniFiles, StrUtils, version, MultiLangSupport, devcfg, utils {$IFNDEF MSWINDOWS}, posix.Unistd {$ENDIF};
 
 {$R *.dfm}
 

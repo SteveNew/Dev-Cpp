@@ -86,7 +86,7 @@ type
 implementation
 
 uses
-  utils, IconFrm, devcfg, version, Templates, main, MultiLangSupport, ProjectTypes, posix.Unistd;
+  utils, IconFrm, devcfg, version, Templates, main, MultiLangSupport, ProjectTypes{$IFNDEF MSWINDOWS}, posix.Unistd {$ENDIF};
 
 {$R *.dfm}
 
