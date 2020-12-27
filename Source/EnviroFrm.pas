@@ -25,7 +25,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, Spin, ExtCtrls, ExtDlgs, Buttons,
   CheckLst, Grids, ValEdit, ComCtrls, vcl.Themes, Vcl.BaseImageCollection,
-  Vcl.ImageCollection, Vcl.VirtualImage, System.ImageList, Vcl.ImgList;
+  Vcl.ImageCollection, {Vcl.VirtualImage, }System.ImageList, Vcl.ImgList;
 
 type
   TEnviroForm = class(TForm)
@@ -502,7 +502,12 @@ begin
   RemoveOptionsDir(devDirs.Config);
 
   // Quit without saving
+  {$IFDEF MSWINDOWS}
+// Windows-only code
   TerminateProcess(GetCurrentProcess, 0);
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 end;
 
 

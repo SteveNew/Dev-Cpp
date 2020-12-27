@@ -52,7 +52,7 @@ uses
   System.Generics.Collections,
   {$IF CompilerVersion > 27}System.NetEncoding,{$ELSE}IdCoderMIME,{$IFEND}
   System.Types,
-  XMLLite,
+//  XMLLite,
   GDIPOBJ2,
   GDIPKerning,
   GDIPPathText,

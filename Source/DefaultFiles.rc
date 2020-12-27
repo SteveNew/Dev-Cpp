@@ -1,4 +1,4 @@
-CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "..\devcpp.exe.manifest"
+CREATEPROCESS_MANIFEST_RESOURCE_ID RCDATA "..\devcpp.exe.manifest"
 
 English lng ..\lang\English.lng
 

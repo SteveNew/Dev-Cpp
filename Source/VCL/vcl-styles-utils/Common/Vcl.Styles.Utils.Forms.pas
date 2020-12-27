@@ -31,7 +31,7 @@ uses
   System.SysUtils,
   Winapi.Windows,
   Winapi.Messages,
-  Vcl.Styles,
+//  Vcl.Styles,
   Vcl.Themes,
   Vcl.Dialogs,
   Vcl.Graphics,

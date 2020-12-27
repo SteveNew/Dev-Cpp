@@ -29,7 +29,7 @@ uses
   System.Classes,
   System.SysUtils,
   Winapi.Windows,
-  Vcl.Styles,
+//  Vcl.Styles,
   Vcl.Themes,
   Vcl.StdCtrls,
   Vcl.GraphUtil,

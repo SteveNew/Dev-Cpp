@@ -65,7 +65,12 @@ var
 
 procedure RefreshIcons;
 begin
+{$IFDEF MSWINDOWS}
+// Windows-only code
   SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, nil, nil);
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 end;
 
 function IsAssociated(Index: integer): boolean;

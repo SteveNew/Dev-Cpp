@@ -118,7 +118,7 @@ type
 implementation
 
 uses
-  System.UITypes, MultiLangSupport, Macros, devExec, main, StrUtils, System.IOUtils;
+  System.UITypes, MultiLangSupport, Macros, devExec, main, StrUtils, System.IOUtils, posix.Unistd;
 
 procedure TCompiler.DoLogEntry(const msg: String);
 begin
@@ -858,7 +858,7 @@ begin
         end;
         if FileExists(FileName) then begin
           DoLogEntry(Format(Lang[ID_LOG_CLEANEDFILE], [FileName]));
-          DeleteFile(FileName);
+          System.SysUtils.DeleteFile(FileName);
         end else
           DoLogEntry(Lang[ID_LOG_NOCLEANFILE]);
       end;

@@ -28,18 +28,18 @@ uses
   Menus, StdCtrls, ComCtrls, ToolWin, ExtCtrls, Buttons, utils, SynEditPrint,
   Project, editor, DateUtils, compiler, ActnList, ToolFrm, AppEvnts,
   debugger, ClassBrowser, CodeCompletion, CppParser, CppTokenizer, SyncObjs,
-  StrUtils, SynEditTypes, devFileMonitor, devMonitorTypes, DdeMan, EditorList,
+  StrUtils, SynEditTypes, devFileMonitor, devMonitorTypes, {DdeMan, }EditorList,
   devShortcuts, debugreader, ExceptionFrm, CommCtrl, devcfg, SynEditTextBuffer,
   CppPreprocessor, CBUtils, StatementList, FormatterOptionsFrm, System.Actions,
-  vcl.Themes, SVGColor, Vcl.Imaging.pngimage, Vcl.WinXCtrls, Vcl.WinXPanels, Vcl.ExtDlgs,
-  Vcl.Styles.Hooks,
-  Vcl.Styles.Utils.Menus, //Style Popup and Shell Menus (class #32768)
-  Vcl.Styles.Utils.Forms, //Style dialogs box (class #32770)
-  Vcl.Styles.Utils.StdCtrls, //Style buttons, static, and so on
-  Vcl.Styles.Utils.ComCtrls, //Style SysTreeView32, SysListView32
-  Vcl.Styles.Utils.ScreenTips, //Style the tooltips_class32 class
-  Vcl.Styles.Utils.SysControls,
-  Vcl.Styles.Utils.SysStyleHook, Vcl.VirtualImage
+  vcl.Themes, Vcl.Imaging.pngimage, {Vcl.WinXCtrls, Vcl.WinXPanels, }Vcl.ExtDlgs
+  {Vcl.Styles.Hooks, }
+//  Vcl.Styles.Utils.Menus, //Style Popup and Shell Menus (class #32768)
+//  Vcl.Styles.Utils.Forms, //Style dialogs box (class #32770)
+//  Vcl.Styles.Utils.StdCtrls, //Style buttons, static, and so on
+//  Vcl.Styles.Utils.ComCtrls, //Style SysTreeView32, SysListView32
+//  Vcl.Styles.Utils.ScreenTips, //Style the tooltips_class32 class
+//  Vcl.Styles.Utils.SysControls,
+//  Vcl.Styles.Utils.SysStyleHook, Vcl.VirtualImage {,Vcl.DdeMan}
   ;
 
 type
@@ -358,7 +358,6 @@ type
     actViewCPU: TAction;
     actExecParams: TAction;
     mnuExecParameters: TMenuItem;
-    DevCppDDEServer: TDdeServerConv;
     actShowTips: TAction;
     ShowTipsItem: TMenuItem;
     N42: TMenuItem;
@@ -586,7 +585,6 @@ type
     ConsolePopupMenu: TPopupMenu;
     CloseCMDMNU: TMenuItem;
     actConsoleClose: TAction;
-    ImageEmbarcadero: TVirtualImage;
     LabelSponsor: TLabel;
     PanelDescOpen: TPanel;
     PanelDescSave: TPanel;
@@ -594,6 +592,7 @@ type
     PanelDescRun: TPanel;
     PanelDescCompile: TPanel;
     PanelDescClear: TPanel;
+    ImageEmbarcadero: TImage;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormDestroy(Sender: TObject);
     procedure ToggleBookmarkClick(Sender: TObject);
@@ -925,7 +924,12 @@ type
     function ParseParameters(const Parameters: WideString): Integer;
     //procedure Delphi Style
     procedure LoadStyle;
-    procedure LoadThemeStyle;
+{$IFDEF MSWINDOWS}
+// Windows-only code
+  procedure LoadThemeStyle;
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
     procedure LoadTheme;
 
     //Procedure New Screen
@@ -985,7 +989,7 @@ uses
   ProfileAnalysisFrm, FilePropertiesFrm, AddToDoFrm, ViewToDoFrm,
   ImportMSVCFrm, ImportCBFrm, CPUFrm, FileAssocs, TipOfTheDayFrm,
   WindowListFrm, RemoveUnitFrm, ParamsFrm, ProcessListFrm, SynEditHighlighter,
-  ConsoleAppHostFrm;
+  ConsoleAppHostFrm, posix.Unistd;
 
 {$R *.dfm}
 
@@ -2712,7 +2716,7 @@ begin
           fProject.RemoveEditor(projindex, false);
 
         // All references to the file are removed. Delete the file from disk
-        DeleteFile(NewName);
+        System.SysUtils.DeleteFile(NewName);
 
         // User didn't want to overwrite
       end else
@@ -3413,7 +3417,7 @@ begin
       begin
         if devData.Style > 0 then
         begin
-          LoadThemeStyle;
+//          LoadThemeStyle;
           LoadStyle;
         end
         else
@@ -5881,7 +5885,7 @@ begin
   end;
 
   if path <> '' then begin
-    if DeleteFile(PChar(path)) then begin
+    if System.SysUtils.DeleteFile(PChar(path)) then begin
       SetStatusbarMessage(Format(Lang[ID_DELETEDPROFDATA], [path]));
     end else
       SetStatusbarMessage(Format(Lang[ID_COULDNOTFINDPROFDATA], [path]));
@@ -6117,7 +6121,12 @@ begin
   fFirstShow := true;
 
   // Backup PATH variable
+{$IFDEF MSWINDOWS}
+// Windows-only code
   devDirs.OriginalPath := GetEnvironmentVariable('PATH');
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 
   // Create a compiler
   fCompiler := TCompiler.Create;
@@ -6275,7 +6284,13 @@ begin
   UpdateCompilerList;
 
   // Try to fix the file associations. Needs write access to registry, which might cause exceptions to be thrown
+{$IFDEF MSWINDOWS}
+// Windows-only code
   DDETopic := DevCppDDEServer.Name;
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
+
   if devData.CheckAssocs then begin
     try
       CheckAssociations(true); // check and fix
@@ -6291,7 +6306,7 @@ begin
   devImageThemes.LoadFromDirectory(devDirs.Themes);
   if devdata.Style > 0 then
   begin
-    LoadThemeStyle;
+//    LoadThemeStyle;
     LoadStyle;
   end
   else
@@ -6407,7 +6422,12 @@ begin
 
   // Open files passed to us (HAS to be done at FormShow)
   // This includes open file commands send to us via WMCopyData
+{$IFDEF MSWINDOWS}
+// Windows-only code
   FileCount := ParseParameters(GetCommandLine);
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 
   // Open them according to OpenFileList rules
   OpenFileList(fFilesToOpen);
@@ -7016,7 +7036,12 @@ begin
   Result := 0;
 
   // Convert string to list of items
+{$IFDEF MSWINDOWS}
+// Windows-only code
   ParameterList := CommandLineToArgvW(PWideChar(Parameters), ParameterCount);
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
   if not Assigned(ParameterList) then
     Exit;
 
@@ -7043,22 +7068,34 @@ begin
   Result := fFilesToOpen.Count;
 
   // Free list of pointers
+{$IFDEF MSWINDOWS}
+// Windows-only code
   LocalFree(Cardinal(ParameterList));
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 end;
 
 procedure TMainForm.LoadStyle;
 begin
   TStyleManager.TrySetStyle(cDelphiStyle[devData.Style]);
   LabelNumVersion.Font.Color := clRed;
+{$IFDEF MSWINDOWS}
+// Windows-only code
   case devData.Style of
     2, 3, 4, 5, 6: ImageEmbarcadero.ImageIndex := 1;
   else
     ImageEmbarcadero.ImageIndex := 0;
   end;
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 end;
 
-procedure TMainForm.LoadThemeStyle;
-begin
+{$IFDEF MSWINDOWS}
+// Windows-only code
+  procedure TMainForm.LoadThemeStyle;
+  begin
       dmMain.SVGImageListMenuStyle.DisabledGrayScale := False;
       dmMain.SVGImageListMenuStyle.FixedColor := StringToColor(cSVGColor[devData.Style]);
       dmMain.SVGImageListMessageStyle.FixedColor := StringToColor(cSVGColor[devData.Style]);
@@ -7101,7 +7138,11 @@ begin
       ButtonOptions.Images := dmMain.SVGIconImageWelcomeScreen;
       ButtonOptions.ImageIndex := 2;
       ButtonOptions.ImageAlignment := TImageAlignment(2);
-end;
+  end;
+
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 
 procedure TMainForm.GetProjectHistory;
 var

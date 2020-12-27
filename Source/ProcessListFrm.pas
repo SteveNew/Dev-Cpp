@@ -47,30 +47,31 @@ var
 implementation
 
 uses 
-  tlhelp32, devcfg;
+  {tlhelp32, }devcfg;
 
 {$R *.dfm}
 
 procedure TProcessListForm.FormCreate(Sender: TObject);
 var
   t  : THandle;
-  pe : TProcessEntry32;
+//  pe : TProcessEntry32;
   HasProcess: boolean;
 begin
   LoadText;
   ProcessList := TList.Create;
-  t := CreateToolhelp32Snapshot(TH32CS_SNAPALL, 0);
-  try
-    pe.dwSize:= SizeOf(pe);
-    HasProcess := Process32First(t, pe);
-    while HasProcess do begin
-      ProcessCombo.Items.Add(pe.szExeFile);
-      ProcessList.Add(pointer(pe.th32ProcessId));
-      HasProcess := Process32Next(t, pe);
-    end;
-  finally
-    CloseHandle(t);
-  end;
+// CROSSVCL
+//  t := CreateToolhelp32Snapshot(TH32CS_SNAPALL, 0);
+//  try
+//    pe.dwSize:= SizeOf(pe);
+//    HasProcess := Process32First(t, pe);
+//    while HasProcess do begin
+//      ProcessCombo.Items.Add(pe.szExeFile);
+//      ProcessList.Add(pointer(pe.th32ProcessId));
+//      HasProcess := Process32Next(t, pe);
+//    end;
+//  finally
+//    CloseHandle(t);
+//  end;
 end;
 
 procedure TProcessListForm.FormDestroy(Sender: TObject);

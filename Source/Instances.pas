@@ -22,7 +22,7 @@ unit Instances;
 interface
 
 uses
-  Windows, Messages, Psapi, SysUtils, Forms, StrUtils, Classes;
+  Windows, Messages, {Psapi, }SysUtils, Forms, StrUtils, Classes;
 
 function GetSentStructData(Message: TMessage): String;
 procedure SendToPreviousInstance(Instance: THandle; const Data: String);
@@ -106,8 +106,9 @@ begin
       Exit;
 
     // Get its module filename
-    if GetModuleFileNameEx(WindowProcess, WindowModule, Buffer, SizeOf(Buffer)) = 0 then
-      Exit;
+// CROSSVCL
+//    if GetModuleFileNameEx(WindowProcess, WindowModule, Buffer, SizeOf(Buffer)) = 0 then
+//      Exit;
     WindowModuleName := Buffer;
     CloseHandle(WindowProcess); // not needed anymore
 

@@ -845,7 +845,12 @@ begin
     wFunc := FO_COPY;
     fFlags := FOF_ALLOWUNDO or FOF_SILENT or FOF_NOCONFIRMATION;
   end;
+{$IFDEF MSWINDOWS}
+// Windows-only code
   SHFileOperation(fostruct);
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 
   FillChar(fostruct, Sizeof(fostruct), 0);
   with fostruct do begin
@@ -854,7 +859,12 @@ begin
     wFunc := FO_DELETE;
     fFlags := FOF_ALLOWUNDO or FOF_SILENT or FOF_NOCONFIRMATION;
   end;
+{$IFDEF MSWINDOWS}
+// Windows-only code
   SHFileOperation(fostruct);
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 end;
 
 var
@@ -2296,10 +2306,15 @@ begin
   else
   begin
     // Get my documents folder
-    if SHGetSpecialFolderPath(Application.Handle, DocumentsPath, CSIDL_MYDOCUMENTS, false) then
+{$IFDEF MSWINDOWS}
+// Windows-only code
+      if SHGetSpecialFolderPath(Application.Handle, DocumentsPath, CSIDL_MYDOCUMENTS, false) then
       fDefault := DocumentsPath
     else
       fDefault := fExec;
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
   end;
 end;
 

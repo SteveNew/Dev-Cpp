@@ -23,9 +23,9 @@ interface
 
 //path delimiter
 const
-{$IFDEF WIN32}
+//{$IFDEF WIN32}
   pd = '\';
-{$ENDIF}
+//{$ENDIF}
 {$IFDEF LINUX}
   pd = '/';
 {$ENDIF}

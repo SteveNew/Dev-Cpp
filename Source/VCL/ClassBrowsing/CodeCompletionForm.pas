@@ -22,10 +22,10 @@ unit CodeCompletionForm;
 interface
 
 uses
-{$IFDEF WIN32}
+//{$IFDEF WIN32}
   Windows, Classes, Graphics, Forms, StdCtrls, Controls,
   CodeCompletion, CppParser, CBUtils, Winapi.Messages, Vcl.ExtCtrls;
-{$ENDIF}
+//{$ENDIF}
 {$IFDEF LINUX}
 Xlib, SysUtils, Classes, QGraphics, QForms, QStdCtrls, QControls,
 CodeCompletion, CppParser, QGrids, QDialogs, Types;

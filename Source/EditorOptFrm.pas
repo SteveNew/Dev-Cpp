@@ -22,7 +22,7 @@ unit EditorOptFrm;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  System.Types, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, StdCtrls, ExtCtrls, Spin,
   SynEdit, SynEditHighlighter, SynHighlighterCpp,
   Buttons, ClassBrowser, CppParser, CppTokenizer, StrUtils, Grids,
@@ -217,8 +217,8 @@ type
 implementation
 
 uses
-  System.Types, Vcl.ExtDlgs, shlobj, MultiLangSupport, devcfg, version, utils, math, CommCtrl, DateUtils, CodeInsList, DataFrm, IniFiles, editor,
-  main;
+  Vcl.ExtDlgs, {shlobj,} MultiLangSupport, devcfg, version, utils, math, CommCtrl, DateUtils, CodeInsList, DataFrm, IniFiles, editor,
+  main, posix.Unistd;
 
 {$R *.dfm}
 const
@@ -828,7 +828,7 @@ begin
   if not seDefault.Lines.Text.IsEmpty then
     seDefault.Lines.SavetoFile(devDirs.Config + DEV_DEFAULTCODE_FILE)
   else
-    DeleteFile(devDirs.Config + DEV_DEFAULTCODE_FILE);
+    System.SysUtils.DeleteFile(devDirs.Config + DEV_DEFAULTCODE_FILE);
 
   SaveCodeIns;
 

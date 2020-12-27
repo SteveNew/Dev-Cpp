@@ -24,7 +24,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, ExtCtrls, ImgList, Buttons, ComCtrls, Templates, Inifiles,
-  System.ImageList, SVGIconImageListBase, SVGIconImageList;
+  System.ImageList;
 
 type
   TNewProjectForm = class(TForm)
@@ -39,7 +39,6 @@ type
     ProjView: TListView;
     TemplateLabel: TLabel;
     btnHelp: TBitBtn;
-    SVGIconImageList: TSVGIconImageList;
     ImageList: TImageList;
     procedure ProjViewChange(Sender: TObject; Item: TListItem; Change: TItemChange);
     procedure FormCreate(Sender: TObject);
@@ -73,8 +72,8 @@ begin
   fTemplates := TList.Create;
   LoadText;
   ReadTemplateDir;
-  if devdata.Style > 0 then
-    SVGIconImageList.FixedColor := StringToColor(cSVGColor[devData.Style]);
+//  if devdata.Style > 0 then
+//    SVGIconImageList.FixedColor := StringToColor(cSVGColor[devData.Style]);
 end;
 
 procedure TNewProjectForm.FormDestroy(Sender: TObject);
@@ -93,9 +92,9 @@ var
 begin
   if not FileExists(FileName) then
     Exit;
-  if devdata.Style > 0 then
-    TypeImage := 'svg'
-  else
+//  if devdata.Style > 0 then
+//    TypeImage := 'svg'
+//  else
     TypeImage := 'Icon';
 
   Template := TTemplate.Create;
@@ -200,7 +199,7 @@ begin
   svgFileName := TStringList.Create;
   ProjView.Items.BeginUpdate;
   try
-    ProjView.LargeImages := SVGIConImageList;
+//    ProjView.LargeImages := SVGIConImageList;
     ProjView.Items.Clear;
 
     // Walk all items
@@ -226,9 +225,9 @@ begin
           // Add svg image to central dump and tell ListItem to use it
           svgFileName.Clear;
           svgFileName.Add(IconFileName);
-          SVGIconImageList.LoadFromFiles(svgFileName);
+//          SVGIconImageList.LoadFromFiles(svgFileName);
           svgName :=  Copy(TemplateItem.Icon, 1, length(TemplateItem.Icon)-4);
-          SVGIndex := SVGIconImageList.GetIndexByName(svgName);
+//          SVGIndex := SVGIconImageList.GetIndexByName(svgName);
           ListItem.ImageIndex := SVGIndex;
           if ListItem.ImageIndex = -1 then
             ListItem.ImageIndex := 0;

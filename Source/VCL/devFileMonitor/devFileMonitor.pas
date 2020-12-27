@@ -22,10 +22,10 @@ unit devFileMonitor;
 interface
 
 uses
-{$IFDEF WIN32}
+//{$IFDEF WIN32}
   Windows, Messages, SysUtils, Classes, Forms, Controls,
   devMonitorThread, devMonitorTypes;
-{$ENDIF}
+//{$ENDIF}
 {$IFDEF LINUX}
 SysUtils, Classes, QForms, QControls,
 devMonitorThread, devMonitorTypes;

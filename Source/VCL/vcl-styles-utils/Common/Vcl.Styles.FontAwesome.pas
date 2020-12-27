@@ -33,9 +33,9 @@ uses
   Winapi.GDIPAPI,
   Winapi.Windows,
   System.Classes,
-  {$IFDEF WinXCtrls}
-  Vcl.WinXCtrls,
-  {$ENDIF}
+//  {$IFDEF WinXCtrls}
+//  Vcl.WinXCtrls,
+//  {$ENDIF}
   Vcl.Controls,
   Vcl.StdCtrls,
   Vcl.Graphics;
@@ -591,31 +591,31 @@ type
     function  GetIcon(const ACode: Word; Width, Height : Integer; AColor, ABackColor : TColor; Orientation : Integer = 0; ImageAlignment: TImageAlignment = iaLeft) : HICON; overload;
     function  GetIcon(const ACode: Word; Width, Height, CharX, CharY : Integer; AColor, ABackColor : TColor; Orientation : Integer = 0; ImageAlignment: TImageAlignment = iaLeft) : HICON; overload;
   end;
-  {$IFDEF WinXCtrls}
-  TFontAwesomeAnimated = class(TCustomActivityIndicator)
-  private
-    FFontAwesomeCode : Word;
-    FColor, FBackColor : TColor;
-    procedure SetFontAwesomeCode(const Value: Word);
-    procedure SetColor(const Value: TColor);
-    procedure SetBackColor(const Value: TColor);
-  protected
-    procedure ReloadFrames; override;
-    procedure Resize; override;
-  public
-    constructor Create(AOwner: TComponent); override;
-  published
-    property Anchors;
-    property Animate;
-    property FrameDelay;
-    property IndicatorColor;
-    property IndicatorSize;
-    property IndicatorType;
-    property Color : TColor read FColor write SetColor;
-    property BackColor : TColor read FBackColor write SetBackColor;
-    property FontAwesomeCode : Word read FFontAwesomeCode write SetFontAwesomeCode;
-  end;
-  {$ENDIF}
+//  {$IFDEF WinXCtrls}
+//  TFontAwesomeAnimated = class(TCustomActivityIndicator)
+//  private
+//    FFontAwesomeCode : Word;
+//    FColor, FBackColor : TColor;
+//    procedure SetFontAwesomeCode(const Value: Word);
+//    procedure SetColor(const Value: TColor);
+//    procedure SetBackColor(const Value: TColor);
+//  protected
+//    procedure ReloadFrames; override;
+//    procedure Resize; override;
+//  public
+//    constructor Create(AOwner: TComponent); override;
+//  published
+//    property Anchors;
+//    property Animate;
+//    property FrameDelay;
+//    property IndicatorColor;
+//    property IndicatorSize;
+//    property IndicatorType;
+//    property Color : TColor read FColor write SetColor;
+//    property BackColor : TColor read FBackColor write SetBackColor;
+//    property FontAwesomeCode : Word read FFontAwesomeCode write SetFontAwesomeCode;
+//  end;
+//  {$ENDIF}
 
 var
   FontAwesome :  TFontAwesome;
@@ -843,187 +843,187 @@ end;
 //end;
 
 
-{$IFDEF WinXCtrls}
-{ TFontAwesomeAnimated }
-type
-  TCustomActivityIndicatorShadow = class(TCustomControl)
-  private
-    FAnimate: Boolean;
-    FIndicatorColor: TActivityIndicatorColor;
-    FIndicatorSize: TActivityIndicatorSize;
-    FIndicatorType: TActivityIndicatorType;
-    FFrameDelay: Word;
-    FFrameIndex: Integer;
-    FTimer: TTimer;
-    FFrameList: TImageList;
-    FFrameCount: Integer;
-    FFrameSize: Integer;
-    FFrameBitmap: TBitmap;
-    FLoadedFrames: Boolean;
-  end;
-
-procedure DrawParentImage(Control: TControl; DC: HDC; InvalidateParent: Boolean = False);
-var
-  SaveIndex: Integer;
-  P: TPoint;
-begin
-  if Control.Parent = nil then
-    Exit;
-  SaveIndex := SaveDC(DC);
-  GetViewportOrgEx(DC, P);
-
-  SetViewportOrgEx(DC, P.X - Control.Left, P.Y - Control.Top, nil);
-  IntersectClipRect(DC, 0, 0, Control.Parent.ClientWidth, Control.Parent.ClientHeight);
-
-  Control.Parent.Perform(WM_ERASEBKGND, DC, 0);
-  Control.Parent.Perform(WM_PRINTCLIENT, DC, prf_Client);
-
-  RestoreDC(DC, SaveIndex);
-
-  if InvalidateParent then
-  begin
-    if not (Control.Parent is TCustomControl) and not (Control.Parent is TCustomForm) and
-       not (csDesigning in Control.ComponentState) then
-    begin
-      Control.Parent.Invalidate;
-    end;
-  end;
-end;
-
-constructor TFontAwesomeAnimated.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-  FFontAwesomeCode := fa_spinner;
-  FColor := StyleServices.GetSystemColor(clBtnText);
-  FBackColor := StyleServices.GetSystemColor(clBtnFace);
-end;
-
-procedure RotateBitmap(ABitmap: TBitmap; Degs: Integer; Resize: Boolean; ABackColor: TColor = clNone);
-var
-  LGPBitmap: TGPBitmap;
-  LMatrix: TGPMatrix;
-  C, S: Single;
-  LSize: TSize;
-  LGPGraphics: TGPGraphics;
-begin
-  LGPBitmap := TGPBitmap.Create(ABitmap.Handle, ABitmap.Palette);
-  try
-    LMatrix := TGPMatrix.Create;
-    try
-      LMatrix.RotateAt(Degs, MakePoint(0.5 * ABitmap.Width, 0.5 * ABitmap.Height));
-      if Resize then
-      begin
-        C := Cos(DegToRad(Degs));
-        S := Sin(DegToRad(Degs));
-        LSize.cx := Round(ABitmap.Width * Abs(C) + ABitmap.Height * Abs(S));
-        LSize.cy := Round(ABitmap.Width * Abs(S) + ABitmap.Height * Abs(C));
-        ABitmap.Width := LSize.cx;
-        ABitmap.Height := LSize.cy;
-      end;
-
-      LGPGraphics := TGPGraphics.Create(ABitmap.Canvas.Handle);
-      try
-        LGPGraphics.Clear(ColorRefToARGB(ColorToRGB(ABackColor)));
-        LGPGraphics.SetTransform(LMatrix);
-        LGPGraphics.DrawImage(LGPBitmap, (Cardinal(ABitmap.Width) - LGPBitmap.GetWidth) div 2,
-          (Cardinal(ABitmap.Height) - LGPBitmap.GetHeight) div 2);
-      finally
-        LGPGraphics.Free;
-      end;
-
-    finally
-      LMatrix.Free;
-    end;
-  finally
-    LGPBitmap.Free;
-  end;
-end;
-
-procedure TFontAwesomeAnimated.ReloadFrames;
-var
-  i, LFrameSize, LAngleDelta, LAngle : Integer;
-  LBitmap : TBitmap;
-begin
-  TCustomActivityIndicatorShadow(Self).FFrameSize  := 48;
-  LFrameSize := TCustomActivityIndicatorShadow(Self).FFrameSize;
-  TCustomActivityIndicatorShadow(Self).FFrameCount := 24; //optimize
-  TCustomActivityIndicatorShadow(Self).FFrameBitmap.SetSize(LFrameSize, LFrameSize);
-  LAngleDelta := 360 div TCustomActivityIndicatorShadow(Self).FFrameCount;
-
-  //TCustomActivityIndicatorShadow(Self).FFrameList.ColorDepth := cd24Bit;
-  TCustomActivityIndicatorShadow(Self).FFrameList.Width := LFrameSize;
-  TCustomActivityIndicatorShadow(Self).FFrameList.Height := LFrameSize;
-
-  TCustomActivityIndicatorShadow(Self).FFrameList.Clear;
-  LAngle := 0;
-  for i := 0 to TCustomActivityIndicatorShadow(Self).FFrameCount - 1 do
-  begin
-    LBitmap := TBitmap.Create;
-    try
-      LBitmap.PixelFormat := pf32bit;
-      LBitmap.AlphaFormat := afDefined;
-      LBitmap.SetSize(LFrameSize, LFrameSize);
-      Bitmap32_SetAlphaAndColor(LBitmap, 0, FBackColor);
-      Bitmap32_SetAlpha(LBitmap, 0);
-      FontAwesome.DrawChar(LBitmap.Canvas.Handle, Char(FFontAwesomeCode), Rect(0, 0, LFrameSize, LFrameSize), FColor, 0, TImageAlignment.iaCenter);
-      if (LAngle > 0) then
-        RotateBitmap(LBitmap, LAngle, False, FBackColor);
-      Inc(LAngle, LAngleDelta);
-     TCustomActivityIndicatorShadow(Self).FFrameList.Add(LBitmap, nil);
-    finally
-      LBitmap.Free;
-    end;
-  end;
-  TCustomActivityIndicatorShadow(Self).FLoadedFrames := True;
-end;
-
-procedure TFontAwesomeAnimated.Resize;
-begin
-  SetBounds(Left, Top, TCustomActivityIndicatorShadow(Self).FFrameSize, TCustomActivityIndicatorShadow(Self).FFrameSize);
-end;
-
-procedure TFontAwesomeAnimated.SetBackColor(const Value: TColor);
-var
-  SaveAnimate: Boolean;
-begin
-  if FBackColor <> Value then
-  begin
-    FBackColor := Value;
-    SaveAnimate := Animate;
-    Animate := False;
-    ReloadFrames;
-    Animate := SaveAnimate;
-  end;
-end;
-
-procedure TFontAwesomeAnimated.SetColor(const Value: TColor);
-var
-  SaveAnimate: Boolean;
-begin
-  if FColor <> Value then
-  begin
-    FColor := Value;
-    SaveAnimate := Animate;
-    Animate := False;
-    ReloadFrames;
-    Animate := SaveAnimate;
-  end;
-end;
-
-procedure TFontAwesomeAnimated.SetFontAwesomeCode(const Value: Word);
-var
-  SaveAnimate: Boolean;
-begin
-  if FFontAwesomeCode <> Value then
-  begin
-    FFontAwesomeCode := Value;
-    SaveAnimate := Animate;
-    Animate := False;
-    ReloadFrames;
-    Animate := SaveAnimate;
-  end;
-end;
-{$ENDIF}
+//{$IFDEF WinXCtrls}
+//{ TFontAwesomeAnimated }
+//type
+//  TCustomActivityIndicatorShadow = class(TCustomControl)
+//  private
+//    FAnimate: Boolean;
+////    FIndicatorColor: TActivityIndicatorColor;
+////    FIndicatorSize: TActivityIndicatorSize;
+////    FIndicatorType: TActivityIndicatorType;
+//    FFrameDelay: Word;
+//    FFrameIndex: Integer;
+//    FTimer: TTimer;
+//    FFrameList: TImageList;
+//    FFrameCount: Integer;
+//    FFrameSize: Integer;
+//    FFrameBitmap: TBitmap;
+//    FLoadedFrames: Boolean;
+//  end;
+//
+//procedure DrawParentImage(Control: TControl; DC: HDC; InvalidateParent: Boolean = False);
+//var
+//  SaveIndex: Integer;
+//  P: TPoint;
+//begin
+//  if Control.Parent = nil then
+//    Exit;
+//  SaveIndex := SaveDC(DC);
+//  GetViewportOrgEx(DC, P);
+//
+//  SetViewportOrgEx(DC, P.X - Control.Left, P.Y - Control.Top, nil);
+//  IntersectClipRect(DC, 0, 0, Control.Parent.ClientWidth, Control.Parent.ClientHeight);
+//
+//  Control.Parent.Perform(WM_ERASEBKGND, DC, 0);
+//  Control.Parent.Perform(WM_PRINTCLIENT, DC, prf_Client);
+//
+//  RestoreDC(DC, SaveIndex);
+//
+//  if InvalidateParent then
+//  begin
+//    if not (Control.Parent is TCustomControl) and not (Control.Parent is TCustomForm) and
+//       not (csDesigning in Control.ComponentState) then
+//    begin
+//      Control.Parent.Invalidate;
+//    end;
+//  end;
+//end;
+//
+////constructor TFontAwesomeAnimated.Create(AOwner: TComponent);
+////begin
+////  inherited Create(AOwner);
+////  FFontAwesomeCode := fa_spinner;
+////  FColor := StyleServices.GetSystemColor(clBtnText);
+////  FBackColor := StyleServices.GetSystemColor(clBtnFace);
+////end;
+//
+//procedure RotateBitmap(ABitmap: TBitmap; Degs: Integer; Resize: Boolean; ABackColor: TColor = clNone);
+//var
+//  LGPBitmap: TGPBitmap;
+//  LMatrix: TGPMatrix;
+//  C, S: Single;
+//  LSize: TSize;
+//  LGPGraphics: TGPGraphics;
+//begin
+//  LGPBitmap := TGPBitmap.Create(ABitmap.Handle, ABitmap.Palette);
+//  try
+//    LMatrix := TGPMatrix.Create;
+//    try
+//      LMatrix.RotateAt(Degs, MakePoint(0.5 * ABitmap.Width, 0.5 * ABitmap.Height));
+//      if Resize then
+//      begin
+//        C := Cos(DegToRad(Degs));
+//        S := Sin(DegToRad(Degs));
+//        LSize.cx := Round(ABitmap.Width * Abs(C) + ABitmap.Height * Abs(S));
+//        LSize.cy := Round(ABitmap.Width * Abs(S) + ABitmap.Height * Abs(C));
+//        ABitmap.Width := LSize.cx;
+//        ABitmap.Height := LSize.cy;
+//      end;
+//
+//      LGPGraphics := TGPGraphics.Create(ABitmap.Canvas.Handle);
+//      try
+//        LGPGraphics.Clear(ColorRefToARGB(ColorToRGB(ABackColor)));
+//        LGPGraphics.SetTransform(LMatrix);
+//        LGPGraphics.DrawImage(LGPBitmap, (Cardinal(ABitmap.Width) - LGPBitmap.GetWidth) div 2,
+//          (Cardinal(ABitmap.Height) - LGPBitmap.GetHeight) div 2);
+//      finally
+//        LGPGraphics.Free;
+//      end;
+//
+//    finally
+//      LMatrix.Free;
+//    end;
+//  finally
+//    LGPBitmap.Free;
+//  end;
+//end;
+//
+//procedure TFontAwesomeAnimated.ReloadFrames;
+//var
+//  i, LFrameSize, LAngleDelta, LAngle : Integer;
+//  LBitmap : TBitmap;
+//begin
+//  TCustomActivityIndicatorShadow(Self).FFrameSize  := 48;
+//  LFrameSize := TCustomActivityIndicatorShadow(Self).FFrameSize;
+//  TCustomActivityIndicatorShadow(Self).FFrameCount := 24; //optimize
+//  TCustomActivityIndicatorShadow(Self).FFrameBitmap.SetSize(LFrameSize, LFrameSize);
+//  LAngleDelta := 360 div TCustomActivityIndicatorShadow(Self).FFrameCount;
+//
+//  //TCustomActivityIndicatorShadow(Self).FFrameList.ColorDepth := cd24Bit;
+//  TCustomActivityIndicatorShadow(Self).FFrameList.Width := LFrameSize;
+//  TCustomActivityIndicatorShadow(Self).FFrameList.Height := LFrameSize;
+//
+//  TCustomActivityIndicatorShadow(Self).FFrameList.Clear;
+//  LAngle := 0;
+//  for i := 0 to TCustomActivityIndicatorShadow(Self).FFrameCount - 1 do
+//  begin
+//    LBitmap := TBitmap.Create;
+//    try
+//      LBitmap.PixelFormat := pf32bit;
+//      LBitmap.AlphaFormat := afDefined;
+//      LBitmap.SetSize(LFrameSize, LFrameSize);
+//      Bitmap32_SetAlphaAndColor(LBitmap, 0, FBackColor);
+//      Bitmap32_SetAlpha(LBitmap, 0);
+//      FontAwesome.DrawChar(LBitmap.Canvas.Handle, Char(FFontAwesomeCode), Rect(0, 0, LFrameSize, LFrameSize), FColor, 0, TImageAlignment.iaCenter);
+//      if (LAngle > 0) then
+//        RotateBitmap(LBitmap, LAngle, False, FBackColor);
+//      Inc(LAngle, LAngleDelta);
+//     TCustomActivityIndicatorShadow(Self).FFrameList.Add(LBitmap, nil);
+//    finally
+//      LBitmap.Free;
+//    end;
+//  end;
+//  TCustomActivityIndicatorShadow(Self).FLoadedFrames := True;
+//end;
+//
+//procedure TFontAwesomeAnimated.Resize;
+//begin
+//  SetBounds(Left, Top, TCustomActivityIndicatorShadow(Self).FFrameSize, TCustomActivityIndicatorShadow(Self).FFrameSize);
+//end;
+//
+//procedure TFontAwesomeAnimated.SetBackColor(const Value: TColor);
+//var
+//  SaveAnimate: Boolean;
+//begin
+//  if FBackColor <> Value then
+//  begin
+//    FBackColor := Value;
+//    SaveAnimate := Animate;
+//    Animate := False;
+//    ReloadFrames;
+//    Animate := SaveAnimate;
+//  end;
+//end;
+//
+//procedure TFontAwesomeAnimated.SetColor(const Value: TColor);
+//var
+//  SaveAnimate: Boolean;
+//begin
+//  if FColor <> Value then
+//  begin
+//    FColor := Value;
+//    SaveAnimate := Animate;
+//    Animate := False;
+//    ReloadFrames;
+//    Animate := SaveAnimate;
+//  end;
+//end;
+//
+//procedure TFontAwesomeAnimated.SetFontAwesomeCode(const Value: Word);
+//var
+//  SaveAnimate: Boolean;
+//begin
+//  if FFontAwesomeCode <> Value then
+//  begin
+//    FFontAwesomeCode := Value;
+//    SaveAnimate := Animate;
+//    Animate := False;
+//    ReloadFrames;
+//    Animate := SaveAnimate;
+//  end;
+//end;
+//{$ENDIF}
 
 initialization
   FontAwesome := TFontAwesome.Create;

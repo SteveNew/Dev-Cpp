@@ -81,9 +81,5 @@ object CodeComplForm: TCodeComplForm
     OnDblClick = lbCompletionDblClick
     OnDrawItem = lbCompletionDrawItem
     OnKeyPress = lbCompletionKeyPress
-    ExplicitLeft = 8
-    ExplicitTop = -2
-    ExplicitWidth = 466
-    ExplicitHeight = 224
   end
 end

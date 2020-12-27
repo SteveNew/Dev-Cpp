@@ -25,7 +25,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StrUtils, StdCtrls, Buttons, ScktComp, ExtCtrls, ShellAPI, ComCtrls;
+  Dialogs, StrUtils, StdCtrls, Buttons, {System.Win.ScktComp, }ExtCtrls, ShellAPI, ComCtrls;
 
 type
   PUnitEntry = ^TUnitEntry;
@@ -163,6 +163,8 @@ var
   pagesize: dword;
   tmpSP: dword;
 begin
+{$IFDEF MSWINDOWS}
+// Windows-only code
   GetSystemInfo(si);
   pagesize := si.dwPageSize;
   asm
@@ -171,6 +173,9 @@ begin
   tmpSP := pagesize * (tmpSP div pagesize);
   VirtualQuery(pointer(tmpSP), mbi, sizeof(mbi));
   result := mbi.RegionSize + dword(mbi.BaseAddress);
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 end;
 
 procedure TExceptionFrm.ReadMapFile(const Fname: String);
@@ -376,9 +381,10 @@ begin
   //result := result + AddressInfo(Cardinal(StrToInt(lblAddress.Caption)));
 
   // Hack fix, assume stack leftovers are not erased
-  asm
-		mov walker, esp
-  end;
+// CROSSVCL
+//  asm
+//		mov walker, esp
+//  end;
   max := StackStop;
   repeat
     result := result + AddressInfo(Cardinal(walker^));
@@ -479,7 +485,12 @@ begin
 
   // Set Memory tab
   ms.dwLength := SizeOf(TMemoryStatus);
+{$IFDEF MSWINDOWS}
+// Windows-only code
   GlobalMemoryStatus(ms);
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 
   Tot := ms.dwTotalPhys;
   Avail := ms.dwAvailPhys;
@@ -509,7 +520,6 @@ end;
 
 procedure TExceptionFrm.btnSendClick(Sender: TObject);
 var
-  Socket: TClientSocket;
   I: integer;
   //	SocketResult: integer;
   //	Buffer: array[0..1024] of Char;
@@ -600,7 +610,13 @@ end;
 procedure TExceptionFrm.btnTerminateClick(Sender: TObject);
 begin
   if MessageDlg('Are you sure you want to terminate the application?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-    TerminateProcess(GetCurrentProcess, 0);
+  {$IFDEF MSWINDOWS}
+// Windows-only code
+  TerminateProcess(GetCurrentProcess, 0);
+{$ELSE}
+// CrossVcl code
+  ;
+{$ENDIF}
 end;
 
 procedure TExceptionFrm.btnContinueClick(Sender: TObject);

@@ -19,14 +19,14 @@
 
 program devcpp;
 {$R 'icons.res' 'icons.rc'}
-{$R 'DefaultFiles.res' 'DefaultFiles.rc'}
+// {$R 'DefaultFiles.res' 'DefaultFiles.rc'}
 
 uses
-  FastMM5 in 'FastMM5.pas',
+//  FastMM5 in 'FastMM5.pas',
   Windows,
   Forms,
   sysUtils,
-  SHFolder,
+//  SHFolder,
   Messages,
   System.IOUtils,
   main in 'main.pas' {MainForm},
@@ -89,8 +89,9 @@ uses
   Instances in 'Instances.pas',
   CharUtils in 'CharUtils.pas',
   ConsoleAppHostFrm in 'ConsoleAppHostFrm.pas' {ConsoleAppHost},
-  Vcl.Themes,
-  Vcl.Styles;
+  Vcl.Themes;
+  {,
+  Vcl.Styles; }
 
 {$R *.res}
 
@@ -101,7 +102,13 @@ begin
    if (ParamCount > 1) and ParamStr(1).Equals('INTERNAL_DEL') then
    begin
 //     {$I-}
-     AllocConsole;
+{$IFDEF MSWINDOWS}
+// Windows-only code
+  AllocConsole;
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
+
      try
        WriteLn('Start deleting...');
        for var i := 2 to ParamCount do
@@ -121,7 +128,12 @@ begin
      finally
        WriteLn('Deleting complete...');
        WriteLn('');
-       FreeConsole;
+{$IFDEF MSWINDOWS}
+// Windows-only code
+  FreeConsole;
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
      end;
 //     {$I+}
      Exit;

@@ -27,6 +27,10 @@ object NewTemplateForm: TNewTemplateForm
     TabOrder = 0
     object pgTemplate: TTabSheet
       Caption = 'Template info'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lblName: TLabel
         Left = 8
         Top = 12
@@ -106,7 +110,6 @@ object NewTemplateForm: TNewTemplateForm
           Caption = 'Library'
           ImageIndex = 63
           ImageName = 'iconsnew-69'
-          Images = dmMain.SVGImageListMenuStyle
           NumGlyphs = 2
           TabOrder = 1
           OnClick = btnLibClick
@@ -120,7 +123,6 @@ object NewTemplateForm: TNewTemplateForm
           Caption = 'Browse...'
           ImageIndex = 61
           ImageName = 'iconsnew-67'
-          Images = dmMain.SVGImageListMenuStyle
           NumGlyphs = 2
           TabOrder = 2
           OnClick = btnBrowseClick
@@ -135,7 +137,6 @@ object NewTemplateForm: TNewTemplateForm
           Enabled = False
           ImageIndex = 5
           ImageName = 'iconsnew-31'
-          Images = dmMain.SVGImageListMenuStyle
           TabOrder = 3
           OnClick = btnRemoveClick
         end
@@ -143,6 +144,10 @@ object NewTemplateForm: TNewTemplateForm
     end
     object pgFiles: TTabSheet
       Caption = 'Files'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lblFiles: TLabel
         Left = 8
         Top = 12
@@ -161,6 +166,10 @@ object NewTemplateForm: TNewTemplateForm
     end
     object pgExtras: TTabSheet
       Caption = 'Extras'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lblCompiler: TLabel
         Left = 8
         Top = 12

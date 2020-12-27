@@ -41,7 +41,7 @@ uses
   System.SysUtils,
   System.Classes,
   WinApi.Windows,
-  WinApi.TLHelp32,
+//  WinApi.TLHelp32,
 {$IFNDEF SUPPORTS_MONITOR}
   System.SyncObjs,
 {$ENDIF SUPPORTS_MONITOR}

@@ -91,12 +91,12 @@ begin
     else
       wShowWindow := SW_HIDE;
   end;
-  if CreateProcess(nil, PChar('"' + fFile + '" ' + fParams), nil, nil, False, NORMAL_PRIORITY_CLASS, nil,
-    PChar(fPath),
-    StartupInfo, ProcessInfo) then begin
-    fProcess := ProcessInfo.hProcess;
-    WaitForSingleObject(ProcessInfo.hProcess, fTimeOut);
-  end;
+//  if CreateProcess(nil, PChar('"' + fFile + '" ' + fParams), nil, nil, False, NORMAL_PRIORITY_CLASS, nil,
+//    PChar(fPath),
+//    StartupInfo, ProcessInfo) then begin
+//    fProcess := ProcessInfo.hProcess;
+//    WaitForSingleObject(ProcessInfo.hProcess, fTimeOut);
+//  end;
   CloseHandle(ProcessInfo.hProcess);
   CloseHandle(ProcessInfo.hThread);
 end;
@@ -145,7 +145,12 @@ end;
 procedure TdevExecutor.Reset;
 begin
   if Assigned(fExec) then
-    TerminateProcess(fExec.Process, 0);
+{$IFDEF MSWINDOWS}
+// Windows-only code
+  TerminateProcess(fExec.Process, 0);
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
   fIsRunning := False;
 end;
 

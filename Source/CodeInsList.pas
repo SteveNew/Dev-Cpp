@@ -279,7 +279,7 @@ var
   section: String;
   item: PCodeIns;
 begin
-  DeleteFile(fFile);
+  System.SysUtils.DeleteFile(fFile);
   if fList.Count = 0 then
     Exit;
 

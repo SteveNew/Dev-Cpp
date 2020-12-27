@@ -101,7 +101,7 @@ Type
 implementation
 
 Uses
-  System.Rtti, DDetours, System.Math;
+  System.Rtti, {DDetours, }System.Math;
 
 { TStyleDPIAwareness }
 

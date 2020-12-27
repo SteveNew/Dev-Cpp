@@ -1996,7 +1996,6 @@ end;
 procedure TCustomSynEdit.MouseDown(Button: TMouseButton; Shift: TShiftState;
   X, Y: Integer);
 var
-  bWasSel: Boolean;
   TmpBegin, TmpEnd: TBufferCoord;
   P : TPoint;
   // Ole drag drop
@@ -2009,12 +2008,8 @@ begin
   TmpBegin := FBlockBegin;
   TmpEnd := FBlockEnd;
 
-  bWasSel := False;
   if (Button = mbLeft) and ((Shift + [ssDouble]) = [ssLeft, ssDouble]) then
   begin
-    if SelAvail then
-      //remember selection state, as it will be cleared later
-      bWasSel := True;
     if (FClickCount > 0)
        and (Abs(fMouseDownX - X) < GetSystemMetrics(SM_CXDRAG))
        and (Abs(fMouseDownY - Y) < GetSystemMetrics(SM_CYDRAG))
@@ -2068,6 +2063,8 @@ begin
       and (SelectionMode = smNormal) and not (ssAlt in Shift)
       and IsPointInSelection(DisplayToBufferPos(PixelsToRowColumn(X, Y))) then
     begin
+    {$IFDEF MSWINDOWS}
+// Windows-only code
       if DragDetect(Handle, Point(X,Y)) then begin
         DataObject := TSynEditDataObject.Create(Self);
         DragSource := TSynDragSource.Create;
@@ -2087,6 +2084,9 @@ begin
           PostMessage(Handle, WM_LBUTTONUP, 0, PointToLParam(ScreenToClient(P)));
         end;
       end;
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
     end;
   end;
 

@@ -196,6 +196,10 @@ object MainForm: TMainForm
     OnChange = MessageControlChange
     object CompSheet: TTabSheet
       Caption = 'Compiler'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object CompilerOutput: TListView
         Left = 0
         Top = 0
@@ -240,6 +244,10 @@ object MainForm: TMainForm
     object ResSheet: TTabSheet
       Caption = 'Resource'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object ResourceOutput: TListView
         Left = 0
         Top = 0
@@ -284,6 +292,10 @@ object MainForm: TMainForm
     object LogSheet: TTabSheet
       Caption = 'Compile log'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object InfoGroupBox: TPanel
         Left = 0
         Top = 0
@@ -352,6 +364,10 @@ object MainForm: TMainForm
     object DebugSheet: TTabSheet
       Caption = 'Debugging'
       ImageIndex = 3
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object DebugSendPanel: TPanel
         Left = 589
         Top = 0
@@ -514,6 +530,10 @@ object MainForm: TMainForm
     object FindSheet: TTabSheet
       Caption = 'Find results'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object FindOutput: TListView
         Left = 0
         Top = 0
@@ -604,6 +624,10 @@ object MainForm: TMainForm
     object CloseSheet: TTabSheet
       Caption = 'Close'
       ImageIndex = 6
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
   end
   object ToolbarDock: TControlBar
@@ -1061,6 +1085,10 @@ object MainForm: TMainForm
     object LeftClassSheet: TTabSheet
       Caption = 'Classes'
       ImageIndex = -1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object ClassBrowser: TClassBrowser
         Left = 0
         Top = 0
@@ -1096,6 +1124,10 @@ object MainForm: TMainForm
     object LeftDebugSheet: TTabSheet
       Caption = 'Debug'
       ImageIndex = -1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object DebugView: TTreeView
         Left = 0
         Top = 0
@@ -4280,18 +4312,6 @@ object MainForm: TMainForm
           ExplicitLeft = 2
           ExplicitTop = -1984
         end
-        object ImageEmbarcadero: TVirtualImage
-          Left = 22
-          Top = 392
-          Width = 139
-          Height = 23
-          Align = alCustom
-          ImageCollection = dmMain.EMBTImageCollection
-          ImageWidth = 0
-          ImageHeight = 0
-          ImageIndex = 0
-          ImageName = 'EMBTBlack'
-        end
         object LabelSponsor: TLabel
           Left = 20
           Top = 375
@@ -4304,6 +4324,89 @@ object MainForm: TMainForm
           Font.Name = 'Heebo'
           Font.Style = []
           ParentFont = False
+        end
+        object ImageEmbarcadero: TImage
+          Left = 22
+          Top = 392
+          Width = 139
+          Height = 23
+          Align = alCustom
+          Picture.Data = {
+            0954506E67496D61676589504E470D0A1A0A0000000D49484452000000830000
+            00170806000000286AFC330000000473424954080808087C0864880000090649
+            44415478DAED5A4D685B57163EF73D49FEA363A58D64BB6526126DC1B8B49117
+            5D7451624FE940A183656633300C7656850E43E455A15D445D347417859240BB
+            B1D3A6309B992850E86EE2B4D00E338B38339004A610B9A5B12D65C67283ADFF
+            777BCE7DBACFF73DDDF7E4B48A4D8BCFC6D67B57F79DF39DEF9EBF27063E7207
+            12D1D650FF0C7096E6C0128C418AAE730E2B0C780118CF9BDBD52B492894E150
+            7E16C27417FF3B389145E79FC27FA35DBE5F661C72C6CECEB987458A582C9632
+            1B8DF27AB95C3860AC1EAA8C46A38956381C2D954A2B07A5838B0C140D9A8383
+            576514D8AB50B40859D66CB27ABBD073904662CB189D96D78BC5EC4181B41F32
+            1A8F6731DA4EAD6F94A60E4A07870C765A18BC03DDA3819F944D80E9E4F6CD9E
+            32FB900CFB270E193035AC604438AEDE34861F8147FE300343AFBE047DCF8D83
+            11FD05543EFB27D4FF7D1BCA173E82E6D7775D9B8908B1B333DDCB94714886FD
+            134186768D705ABD1179761C9EF8745110C04F8AAFBD05F73FCEBBAE2121DE7E
+            7AE766D6BB368AD21F0AD9646B3657D51A80F2258442C7E8FF6AB379A38CE2DC
+            F39061F4E851028BD3FFEBF7EE5DF30557D953B76FC77ADAB7D92CF8E9D5626C
+            2B289FAB7A79ED0B5A2B6DF023838A5B371DFCEC107517E7C33ADDE2F1C7D286
+            C5CAF41DA64B0FA15F3D0EBFFCE2AF1D44B0B6EE8B68A1CAFAEFFF0CDB9FFC5D
+            BD54365BD624D50FD240B06009C9769633B881FC4B20038F81C5736BA5D2C268
+            3C86F7D81C077E0DE149E13DDE02EB64B1F8BFBC4A060B5A2B26188B1C0101EA
+            66346BA58C8DC472F89C53C8CC1BF8CCB25C8B445D582F95962468CC34AE362D
+            3E1962B0088CA588C8443A72C040387C1A0C96A13DC4A68C1D471D975B162CA8
+            0E198DC5E66DDBDA7A79EC53F522E0850D740819AC88B5E824B2C10033E52503
+            E1478714D7AF4A9B518FCD96C567A50E1263D42B83765CC5FB5169872081C12E
+            A30D47E87958EC47851D9C2F55EB8D8570388C5DA29530B97102AF5D615F0D8D
+            CF6342587429FDFE3B981ED20E018AAFBDE9387CE0C5E7F1FE19411841B4D56F
+            61F599DFB808C22CBEF064E556CE5614E6D0E02D5E6FA425230580065B44E3F2
+            08F0162A9691A7563892C3DC5AB1744492018D1846409208701A4FD2B2736222
+            E19C2052CB9A96D7E9FBD80AA711B0B4CB6912D85A3D497A48321009D1792BBC
+            D6C849FDC6E27124174F3439CC3BA063946091701E9D3E5CADD527495F670F8B
+            9F9424734EA7C1F26847C64B3EDCF7DCDA4629E33A99602C214ED7093A490681
+            1DF08CD66680994ABD91143AC803274868E52AB5E692B86EEB7B1D71BBA2E2BB
+            6B076C42AD71D28A9878088C02468E28FB6A70228F8ACC48E5E8E427BFFD87E3
+            D8CD3317E0FF67CEBB9C3DF4EAAF61F42FEF399FEFBE320F95CFFFE57C26809F
+            DEBE35E575802B9C8DC4C5670436A5866F712AFB229B7462C911820CC04EA80E
+            77EF13A36B1C419CB6418C955527B823469CCB7D1C47727E71BD589A571D2923
+            863724B79D5190FB8BA8062CBA562CA63BF4F2DC1B8BC7281214746B45C460E6
+            65C28DC8201CD617B9136433119848E560DC8E068EAD4868CE78545783C8FD5B
+            BC352B8980697485790B473AF98F7FBA8BE3FD4B97A1B17AD7BB1F3CFAD69F02
+            09F3D4F64D2614059EC653DED1AADAE11F0AAA23B44E13CE6689F58D62023422
+            81ACD4EA47E46925C374F581D8B70D9A9FD3831C4CA2CE3D826620B40F1EB2C4
+            5E9C6BE341878317C47A3BA2CEFBD93C367214D317A3E83929C920ED77D9EA89
+            58DDF0C73431C1D5455E32EC4582C8E057210775095E32C853A07BB68C245EA0
+            9DE2CF30A6304D61AE8429B52E906458DB28BA662D748231CDE41FB47BA1FDB8
+            C98E33CEA26433126ACA39E93ECFEAC00345AC6F473B6871AD0EF89C94012C47
+            FBE9881314DD9C351ADF7425435509FF7EF2DDA57C4757D14B32746B2DBDE11F
+            4C6311514F88A254A0C7700F5EA03AA52B1994E8D1CD6E41C448048B4F48CB62
+            95884B279C73967222C31EC860D73A90DA25034BD805A9BFEC46114FE1B917F2
+            E9C8D02D4D7CF3C2EFA0FE9FDB5D09E195DE92419F4E1C87B42383688F281CA3
+            33ABF57ACE9B2A7469C20BD883CC35EC3A005DA614C73AB07F4864C00853F64B
+            55DD9C4AE92B64B0EB416949259FBCF6830A485A33FCFA1F9DCFD469A884510B
+            C89E9001D8310C83499D516ACDD01F896482736D7732B43B8963948FF504888B
+            10D8E43C1B04B8AE66A082CDDB062BEBCBD4FE2935C39C9FCDB6EE905ADBB897
+            F3C338A890B6F18F17B09ECBABE957DB5A3E8191A11F23048955FE4E9061EBC2
+            25F1995ACA31EC2422CF8D3BEB57275E764D23DDAD652F6A067602355920E33B
+            9DB35BA5B70BD6199D2345D105C6D9AE914176191A273BED1A87059176689DAE
+            5392EB18DC705A454FD7A3D5CDDB4D680A40D1D1F445AEE3F3AF51B40C200392
+            919D906DB07ACFE95E3CBAB7874E0378810DCB8B62E8F4E5DF3A064C3AB9F7C6
+            BBB075FE23D735B36525D5A1532FD2045E4E23B8A76BB5C64532CE1EA8C059BC
+            37D9E23025DA50A75D842CA68973CE3AC6669024B3B43715879442FA43A1945F
+            E8B63B0A98E1F6C9BAE80008064D6999EC8EC4E9E27C13D3C42C812A1C150ECF
+            60DA25D2AED2E32AF5C6F4AE1E40C4BE8A51E56DD2D76E5523A770D9027E6749
+            0DDB72706601CF489B857D063B4B33976ABD9150E70CBAC9E540242C08D8E470
+            523EAFAF2F3C67203E88C3392FF681E3E8910FDE117FFD44974268A8F2D4F62D
+            117AECE11285B3CE4E40E42C0BC3A2268C110168A24606C875D0682CB34824A7
+            A6343A49729DCA7A8399393105043176DC22A02BB54676A02F9CB527937085C2
+            3C9229E7F72E400E7D18DB3D24641BED234F5A9B90393B72394AD97B53074383
+            27143CC151BFF534E7807A230BE1F094172B8A181C8C8CB445EECFEBF58C7B80
+            A7C7580EA9E820493BC434D3E2591DEE820CED57D7CBDE17552434891CFAED4B
+            602A51A2462FAACE7FD8F1A20A2D5B35772AA987FD831702B5DB8C9E80A0BF41
+            EF23F6220250FCD3EDF7147BD1693FD77B85524FD586C3178FDD57D8FDE38996
+            C956D474F160C2B74CECAD7BFD0AFB50F64FDC3F6E199A48617E59D2458840A1
+            88C058FA90083F6DE9289EDA2923E3AD217C05731EA686CCE16F217FFAE23B04
+            A1B461E169B70C2C3ED40209ECC2CDB0206F709E7F183F753B948311F6E3B738
+            949F8B7C0FE0C12719429AE5550000000049454E44AE426082}
         end
         object PanelDescOpen: TPanel
           Left = 245
@@ -4450,7 +4553,6 @@ object MainForm: TMainForm
           ImageIndex = 0
           ImageName = 'iconsnew-02'
           ImageMargins.Top = 10
-          Images = dmMain.SVGIconImageWelcomeScreen
           ParentBiDiMode = False
           ParentDoubleBuffered = False
           TabOrder = 0
@@ -4467,7 +4569,6 @@ object MainForm: TMainForm
           ImageIndex = 1
           ImageName = 'iconsnew-03'
           ImageMargins.Top = 10
-          Images = dmMain.SVGIconImageWelcomeScreen
           TabOrder = 1
           WordWrap = True
           OnClick = actOpenExecute
@@ -4482,7 +4583,6 @@ object MainForm: TMainForm
           ImageIndex = 2
           ImageName = 'icons-231'
           ImageMargins.Top = 10
-          Images = dmMain.SVGIconImageWelcomeScreen
           TabOrder = 2
           WordWrap = True
           OnClick = actCompOptionsExecute
@@ -4506,7 +4606,6 @@ object MainForm: TMainForm
           Font.Style = []
           ImageIndex = 80
           ImageName = 'icons-227'
-          Images = dmMain.SVGImageListMenuStyle
           ParentBiDiMode = False
           ParentDoubleBuffered = False
           ParentFont = False
@@ -4532,7 +4631,6 @@ object MainForm: TMainForm
           Font.Style = []
           ImageIndex = 81
           ImageName = 'icons-228'
-          Images = dmMain.SVGImageListMenuStyle
           ParentBiDiMode = False
           ParentDoubleBuffered = False
           ParentFont = False
@@ -4558,7 +4656,6 @@ object MainForm: TMainForm
           Font.Style = []
           ImageIndex = 82
           ImageName = 'icons-230'
-          Images = dmMain.SVGImageListMenuStyle
           ParentBiDiMode = False
           ParentDoubleBuffered = False
           ParentFont = False
@@ -6565,11 +6662,6 @@ object MainForm: TMainForm
       Caption = '&Clear all'
       OnClick = ClearallWatchPopClick
     end
-  end
-  object DevCppDDEServer: TDdeServerConv
-    OnExecuteMacro = DevCppDDEServerExecuteMacro
-    Left = 468
-    Top = 248
   end
   object CppPreprocessor: TCppPreprocessor
     Left = 60

@@ -79,7 +79,12 @@ begin
   begin
     var TmpProcess := FProcess;
     FProcess := INVALID_HANDLE_VALUE;
-    TerminateProcess(TmpProcess, 0);
+{$IFDEF MSWINDOWS}
+// Windows-only code
+  TerminateProcess(TmpProcess, 0);
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
   end;
 
   inherited;
@@ -111,7 +116,7 @@ begin
     Winapi.Windows.RedrawWindow(FProcessWindow, nil, 0, RDW_INVALIDATE or RDW_UPDATENOW);
 end;
 
-function OpenThread(dwDesiredAccess: DWORD; bInheritHandle: BOOL; dwThreadId: DWORD): DWORD; stdcall; external 'kernel32.dll';
+function OpenThread(dwDesiredAccess: DWORD; bInheritHandle: BOOL; dwThreadId: DWORD): DWORD; stdcall; external {$IFDEF MSWINDOWS} 'kernel32.dll' {$ELSE} CrossVclLib {$ENDIF};
 
 function EnumWindowsProc(AWnd: THandle; ASearchRec: Pointer): Bool; stdcall;
 begin
@@ -122,12 +127,18 @@ begin
   var ThreadProcessID: Cardinal := 0;
 
   try
+{$IFDEF MSWINDOWS}
+// Windows-only code
     ThreadHandle := OpenThread($0800, FALSE, GetWindowThreadProcessId(AWnd));
     try
       ThreadProcessID := GetProcessIdOfThread(ThreadHandle);
     finally
       CloseHandle(ThreadHandle);
     end;
+{$ELSE}
+// CrossVcl code
+    ThreadProcessID := 0;
+{$ENDIF}
   except
     ThreadProcessID := 0;
   end;
@@ -199,7 +210,9 @@ procedure TConsoleAppHost.ShowAppEmbedded(WindowHandle: THandle; Container: TWin
 var
   WindowStyle : Integer;
 begin
-  if WindowHandle = INVALID_HANDLE_VALUE then Exit;
+{$IFDEF MSWINDOWS}
+// Windows-only code
+    if WindowHandle = INVALID_HANDLE_VALUE then Exit;
 
   FProcessWindow := WindowHandle;
   WindowStyle := GetWindowLong(WindowHandle, GWL_STYLE);
@@ -232,6 +245,9 @@ begin
 
   keybd_event(VK_HOME, $24, 0, 0);
   keybd_event(VK_HOME, $24, KEYEVENTF_KEYUP, 0);
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 end;
 
 function TConsoleAppHost.StartCommand: Boolean;
@@ -249,10 +265,21 @@ begin
   if Result then
   begin
     FProcess := SEI.hProcess;
-    WaitForInputIdle(FProcess, INFINITE);
+{$IFDEF MSWINDOWS}
+// Windows-only code
+  WaitForInputIdle(FProcess, INFINITE);
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 
     var SearchRec: TPair<THandle, THandle>;
+{$IFDEF MSWINDOWS}
+// Windows-only code
     SearchRec.Key := GetProcessId(FProcess);
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
+
     SearchRec.Value := 0;
 
     TThread.Sleep(FWaitInitialization);

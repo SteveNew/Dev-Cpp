@@ -128,6 +128,8 @@ begin
   sa.bInheritHandle := true;
 
   // Create the child output pipe.
+{$IFDEF MSWINDOWS}
+// Windows-only code
   if not CreatePipe(fOutputread, fOutputwrite, @sa, 0) then
     Exit;
   if not SetHandleInformation(fOutputread, HANDLE_FLAG_INHERIT, 0) then
@@ -138,6 +140,9 @@ begin
     Exit;
   if not SetHandleInformation(fInputwrite, HANDLE_FLAG_INHERIT, 0) then
     Exit;
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 
   // Set up the start up info struct.
   FillChar(si, sizeof(TStartupInfo), 0);
@@ -155,12 +160,12 @@ begin
   if CompilerSet.BinDir.Count > 0 then begin
     GDBFile := CompilerSet.BinDir[0] + pd + CompilerSet.gdbName;
     GDBCommand := '"' + GDBFile + '"' + ' --annotate=2 --silent';
-    if not CreateProcess(nil, PChar(GDBCommand), nil, nil, true, CREATE_NEW_CONSOLE, nil, nil, si, pi) then begin
-      MessageDlg(Format(Lang[ID_ERR_ERRORLAUNCHINGGDB], [GDBFile, SysErrorMessage(GetLastError)]), mtError,
-        [mbOK], 0);
-      Executing := false;
-      Exit;
-    end;
+//    if not CreateProcess(nil, PChar(GDBCommand), nil, nil, true, CREATE_NEW_CONSOLE, nil, nil, si, pi) then begin
+//      MessageDlg(Format(Lang[ID_ERR_ERRORLAUNCHINGGDB], [GDBFile, SysErrorMessage(GetLastError)]), mtError,
+//        [mbOK], 0);
+//      Executing := false;
+//      Exit;
+//    end;
   end else
     MessageDlg(Lang[ID_ERR_GDBNOUTFOUND], mtError, [mbOK], 0);
 
@@ -191,8 +196,12 @@ begin
     // Close CPU window
     if Assigned(CPUForm) then
       CPUForm.Close;
-
-    TerminateProcess(fProcessID, 0); // stop gdb
+    {$IFDEF MSWINDOWS}
+// Windows-only code
+  TerminateProcess(fProcessID, 0); // stop gdb
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 
     Reader.Terminate;
     Reader := nil;
@@ -222,8 +231,13 @@ begin
 
     Buff := TEncoding.ANSI.GetBytes((command + ' ' + params).Trim) + [10];
 
-    if not WriteFile(fInputwrite, (@Buff[Low(Buff)])^, Length(Buff), nBytesWrote, nil) then
+        {$IFDEF MSWINDOWS}
+// Windows-only code
+  if not WriteFile(fInputwrite, (@Buff[Low(Buff)])^, Length(Buff), nBytesWrote, nil) then
       MessageDlg(Lang[ID_ERR_WRITEGDB], mtError, [mbOK], 0);
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 
     if ViewInUI then
       if (not CommandChanged) or (MainForm.edGdbCommand.Text = '') then begin

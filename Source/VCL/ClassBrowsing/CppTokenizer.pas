@@ -22,9 +22,9 @@ unit CppTokenizer;
 interface
 
 uses
-{$IFDEF WIN32}
+//{$IFDEF WIN32}
   Windows, Classes, SysUtils, StrUtils, ComCtrls, Math, cbutils, CharUtils;
-{$ENDIF}
+//{$ENDIF}
 {$IFDEF LINUX}
 Classes, SysUtils, StrUtils, QComCtrls;
 {$ENDIF}

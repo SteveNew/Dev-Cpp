@@ -81,7 +81,7 @@ type
 implementation
 
 uses
-  System.UITypes, IniFiles, StrUtils, version, MultiLangSupport, devcfg, utils;
+  System.UITypes, IniFiles, StrUtils, version, MultiLangSupport, devcfg, utils, posix.Unistd;
 
 {$R *.dfm}
 
@@ -507,7 +507,7 @@ begin
   if FileExists(fFilename) then begin
     if MessageDlg(fFilename + ' exists. Are you sure you want to overwrite it?', mtConfirmation, [mbYes, mbNo], 0) = mrNo then
       Exit;
-    DeleteFile(fFilename);
+    System.SysUtils.DeleteFile(fFilename);
   end;
 
   SetFilename(fFilename);

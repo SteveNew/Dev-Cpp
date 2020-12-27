@@ -22,10 +22,10 @@ unit devMonitorThread;
 interface
 
 uses
-{$IFDEF WIN32}
+//{$IFDEF WIN32}
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, devMonitorTypes, Math, SyncObjs;
-{$ENDIF}
+//{$ENDIF}
 {$IFDEF LINUX}
 SysUtils, Variants, Classes, QGraphics, QControls, QForms,
 QDialogs, QStdCtrls, devMonitorTypes, SyncObjs;
@@ -103,11 +103,17 @@ begin
     if FindFirst(fFileNames[I], faAnyFile, SearchRec) = 0 then begin
 
       // Can we create a change notifier for it?
-      ChangeID := FindFirstChangeNotification(
+      {$IFDEF MSWINDOWS}
+// Windows-only code
+  ChangeID := FindFirstChangeNotification(
         PChar(ExtractFilePath(fFileNames[I])),
         False,
         FILE_NOTIFY_CHANGE_LAST_WRITE or FILE_NOTIFY_CHANGE_FILE_NAME // change contents or change filename
         );
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
+
       if ChangeID <> INVALID_HANDLE_VALUE then begin
 
         // Add to separate HANDLE array to pass to WaitForMultipleObjects
@@ -127,7 +133,8 @@ begin
   end;
 
   // Add a quit signal
-  fMonitors[fMonitorCount] := fShouldQuit.Handle;
+  // CROSSVCL
+//  fMonitors[fMonitorCount] := fShouldQuit.Handle;
   Inc(fMonitorCount);
 end;
 
@@ -142,7 +149,13 @@ begin
 
   // Stop monitoring files
   for I := 0 to fMonitorCount - 2 do // Do not destroy fShouldQuit.Handle...
-    FindCloseChangeNotification(THandle(fMonitors[I])); // TODO: EXCEPTION :(
+{$IFDEF MSWINDOWS}
+// Windows-only code
+  FindCloseChangeNotification(THandle(fMonitors[I])); // TODO: EXCEPTION :(
+{$ELSE}
+// CrossVcl code
+  ;
+{$ENDIF}
   fMonitorCount := 0;
 end;
 
@@ -155,50 +168,50 @@ var
   FileStruct: PdevMonitorFile;
 begin
   // Wait for file changes and external commands
-  while not Terminated and not Suspended do begin
-    WaitResult := WaitForMultipleObjects(fMonitorCount, @fMonitors, False, INFINITE);
-    if WaitResult = WAIT_FAILED then // The function has failed.
-      Break;
-    if WaitResult = WAIT_TIMEOUT then // The time-out interval elapsed...
-      Break;
-    if (WaitResult >= WAIT_ABANDONED_0) and (WaitResult <= WAIT_ABANDONED_0 + Cardinal(fMonitorCount) - 1) then
-      Break;
-    if WaitResult = Cardinal(fMonitorCount-1) then // fShouldQuit
-      Break;
-
-    // Check timestamp of signaled file...
-    WaitObjectIndex := WaitResult - WAIT_OBJECT_0;
-    FileStruct := PdevMonitorFile(fFileProperties[WaitObjectIndex]);
-    if FindFirst(FileStruct^.FileName, faAnyFile, SearchRec) = 0 then begin
-
-      // Timstamp has changed. File has changed.
-      if FileStruct^.TimeStamp <> SearchRec.Time then begin
-        FileStruct^.TimeStamp := SearchRec.Time;
-        fChangeType := mctChanged;
-        fFilename := FileStruct^.FileName;
-        Notify;
-      end;
-      FindClose(SearchRec);
-
-      // Keep monitoring
-      FindNextChangeNotification(THandle(fMonitors[WaitObjectIndex]));
-
-      // File has been deleted. Rebuild array :(
-    end else begin
-      fChangeType := mctDeleted;
-      fFilename := FileStruct^.FileName;
-      Notify;
-
-      // Remove this one from the monitoring list
-      FileNameIndex := fFileNames.IndexOf(FileStruct^.FileName);
-      if FileNameIndex <> -1 then
-        fFileNames.Delete(FileNameIndex);
-
-      // Rebuild
-      DestroyMonitors;
-      CreateMonitors;
-    end;
-  end;
+//  while not Terminated and not Suspended do begin
+//    WaitResult := WaitForMultipleObjects(fMonitorCount, @fMonitors, False, INFINITE);
+//    if WaitResult = WAIT_FAILED then // The function has failed.
+//      Break;
+//    if WaitResult = WAIT_TIMEOUT then // The time-out interval elapsed...
+//      Break;
+//    if (WaitResult >= WAIT_ABANDONED_0) and (WaitResult <= WAIT_ABANDONED_0 + Cardinal(fMonitorCount) - 1) then
+//      Break;
+//    if WaitResult = Cardinal(fMonitorCount-1) then // fShouldQuit
+//      Break;
+//
+//    // Check timestamp of signaled file...
+//    WaitObjectIndex := WaitResult - WAIT_OBJECT_0;
+//    FileStruct := PdevMonitorFile(fFileProperties[WaitObjectIndex]);
+//    if FindFirst(FileStruct^.FileName, faAnyFile, SearchRec) = 0 then begin
+//
+//      // Timstamp has changed. File has changed.
+//      if FileStruct^.TimeStamp <> SearchRec.Time then begin
+//        FileStruct^.TimeStamp := SearchRec.Time;
+//        fChangeType := mctChanged;
+//        fFilename := FileStruct^.FileName;
+//        Notify;
+//      end;
+//      FindClose(SearchRec);
+//
+//      // Keep monitoring
+//      FindNextChangeNotification(THandle(fMonitors[WaitObjectIndex]));
+//
+//      // File has been deleted. Rebuild array :(
+//    end else begin
+//      fChangeType := mctDeleted;
+//      fFilename := FileStruct^.FileName;
+//      Notify;
+//
+//      // Remove this one from the monitoring list
+//      FileNameIndex := fFileNames.IndexOf(FileStruct^.FileName);
+//      if FileNameIndex <> -1 then
+//        fFileNames.Delete(FileNameIndex);
+//
+//      // Rebuild
+//      DestroyMonitors;
+//      CreateMonitors;
+//    end;
+//  end;
 end;
 
 procedure TdevMonitorThread.Notify;

@@ -29,7 +29,6 @@ object LangForm: TLangForm
     Default = True
     ImageIndex = 39
     ImageName = 'iconsnew-34'
-    Images = dmMain.SVGImageListMenuStyle
     TabOrder = 0
     OnClick = OkBtnClick
   end
@@ -197,17 +196,6 @@ object LangForm: TLangForm
         Width = 27
         Height = 15
         Caption = 'Font:'
-      end
-      object VirtualImageTheme: TVirtualImage
-        Left = 3
-        Top = 135
-        Width = 383
-        Height = 103
-        ImageCollection = dmMain.ImageThemeColection
-        ImageWidth = 0
-        ImageHeight = 0
-        ImageIndex = 0
-        ImageName = 'Windows Classic'
       end
       object cmbTheme: TComboBox
         Left = 56

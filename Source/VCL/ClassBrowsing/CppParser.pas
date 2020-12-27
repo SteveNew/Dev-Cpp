@@ -22,10 +22,10 @@ unit CppParser;
 interface
 
 uses
-{$IFDEF WIN32}
+//{$IFDEF WIN32}
   Dialogs, Windows, Classes, SysUtils, StrUtils, ComCtrls, StatementList, IntList, CppTokenizer, CppPreprocessor,
   cbutils;
-{$ENDIF}
+//{$ENDIF}
 {$IFDEF LINUX}
 QDialogs, Classes, SysUtils, StrUtils, QComCtrls, U_IntList, CppTokenizer;
 {$ENDIF}

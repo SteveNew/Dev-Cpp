@@ -22,10 +22,10 @@ unit devShortcutsEditorForm;
 interface
 
 uses
-{$IFDEF WIN32}
+//{$IFDEF WIN32}
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ExtCtrls, ComCtrls, StdCtrls, Menus, devShortcuts, Vcl.Themes;
-{$ENDIF}
+//{$ENDIF}
 {$IFDEF LINUX}
 SysUtils, Variants, Classes, QGraphics, QControls, QForms,
 QDialogs, QExtCtrls, QComCtrls, QStdCtrls, QMenus;

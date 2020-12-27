@@ -23,7 +23,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Buttons, StdCtrls;
+  Dialogs, Buttons, StdCtrls, posix.Unistd;
 
 type
   TImportCBForm = class(TForm)
@@ -195,7 +195,7 @@ begin
 	if FileExists(fFilename) then begin
 		if MessageDlg(fFilename + ' already exists. Are you sure you want to overwrite it?', mtConfirmation, [mbYes, mbNo], 0) = mrNo then
 			Exit;
-		DeleteFile(fFilename);
+    System.SysUtils.DeleteFile(fFilename);
 	end;
 
 	// Defaults

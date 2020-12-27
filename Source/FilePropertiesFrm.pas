@@ -94,7 +94,7 @@ type
 implementation
 
 uses
-  SynEditHighlighter, main, MultiLangSupport, DataFrm, project, editor, devcfg;
+  SynEditHighlighter, main, MultiLangSupport, DataFrm, project, editor, devcfg, posix.Unistd;
 
 {$R *.dfm}
 

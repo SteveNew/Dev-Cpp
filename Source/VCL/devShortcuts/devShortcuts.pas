@@ -22,9 +22,9 @@ unit devShortcuts;
 interface
 
 uses
-{$IFDEF WIN32}
+//{$IFDEF WIN32}
   Windows, Messages, SysUtils, Classes, Menus, Controls, IniFiles, Graphics, ActnList;
-{$ENDIF}
+//{$ENDIF}
 {$IFDEF LINUX}
 SysUtils, Classes, QMenus, QControls, IniFiles, QGraphics, QActnList;
 {$ENDIF}
@@ -61,10 +61,10 @@ procedure Register;
 
 implementation
 
-{$IFDEF WIN32}
+//{$IFDEF WIN32}
 uses
   devShortcutsEditorForm, Forms;
-{$ENDIF}
+//{$ENDIF}
 {$IFDEF LINUX}
 uses
   devShortcutsEditorForm, QForms;

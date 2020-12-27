@@ -22,9 +22,9 @@ unit CBUtils;
 interface
 
 uses
-{$IFDEF WIN32}
+//{$IFDEF WIN32}
   SysUtils, StrUtils, Classes, System.AnsiStrings;
-{$ENDIF}
+//{$ENDIF}
 {$IFDEF LINUX}
 SysUtils, StrUtils;
 {$ENDIF}

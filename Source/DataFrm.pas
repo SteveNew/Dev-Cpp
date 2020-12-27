@@ -24,8 +24,7 @@ interface
 uses
   SysUtils, Classes, Menus, Controls, SynEditHighlighter, SynHighlighterCpp,
   CodeInsList, SynHighlighterRC, ImgList, System.ImageList,
-  Vcl.BaseImageCollection, Vcl.ImageCollection, Vcl.VirtualImageList,
-  SVGIconImageListBase, SVGIconImageList;
+  Vcl.BaseImageCollection, Vcl.ImageCollection, Vcl.VirtualImageList;
 
 type
   PMRUItem = ^TMRUItem;
@@ -47,11 +46,6 @@ type
     ProjectImage_Blue: TImageList;
     ClassImages: TImageList;
     ImageThemeColection: TImageCollection;
-    SVGImageListMenuStyle: TSVGIconImageList;
-    SVGImageListProjectStyle: TSVGIconImageList;
-    SVGImageListClassStyle: TSVGIconImageList;
-    SVGImageListMessageStyle: TSVGIconImageList;
-    SVGIconImageWelcomeScreen: TSVGIconImageList;
     EMBTImageCollection: TImageCollection;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);

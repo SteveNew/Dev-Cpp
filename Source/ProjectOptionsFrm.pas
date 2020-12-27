@@ -987,7 +987,7 @@ begin
     try
       for I := 0 to Languages.Count - 1 do
         cmbLangID.Items.Add(Languages.Name[i]);
-      cmbLangID.ItemIndex := cmbLangID.Items.IndexOf(Languages.NameFromLocaleID[LanguageID]);
+      cmbLangID.ItemIndex := cmbLangID.Items.IndexOf(Languages.NameFromLocaleID[LanguageID]); // CROSSVCL
     except
       MessageDlg(Lang[ID_POPT_LANGUAGEDEP], mtInformation, [mbOK], 0);
       cmbLangID.Visible := false;

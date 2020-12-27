@@ -2070,10 +2070,11 @@ begin
         Exit;
 
       // Yes, remove read-only attribute
-      if FileSetAttr(fFileName, FileGetAttr(fFileName) - faReadOnly) <> 0 then begin
-        MessageDlg(Format(Lang[ID_MSG_FILEREADONLYERROR], [fFileName]), mtError, [mbOk], 0);
-        Exit;
-      end;
+      // CROSSVCL
+//      if FileSetAttr(fFileName, FileGetAttr(fFileName) - faReadOnly) <> 0 then begin
+//        MessageDlg(Format(Lang[ID_MSG_FILEREADONLYERROR], [fFileName]), mtError, [mbOk], 0);
+//        Exit;
+//      end;
     end;
 
     // Filename already present? Save without dialog

@@ -164,7 +164,7 @@ type
 implementation
 
 uses
-  devcfg, version, Graphics, StrUtils, MultiLangSupport, main, editor, ShlObj, ActiveX, System.IOUtils, CharUtils, Vcl.Styles.Utils.SysControls, Winapi.CommCtrl, Vcl.Themes;
+  devcfg, version, Graphics, StrUtils, MultiLangSupport, main, editor, ShlObj, ActiveX, System.IOUtils, CharUtils, {Vcl.Styles.Utils.SysControls,} Winapi.CommCtrl, Vcl.Themes;
 
 function FastStringReplace(const S, OldPattern, NewPattern: String; Flags: TReplaceFlags): String;
 var
@@ -226,7 +226,7 @@ var
   buffer: array[0..1023] of char;
 begin
   // IsWow64Process not available in Delphi 7, so using this instead
-  GetEnvironmentVariable('PROGRAMFILES', buffer, 1024);
+// CROSSVCL  GetEnvironmentVariable('PROGRAMFILES', buffer, 1024);
   result := EndsStr(' (x86)', String(buffer));
 end;
 
@@ -377,6 +377,8 @@ var
   pe_header: _IMAGE_FILE_HEADER;
   opt_header: _IMAGE_OPTIONAL_HEADER;
 begin
+{$IFDEF MSWINDOWS}
+// Windows-only code
   handle := CreateFile(PChar(path), GENERIC_READ, FILE_SHARE_READ, nil, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
   if handle <> INVALID_HANDLE_VALUE then begin
     ReadFile(Handle, dos_header, sizeof(dos_header), bytesread, nil);
@@ -390,6 +392,9 @@ begin
     Result := false;
 
   CloseHandle(handle);
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 end;
 
 function GetBuildTime(const Path: String): String;
@@ -509,6 +514,8 @@ begin
   sa.lpSecurityDescriptor := nil;
   sa.bInheritHandle := True;
 
+{$IFDEF MSWINDOWS}
+// Windows-only code
   // Create the child output pipe
   if not CreatePipe(hOutputReadTmp, hOutputWrite, @sa, 0) then begin
     Result := 'CreatePipe 1 error: ' + SysErrorMessage(GetLastError);
@@ -569,10 +576,10 @@ begin
   si.hStdError := hErrorWrite;
 
   // Launch the process that we want to redirect.
-  if not CreateProcess(nil, PChar(Cmd), nil, nil, true, 0, nil, PChar(WorkDir), si, pi) then begin
-    Result := 'CreateProcess error: ' + SysErrorMessage(GetLastError);
-    Exit;
-  end;
+//  if not CreateProcess(nil, PChar(Cmd), nil, nil, true, 0, nil, PChar(WorkDir), si, pi) then begin
+//    Result := 'CreateProcess error: ' + SysErrorMessage(GetLastError);
+//    Exit;
+//  end;
 
   // Close any unnecessary handles.
   if not CloseHandle(pi.hThread) then begin
@@ -605,7 +612,12 @@ begin
     if Assigned(CheckAbortFunc) then
       CheckAbortFunc(bAbort);
     if bAbort then begin
-      TerminateProcess(pi.hProcess, 1);
+    {$IFDEF MSWINDOWS}
+// Windows-only code
+  TerminateProcess(pi.hProcess, 1);
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
       Break;
     end;
     if (not ReadFile(hOutputRead, (@aBuf[0])^, SizeOf(aBuf) - 1, nRead, nil)) or (nRead = 0) then begin
@@ -645,6 +657,10 @@ begin
     Result := 'CloseHandle 9 error: ' + SysErrorMessage(GetLastError);
     Exit;
   end;
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
+
 end;
 
 procedure SetPath(const Add: String; UseOriginal: boolean = TRUE);
@@ -666,11 +682,11 @@ begin
   if UseOriginal then
     NewPath := NewPath + devDirs.OriginalPath
   else begin
-    GetEnvironmentVariable(PChar('PATH'), @OldPath, SizeOf(OldPath));
+//CROSSVCL    GetEnvironmentVariable(PChar('PATH'), @OldPath, SizeOf(OldPath));
     NewPath := NewPath + String(OldPath);
   end;
 
-  SetEnvironmentVariable(PChar('PATH'), PChar(NewPath));
+//CROSSVCL  SetEnvironmentVariable(PChar('PATH'), PChar(NewPath));
 end;
 
 function ValidateFile(const FileName: String; const WorkPath: String; const CheckDirs: boolean = FALSE):
@@ -706,8 +722,13 @@ function GetShortName(const FileName: String): String;
 var
   pFileName: array[0..2048] of char;
 begin
+{$IFDEF MSWINDOWS}
+// Windows-only code
   GetShortPathName(PChar(FileName), pFileName, 2048);
   result := StrPas(pFileName);
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 end;
 
 function BuildFilter(const Filters: array of String): String;
@@ -1241,8 +1262,8 @@ end;
 { TOpenTextFileDialogHelper }
 procedure TOpenTextFileDialogHelper.DoShow(Sender: TObject);
 begin
-  with Self do
-    TSysStyleManager.AddControlDirectly(FComboBox.Handle, WC_COMBOBOX);
+//  with Self do
+//    TSysStyleManager.AddControlDirectly(FComboBox.Handle, WC_COMBOBOX);
 end;
 
 procedure TOpenTextFileDialogHelper.FixStyle;

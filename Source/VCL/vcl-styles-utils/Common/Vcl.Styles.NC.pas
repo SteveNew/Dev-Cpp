@@ -293,7 +293,7 @@ type
 implementation
 
 uses
-  DDetours,
+//  DDetours,
   Winapi.CommCtrl,
   System.SysUtils,
   System.Rtti,
