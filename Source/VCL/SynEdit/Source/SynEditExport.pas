@@ -54,7 +54,7 @@ uses
   SynEditHighlighter,
   SynEditTypes,
   SynUnicode,
-  System.Classes,
+  Classes,
   SysUtils;
 
 type
@@ -270,8 +270,7 @@ end;
 procedure TSynCustomExporter.Clear;
 begin
   fBuffer.Position := 0;
-  // Size is ReadOnly in Delphi 2
-  fBuffer.Size := 0; // .SetSize(0);
+  fBuffer.Size := 0;
   fLastStyle := [];
   fLastBG := clWindow;
   fLastFG := clWindowText;
@@ -401,7 +400,7 @@ begin
     // initialization
     fBuffer.Position := 0;
     // Size is ReadOnly in Delphi 2
-    fBuffer.Size := Max($1000, (Stop.Line - Start.Line) * 128) * FCharSize; // SetSize(
+    fBuffer.Size := Max($1000, (Stop.Line - Start.Line) * 128) * FCharSize;
     Highlighter.ResetRange;
     // export all the lines into fBuffer
     fFirstAttribute := True;
@@ -471,8 +470,7 @@ begin
     ToMove := fBuffer.Position;
     SizeNeeded := ToMove + Size;
     if fBuffer.Size < SizeNeeded then
-      // Size is ReadOnly in Delphi 2
-      fBuffer.Size := (SizeNeeded + $1800) and not $FFF; // increment in pages   SetSize(
+      fBuffer.Size := (SizeNeeded + $1800) and not $FFF; // increment in pages
     Dest := fBuffer.Memory;
     Inc(Dest, Size);
     Move(fBuffer.Memory^, Dest^, ToMove);

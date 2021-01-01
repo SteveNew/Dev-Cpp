@@ -22,10 +22,8 @@ unit devFileMonitor;
 interface
 
 uses
-//{$IFDEF WIN32}
   Windows, Messages, SysUtils, Classes, Forms, Controls,
   devMonitorThread, devMonitorTypes;
-//{$ENDIF}
 
 type
   TdevFileMonitor = class(TWinControl)

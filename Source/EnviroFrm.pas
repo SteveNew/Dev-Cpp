@@ -25,7 +25,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, Spin, ExtCtrls, ExtDlgs, Buttons,
   CheckLst, Grids, ValEdit, ComCtrls, vcl.Themes, Vcl.BaseImageCollection,
-  Vcl.ImageCollection, {Vcl.VirtualImage, }System.ImageList, Vcl.ImgList;
+  Vcl.ImageCollection, {$IFDEF MSWINDOWS}Vcl.VirtualImage,{$ENDIF}System.ImageList, Vcl.ImgList;
 
 type
   TEnviroForm = class(TForm)
@@ -366,9 +366,9 @@ begin
     end;
 
     // List the themes
-    //cboTheme.Items.Clear;
-    //devImageThemes.GetThemeTitles(cboTheme.Items);
-    //cboTheme.ItemIndex := devImageThemes.IndexOf(devImageThemes.CurrentTheme.Title);
+    cboTheme.Items.Clear;
+    devImageThemes.GetThemeTitles(cboTheme.Items);
+    cboTheme.ItemIndex := devImageThemes.IndexOf(devImageThemes.CurrentTheme.Title);
 
     //Style Delphi
     ListBoxStyle.ItemIndex := Style;
@@ -502,7 +502,7 @@ begin
   RemoveOptionsDir(devDirs.Config);
 
   // Quit without saving
-  {$IFDEF MSWINDOWS}
+{$IFDEF MSWINDOWS}
 // Windows-only code
   TerminateProcess(GetCurrentProcess, 0);
 {$ELSE}

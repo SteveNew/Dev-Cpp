@@ -25,7 +25,6 @@ object ProjectOptionsFrm: TProjectOptionsFrm
     Width = 85
     Height = 25
     Caption = '&OK'
-    Images = dmMain.SVGImageListMenuStyle
     ModalResult = 1
     NumGlyphs = 2
     TabOrder = 0
@@ -133,7 +132,6 @@ object ProjectOptionsFrm: TProjectOptionsFrm
           Caption = 'Browse...'
           ImageIndex = 59
           ImageName = 'iconsnew-65'
-          Images = dmMain.SVGImageListMenuStyle
           TabOrder = 0
           WordWrap = True
           StyleElements = [seFont, seClient]
@@ -148,7 +146,6 @@ object ProjectOptionsFrm: TProjectOptionsFrm
           Caption = 'Library'
           ImageIndex = 58
           ImageName = 'iconsnew-64'
-          Images = dmMain.SVGImageListMenuStyle
           TabOrder = 1
           OnClick = btnIconLibClick
         end
@@ -162,7 +159,6 @@ object ProjectOptionsFrm: TProjectOptionsFrm
           Enabled = False
           ImageIndex = 5
           ImageName = 'iconsnew-31'
-          Images = dmMain.SVGImageListMenuStyle
           TabOrder = 2
           OnClick = btnRemoveIconClick
         end
@@ -488,7 +484,6 @@ object ProjectOptionsFrm: TProjectOptionsFrm
         Caption = 'Add Library or Object'
         ImageIndex = 59
         ImageName = 'iconsnew-65'
-        Images = dmMain.SVGImageListMenuStyle
         TabOrder = 3
         OnClick = btnAddLibClick
       end
@@ -519,7 +514,6 @@ object ProjectOptionsFrm: TProjectOptionsFrm
           Height = 22
           ImageIndex = 57
           ImageName = 'iconsnew-53'
-          Images = dmMain.SVGImageListMenuStyle
           Enabled = False
           Flat = True
           OnClick = UpDownClick
@@ -531,7 +525,6 @@ object ProjectOptionsFrm: TProjectOptionsFrm
           Height = 22
           ImageIndex = 56
           ImageName = 'iconsnew-52'
-          Images = dmMain.SVGImageListMenuStyle
           Enabled = False
           Flat = True
           OnClick = UpDownClick
@@ -543,7 +536,6 @@ object ProjectOptionsFrm: TProjectOptionsFrm
           Height = 22
           ImageIndex = 59
           ImageName = 'iconsnew-65'
-          Images = dmMain.SVGImageListMenuStyle
           Flat = True
           OnClick = BrowseClick
         end
@@ -629,7 +621,6 @@ object ProjectOptionsFrm: TProjectOptionsFrm
         Height = 22
         ImageIndex = 59
         ImageName = 'iconsnew-65'
-        Images = dmMain.SVGImageListMenuStyle
         Flat = True
         OnClick = BrowseExecutableOutDirClick
       end
@@ -640,7 +631,6 @@ object ProjectOptionsFrm: TProjectOptionsFrm
         Height = 22
         ImageIndex = 59
         ImageName = 'iconsnew-65'
-        Images = dmMain.SVGImageListMenuStyle
         Flat = True
         OnClick = btnLogOutputDirClick
       end
@@ -651,7 +641,6 @@ object ProjectOptionsFrm: TProjectOptionsFrm
         Height = 22
         ImageIndex = 59
         ImageName = 'iconsnew-65'
-        Images = dmMain.SVGImageListMenuStyle
         Flat = True
         OnClick = BrowseLogDirClick
       end
@@ -737,7 +726,6 @@ object ProjectOptionsFrm: TProjectOptionsFrm
         Height = 22
         ImageIndex = 59
         ImageName = 'iconsnew-65'
-        Images = dmMain.SVGImageListMenuStyle
         Flat = True
         OnClick = btnCustomMakeBrowseClick
       end
@@ -748,7 +736,6 @@ object ProjectOptionsFrm: TProjectOptionsFrm
         Height = 22
         ImageIndex = 57
         ImageName = 'iconsnew-53'
-        Images = dmMain.SVGImageListMenuStyle
         Enabled = False
         Flat = True
         OnClick = btnMakClick
@@ -760,7 +747,6 @@ object ProjectOptionsFrm: TProjectOptionsFrm
         Height = 22
         ImageIndex = 59
         ImageName = 'iconsnew-65'
-        Images = dmMain.SVGImageListMenuStyle
         Flat = True
         OnClick = btnMakeBrowseClick
       end
@@ -771,7 +757,6 @@ object ProjectOptionsFrm: TProjectOptionsFrm
         Height = 22
         ImageIndex = 56
         ImageName = 'iconsnew-52'
-        Images = dmMain.SVGImageListMenuStyle
         Enabled = False
         Flat = True
         OnClick = btnMakClick
@@ -791,7 +776,6 @@ object ProjectOptionsFrm: TProjectOptionsFrm
         Caption = 'Information about customizing the Makefile...'
         ImageIndex = 46
         ImageName = 'iconsnew-29'
-        Images = dmMain.SVGImageListMenuStyle
         Flat = True
         NumGlyphs = 2
         OnClick = InfoMakeBtnClick

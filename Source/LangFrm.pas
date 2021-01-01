@@ -23,7 +23,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, Buttons, ExtCtrls, Menus, FileCtrl, SynEdit, ToolWin, ComCtrls, Themes;
+  StdCtrls, VCL.Buttons, ExtCtrls, Menus, FileCtrl, SynEdit, ToolWin, ComCtrls, 
+  {$IFDEF MSWINDOWS} svgColor, Vcl.VirtualImage,{$ENDIF} Themes;
 
 type
   TLangForm = class(TForm)
@@ -46,6 +47,9 @@ type
     lblEditInfo: TLabel;
     lblFont: TLabel;
     cmbFont: TComboBox;
+	{$IFDEF MSWINDOWS}
+    VirtualImageTheme: TVirtualImage;
+	{$ENDIF}
     procedure OkBtnClick(Sender: TObject);
     procedure ColorChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -120,7 +124,11 @@ end;
 procedure TLangForm.HandleEditPanel;
 begin
   OkBtn.Tag := 2;
+{$IFDEF MSWINDOWS}
   OkBtn.Kind := bkOK;
+{$ELSE}
+  // CrossVCL - solve by adding BBOK and BBOK_Disabled .PNG RCDATA resource
+{$ENDIF}
   OkBtn.ModalResult := mrOK;
   EditPanel.Visible := false;
   FinishPanel.Visible := true;
@@ -152,13 +160,11 @@ begin
 
   // Interface themes
   cmbTheme.ItemIndex := devData.Style;
-//  VirtualImageTheme.ImageIndex := devData.Style;
-
-  // Editor colors
-  cmbColors.ItemIndex := 1; // Classic Plus
-  dmMain.InitHighlighterFirstTime(cmbColors.ItemIndex);
-  devEditor.AssignEditor(synExample, 'main.cpp');
-
+{$IFDEF MSWINDOWS}
+  VirtualImageTheme.ImageIndex := devData.Style;
+{$ELSE}
+  // CrossVCL code
+{$ENDIF}
   // Font options
   cmbFont.Items.Assign(Screen.Fonts);
   FontIndex := cmbFont.Items.IndexOf('Source Code Pro');
@@ -167,6 +173,13 @@ begin
   if FontIndex = -1 then
     FontIndex := cmbFont.Items.IndexOf('Courier');
   cmbFont.ItemIndex := FontIndex; // set ItemIndex once
+
+  // Editor colors
+  cmbColors.ItemIndex := 1; // Classic Plus
+  dmMain.InitHighlighterFirstTime(cmbColors.ItemIndex);
+  devEditor.Font.Name := cmbFont.Text;
+  devEditor.Gutterfont.Name := cmbFont.Text;
+  devEditor.AssignEditor(synExample, 'main.cpp');
 
   // Populate language list
   UpdateLangList(Lang.GetLangList);
@@ -220,6 +233,17 @@ procedure TLangForm.FormCreate(Sender: TObject);
 begin
   //if devData.Style <> 0 then
     TStyleManager.TrySetStyle(cDelphiStyle[devData.Style]);
+{$IFDEF MSWINDOWS}
+  cmbFont.ParentFont := False;
+  cmbFont.StyleElements := [seClient, seBorder];
+  cmbFont.Style := csOwnerDrawVariable;
+  cmbFont.onDrawItem := cmbFontDrawItem;
+{$ELSE}  // CrossVCL todo - investigate drawn font pickers
+  cmbFont.ParentFont := True;
+  cmbFont.StyleElements := [seFont, seClient, seBorder];
+  cmbFont.Style := csDropDownList;
+  cmbFont.OnDrawItem := nil;
+{$ENDIF}
 end;
 
 procedure TLangForm.cmbThemeChange(Sender: TObject);
@@ -230,7 +254,11 @@ begin
     tbExample.Images := dmMain.MenuImages_Blue
   else
     tbExample.Images := dmMain.MenuImages_NewLook;}
-// CROSSVCL  VirtualImageTheme.ImageIndex := cmbTheme.ItemIndex;
+{$IFDEF MSWINDOWS}
+  VirtualImageTheme.ImageIndex := cmbTheme.ItemIndex;
+{$ELSE}
+  // CrossVCL code
+{$ENDIF}
 end;
 
 procedure TLangForm.cmbFontDrawItem(Control: TWinControl; Index: Integer; Rect: TRect; State: TOwnerDrawState);

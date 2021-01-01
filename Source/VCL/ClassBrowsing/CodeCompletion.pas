@@ -22,10 +22,8 @@ unit CodeCompletion;
 interface
 
 uses
-//{$IFDEF WIN32}
   Windows, Classes, Forms, SysUtils, Controls, Graphics, CppParser,
   cbutils, IntList, StatementList;
-//{$ENDIF}
 
 type
   TCodeCompletion = class(TComponent)

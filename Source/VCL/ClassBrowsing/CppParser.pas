@@ -22,10 +22,8 @@ unit CppParser;
 interface
 
 uses
-//{$IFDEF WIN32}
   Dialogs, Windows, Classes, SysUtils, StrUtils, ComCtrls, StatementList, IntList, CppTokenizer, CppPreprocessor,
   cbutils;
-//{$ENDIF}
 
 type
   TCppParser = class(TComponent)

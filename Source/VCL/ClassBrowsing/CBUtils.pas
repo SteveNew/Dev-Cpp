@@ -22,9 +22,7 @@ unit CBUtils;
 interface
 
 uses
-//{$IFDEF WIN32}
   SysUtils, StrUtils, Classes, System.AnsiStrings;
-//{$ENDIF}
 
 const
   HeaderExts: array[0..6] of String = ('.h', '.hpp', '.rh', '.hh', '.hxx', '.inl', '');

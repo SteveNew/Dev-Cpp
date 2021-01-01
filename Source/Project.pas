@@ -157,7 +157,7 @@ type
 implementation
 
 uses
-  main, MultiLangSupport, devcfg, ProjectOptionsFrm, DataFrm, utils,
+  System.IOUtils, main, MultiLangSupport, devcfg, ProjectOptionsFrm, DataFrm, utils,
   RemoveUnitFrm, SynEdit, EditorList{$IFNDEF MSWINDOWS}, posix.Unistd {$ENDIF};
 
 { TProjUnit }
@@ -730,6 +730,8 @@ begin
 end;
 
 procedure TProject.LoadOptions;
+var
+  LanguageStr: string;
 begin
   with finiFile do begin
     fName := ReadString('Project', 'name', '');
@@ -775,7 +777,9 @@ begin
       fOptions.VersionInfo.Minor := ReadInteger('VersionInfo', 'Minor', 1);
       fOptions.VersionInfo.Release := ReadInteger('VersionInfo', 'Release', 1);
       fOptions.VersionInfo.Build := ReadInteger('VersionInfo', 'Build', 1);
-//      fOptions.VersionInfo.LanguageID := $0409; //CROSSVCL ReadInteger('VersionInfo', 'LanguageID', $0409);
+	  //TODO: Below should be done differently?
+      LanguageStr := ReadString('VersionInfo', 'Language', 'US English');
+      fOptions.VersionInfo.LanguageID := TLanguages.GetLocaleIDFromLocaleName(LanguageStr); //; $0409; // ReadInteger('VersionInfo', 'LanguageID', $0409);
       fOptions.VersionInfo.CharsetID := ReadInteger('VersionInfo', 'CharsetID', $04E4);
       fOptions.VersionInfo.CompanyName := ReadString('VersionInfo', 'CompanyName', '');
       fOptions.VersionInfo.FileVersion := ReadString('VersionInfo', 'FileVersion', '0.1');
@@ -815,6 +819,9 @@ begin
 end;
 
 procedure TProject.SaveOptions;
+var
+  LanguageStr: string;
+  Lang: TLanguages;
 begin
   with finiFile do begin
     WriteString('Project', 'FileName', ExtractRelativePath(Directory, fFileName));
@@ -852,7 +859,14 @@ begin
     WriteInteger('VersionInfo', 'Minor', fOptions.VersionInfo.Minor);
     WriteInteger('VersionInfo', 'Release', fOptions.VersionInfo.Release);
     WriteInteger('VersionInfo', 'Build', fOptions.VersionInfo.Build);
-//CROSSVCL    WriteInteger('VersionInfo', 'LanguageID', fOptions.VersionInfo.LanguageID);
+	//TODO: Below should be fixed differently?
+    Lang := TLanguages.Create;
+    try
+      LanguageStr := Lang.NameFromLocaleID[fOptions.VersionInfo.LanguageID];
+    finally
+      Lang.Free;
+    end;
+    WriteString('VersionInfo', 'Language', LanguageStr);
     WriteInteger('VersionInfo', 'CharsetID', fOptions.VersionInfo.CharsetID);
     WriteString('VersionInfo', 'CompanyName', fOptions.VersionInfo.CompanyName);
     WriteString('VersionInfo', 'FileVersion', fOptions.VersionInfo.FileVersion);
@@ -891,22 +905,18 @@ begin
   rd_only := false;
   for idx := 0 to pred(fUnits.Count) do begin
     with fUnits[idx] do begin
-// CROSSVCL
-//{$WARN SYMBOL_PLATFORM OFF}
-//      if fUnits[idx].Modified and FileExists(fUnits[idx].FileName) and (FileGetAttr(fUnits[idx].FileName) and faReadOnly
-//        <>
-//        0) then begin
-//        // file is read-only
-//        if MessageDlg(Format(Lang[ID_MSG_FILEISREADONLY], [fUnits[idx].FileName]), mtConfirmation, [mbYes, mbNo], 0) =
-//          mrNo then
-//          rd_only := false
-//        else if FileSetAttr(fUnits[idx].FileName, FileGetAttr(fUnits[idx].FileName) - faReadOnly) <> 0 then begin
-//          MessageDlg(Format(Lang[ID_MSG_FILEREADONLYERROR], [fUnits[idx].FileName]), mtError, [mbOk], 0);
-//          rd_only := false;
-//        end;
-//      end;
-//{$WARN SYMBOL_PLATFORM ON}
-
+      if fUnits[idx].Modified and FileExists(fUnits[idx].FileName) and (FileGetAttr(fUnits[idx].FileName) and faReadOnly
+        <>
+        0) then begin
+        // file is read-only
+        if MessageDlg(Format(Lang[ID_MSG_FILEISREADONLY], [fUnits[idx].FileName]), mtConfirmation, [mbYes, mbNo], 0) =
+          mrNo then
+          rd_only := false
+        else if FileSetReadOnly(fUnits[idx].FileName, False) then begin
+          MessageDlg(Format(Lang[ID_MSG_FILEREADONLYERROR], [fUnits[idx].FileName]), mtError, [mbOk], 0);
+          rd_only := false;
+        end;
+      end;
       if not rd_only and (not fUnits[idx].Save) and New then
         Exit;
 
@@ -994,16 +1004,13 @@ var
     i: integer;
   NewUnit: TProjUnit;
 begin
-// CROSSVCL
-//{$WARN SYMBOL_PLATFORM OFF}
-//  if FileExists(FileName) and (FileGetAttr(FileName) and faReadOnly <> 0) then begin
-//    // file is read-only
-//    if MessageDlg(Format(Lang[ID_MSG_FILEISREADONLY], [FileName]), mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-//      if FileSetAttr(FileName, FileGetAttr(FileName) - faReadOnly) <> 0 then begin
-//        MessageDlg(Format(Lang[ID_MSG_FILEREADONLYERROR], [FileName]), mtError, [mbOk], 0);
-//      end;
-//  end;
-//{$WARN SYMBOL_PLATFORM ON}
+  if FileExists(FileName) and (FileGetAttr(FileName) and faReadOnly <> 0) then begin
+    // file is read-only
+    if MessageDlg(Format(Lang[ID_MSG_FILEISREADONLY], [FileName]), mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+      if FileSetReadOnly(FileName, False) then begin
+        MessageDlg(Format(Lang[ID_MSG_FILEREADONLYERROR], [FileName]), mtError, [mbOk], 0);
+      end;
+  end;
 
   LoadOptions;
   fNode := MakeProjectNode;
@@ -1571,7 +1578,7 @@ begin
       // Copy icon to project directoy
       IconFileName := ChangeFileExt(ExtractFileName(FileName), '.ico');
       if not SameText(IconFileName, fOptions.Icon) and (fOptions.Icon <> '') then begin
-//CROSSVCL        CopyFile(PChar(fOptions.Icon), PChar(ExpandFileto(IconFileName, Directory)), False);
+        TFile.Copy(fOptions.Icon, ExpandFileto(IconFileName, Directory));
         fOptions.Icon := IconFileName;
       end;
 
@@ -1626,7 +1633,7 @@ begin
       OriginalIcon := ValidateFile(fOptions.Icon, '', true);
       if OriginalIcon <> '' then begin // file found!
         DestIcon := ExpandFileTo(ExtractFileName(ChangeFileExt(FileName, '.ico')), Directory);
-//CROSSVCL        CopyFile(PChar(OriginalIcon), PChar(DestIcon), False);
+        TFile.Copy(OriginalIcon, DestIcon);
         fOptions.Icon := DestIcon;
       end else
         fOptions.Icon := '';
@@ -1820,7 +1827,7 @@ begin
   // check if using old way to store resources and fix it
   oldRes := finifile.ReadString('Project', 'Resources', '');
   if oldRes <> '' then begin
-//CROSSVCL    CopyFile(PChar(Filename), PChar(FileName + '.bak'), False);
+    TFile.Copy(Filename, FileName + '.bak');
     sl := TStringList.Create;
     try
       sl.Delimiter := ';';

@@ -98,14 +98,8 @@ begin
 end;
 
 procedure TIntList.Error(const Msg: String; Data: Integer);
-// CROSSVCL
-//  function ReturnAddr: Pointer;
-//  asm
-//          MOV     EAX,[EBP+4]
-//  end;
-
 begin
-//  raise EStringListError.CreateFmt(Msg, [Data])at ReturnAddr;
+  raise EStringListError.CreateFmt(Msg, [Data]) at ReturnAddress;
 end;
 
 const
@@ -178,18 +172,17 @@ end;
 
 procedure TIntList.ExchangeItems(Index1, Index2: Integer);
 var
-  Temp: Int64;
+  Temp: PIntItem;
   Item1, Item2: PIntItem;
 begin
   Item1 := @FList^[Index1];
   Item2 := @FList^[Index2];
-  Temp := Integer(Item1^.FInt);
-  Item1^.FInt := Item2^.FInt;
-  Item2^.FInt := Temp;
-  Temp := Integer(Item1^.FObject);
-// CROSSVCL
-//  Integer(Item1^.FObject) := Integer(Item2^.FObject);
-//  Integer(Item2^.FObject) := Temp;
+  Temp.FInt := Item1.FInt;
+  Temp.FObject := Item1.FObject;
+  Item1.FInt := Item2.FInt;
+  Item2.FInt := Temp.FInt;
+  Item1.FObject := Item2.FObject;
+  Item2.FObject := Temp.FObject;
 end;
 
 function TIntList.Find(const S: Int64; var Index: Integer): Boolean;

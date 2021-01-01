@@ -22,7 +22,7 @@ unit Instances;
 interface
 
 uses
-  Windows, Messages, {Psapi, }SysUtils, Forms, StrUtils, Classes;
+  Windows, Messages, {$IFDEF MSWINDOWS} Psapi, {$ENDIF}SysUtils, Forms, StrUtils, Classes;
 
 function GetSentStructData(Message: TMessage): String;
 procedure SendToPreviousInstance(Instance: THandle; const Data: String);
@@ -106,9 +106,12 @@ begin
       Exit;
 
     // Get its module filename
-// CROSSVCL
-//    if GetModuleFileNameEx(WindowProcess, WindowModule, Buffer, SizeOf(Buffer)) = 0 then
-//      Exit;
+{$IFDEF MSWINDOWS}
+    if GetModuleFileNameEx(WindowProcess, WindowModule, Buffer, SizeOf(Buffer)) = 0 then
+      Exit;
+{$ELSE}
+  // CrossVcl code
+{$ENDIF}
     WindowModuleName := Buffer;
     CloseHandle(WindowProcess); // not needed anymore
 

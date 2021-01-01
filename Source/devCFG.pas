@@ -2284,10 +2284,6 @@ begin
 end;
 
 procedure TdevDirs.SettoDefaults;
-var
-  DocumentsPath: array[0..MAX_PATH] of Char;
-const
-  CSIDL_MYDOCUMENTS = $05;
 begin
   fExec := IncludeTrailingPathDelimiter(ExtractFilePath(Application.ExeName));
   fConfig := fExec;
@@ -2306,15 +2302,7 @@ begin
   else
   begin
     // Get my documents folder
-{$IFDEF MSWINDOWS}
-// Windows-only code
-      if SHGetSpecialFolderPath(Application.Handle, DocumentsPath, CSIDL_MYDOCUMENTS, false) then
-      fDefault := DocumentsPath
-    else
-      fDefault := fExec;
-{$ELSE}
-// CrossVcl code
-{$ENDIF}
+    fDefault := TPath.GetDocumentsPath
   end;
 end;
 

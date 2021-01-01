@@ -20,7 +20,7 @@
 //************************************************************************************************
 
 {$DEFINE USE_Vcl.Styles.Hooks}
-//{$DEFINE HOOK_UXTHEME}
+{$DEFINE HOOK_UXTHEME}
 {$DEFINE HOOK_TDateTimePicker}
 {$DEFINE HOOK_TProgressBar}
 {.$DEFINE LimitStylesToMainApplicationThread}

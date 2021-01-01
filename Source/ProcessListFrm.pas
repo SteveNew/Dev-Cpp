@@ -47,31 +47,36 @@ var
 implementation
 
 uses 
-  {tlhelp32, }devcfg;
+  {$IFDEF MSWINDOWS} tlhelp32, {$ENDIF}devcfg;
 
 {$R *.dfm}
 
 procedure TProcessListForm.FormCreate(Sender: TObject);
 var
   t  : THandle;
-//  pe : TProcessEntry32;
+{$IFDEF MSWINDOWS}
+  pe : TProcessEntry32;
+{$ENDIF}
   HasProcess: boolean;
 begin
   LoadText;
   ProcessList := TList.Create;
-// CROSSVCL
-//  t := CreateToolhelp32Snapshot(TH32CS_SNAPALL, 0);
-//  try
-//    pe.dwSize:= SizeOf(pe);
-//    HasProcess := Process32First(t, pe);
-//    while HasProcess do begin
-//      ProcessCombo.Items.Add(pe.szExeFile);
-//      ProcessList.Add(pointer(pe.th32ProcessId));
-//      HasProcess := Process32Next(t, pe);
-//    end;
-//  finally
-//    CloseHandle(t);
-//  end;
+{$IFDEF MSWINDOWS}
+  t := CreateToolhelp32Snapshot(TH32CS_SNAPALL, 0);
+  try
+    pe.dwSize:= SizeOf(pe);
+    HasProcess := Process32First(t, pe);
+    while HasProcess do begin
+      ProcessCombo.Items.Add(pe.szExeFile);
+      ProcessList.Add(pointer(pe.th32ProcessId));
+      HasProcess := Process32Next(t, pe);
+    end;
+  finally
+    CloseHandle(t);
+  end;
+{$ELSE}
+  // CrossVcl code
+{$ENDIF}
 end;
 
 procedure TProcessListForm.FormDestroy(Sender: TObject);

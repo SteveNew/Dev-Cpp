@@ -39,7 +39,6 @@ type
     fLangListLoaded: Boolean;
     fLangFile: String;
     fCurLang: String;
-    fCurCodePage: Integer;
     fStrings: TStringList;
     fDefaultLangStrings: TStringList;
     function GetString(ID: integer): String;
@@ -218,39 +217,10 @@ function Lang: TdevMultiLangSupport;
 implementation
 
 uses
-  System.WideStrUtils, System.UITypes, LangFrm, Forms, Utils, Version, Controls, devCFG;
+  System.UITypes, LangFrm, Forms, Utils, Version, Controls, devCFG;
 
 var
   fLangSingleton: TdevMultiLangSupport = nil;
-
-function GetEncoding(CPID: Integer): String;
-var
-  I: Integer;
-begin
-  Result := 'iso-8859-2'; //put the default encoding here
-
-  for I := 0 to MaxEncodings - 1 do
-    if Encodings[I].CPID = CPID then
-    begin
-      Result := Encodings[I].CPName;
-      break;
-    end;
-end;
-
-function GetCodePage(const ALanguage: String): Integer;
-var
-  I: Integer;
-begin
-  Result := 1252; //put the default encoding here
-
-  for I := 0 to MaxEncodings - 1 do
-    if ALanguage.IndexOf(Encodings[I].CPLang)>-1 then
-    begin
-      Result := Encodings[I].CPID;
-      break;
-    end;
-end;
-
 
 function Lang: TdevMultiLangSupport;
 begin
@@ -268,14 +238,13 @@ begin
   fLangListLoaded := False; // only load when needed
   fStrings := TStringList.Create;
   fDefaultLangStrings := TStringList.Create;
-  fCurCodePage := 1252;
 
   // Load default english file from languages directory
   DefaultLangFile := ValidateFile('English.lng', devDirs.Lang);
   if DefaultLangFile = '' then begin
     MessageDlg('Could not open language file English.lng', mtError, [mbOK], 0);
   end else begin
-    fDefaultLangStrings.LoadFromFile(DefaultLangFile);
+    fDefaultLangStrings.LoadFromFile(DefaultLangFile, TEncoding.UTF8);
   end;
 end;
 
@@ -300,7 +269,7 @@ begin
   end;
 
   // Load file into fStrings
-  fStrings.LoadFromFile(LangFile,TEncoding.ANSI);
+  fStrings.LoadFromFile(LangFile, TEncoding.UTF8);
   fLangFile := LangFile;
 
   // Get languange
@@ -308,7 +277,6 @@ begin
   if fCurLang = '' then
     fCurLang := ChangeFileExt(ExtractFileName(LangFile), '');
 
-  fCurCodePage := GetCodePage(fCurLang);
   devData.Language := ExtractFileName(LangFile);
 end;
 
@@ -330,7 +298,7 @@ begin
       sl := TStringList.Create;
       try
         for I := 0 to fLangList.Count - 1 do begin
-          sl.LoadFromFile(fLangList[I]);
+          sl.LoadFromFile(fLangList[I], TEncoding.UTF8);
           s := sl.Values['Lang'];
           if SameText(ExtractFileName(fLangList[I]), 'English.lng') and (devData.Language = '') then
             fCurLang := s;
@@ -352,7 +320,7 @@ end;
 
 function TdevMultiLangSupport.GetString(ID: integer): String;
 begin
-  result := AnsiToUtf8Ex(fStrings.Values[IntToStr(ID)],fCurCodePage);
+  result := fStrings.Values[IntToStr(ID)];
   if Result = '' then
     Result := fDefaultLangStrings.Values[IntToStr(ID)];
   if result = '' then

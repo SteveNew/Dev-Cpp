@@ -35,7 +35,7 @@ implementation
 {$I VCL.Styles.Utils.inc}
 
 uses
-//  DDetours,
+  DDetours,
   System.SyncObjs,
   System.SysUtils,
   System.Types,
@@ -48,7 +48,7 @@ uses
   Vcl.Graphics,
   Vcl.Styles.Utils.Graphics,
   {$IFDEF HOOK_UXTHEME}
-//  Vcl.Styles.UxTheme,
+  Vcl.Styles.UxTheme,
   {$ENDIF HOOK_UXTHEME}
   Vcl.Styles.Utils.SysControls,
   Vcl.Styles.FontAwesome,
@@ -81,9 +81,9 @@ var
   Trampoline_user32_LoadIconW  : function (hInstance: HINST; lpIconName: PWideChar): HICON; stdcall = nil;
   Trampoline_user32_GetSysColorBrush: function(nIndex: Integer): HBRUSH; stdcall;
   {$IFDEF HOOK_UXTHEME}
-//  Trampoline_user32_LoadImageW: function (hInst: HINST; ImageName: LPCWSTR; ImageType: UINT; X, Y: Integer; Flags: UINT): THandle; stdcall = nil;
+  Trampoline_user32_LoadImageW: function (hInst: HINST; ImageName: LPCWSTR; ImageType: UINT; X, Y: Integer; Flags: UINT): THandle; stdcall = nil;
   {$ELSE}
-//  Trampoline_user32_GetSysColor: function(nIndex: Integer): DWORD; stdcall;
+  Trampoline_user32_GetSysColor: function(nIndex: Integer): DWORD; stdcall;
   {$ENDIF HOOK_UXTHEME}
 
 {$IFDEF HOOK_TDateTimePicker}
@@ -127,10 +127,9 @@ end;
 
 function Detour_GetSysColor(nIndex: Integer): DWORD; stdcall;
 begin
-//  if not(ExecutingInMainThread) or StyleServices.IsSystemStyle or not(TSysStyleManager.Enabled) then
-//    Result := Trampoline_user32_GetSysColor(nIndex)
-//  else
-  if nIndex = COLOR_HOTLIGHT then
+  if not(ExecutingInMainThread) or StyleServices.IsSystemStyle or not(TSysStyleManager.Enabled) then
+    Result := Trampoline_user32_GetSysColor(nIndex)
+  else if nIndex = COLOR_HOTLIGHT then
     Result := DWORD(StyleServices.GetSystemColor(clHighlight))
   else
     Result := DWORD(StyleServices.GetSystemColor(TColor(nIndex or Integer($FF000000))));
@@ -504,7 +503,7 @@ begin
        32514 : DrawIcon(fa_question_circle);
        32517 : DrawIcon(fa_windows);
       end;
-
+	   
     finally
       if MustRelease then
        LIcon.ReleaseHandle;
@@ -849,13 +848,13 @@ begin
 {$ENDIF HOOK_TProgressBar}
   LSetStylePtr := TStyleManager.SetStyle;
 
-//  hnd := BeginTransaction();
-//  @Trampoline_user32_GetSysColor := InterceptCreate(user32, 'GetSysColor', @Detour_GetSysColor);
-//  @Trampoline_user32_GetSysColorBrush := InterceptCreate(user32, 'GetSysColorBrush', @Detour_GetSysColorBrush);
-//  @Trampoline_user32_FillRect := InterceptCreate(user32, 'FillRect', @Detour_FillRect);
-//  @Trampoline_user32_DrawEdge := InterceptCreate(user32, 'DrawEdge', @Detour_DrawEdge);
-//  @Trampoline_user32_DrawFrameControl :=  InterceptCreate(user32, 'DrawFrameControl', @Detour_WinApi_DrawFrameControl);
-//  @Trampoline_user32_LoadIconW := InterceptCreate(user32, 'LoadIconW', @Detour_LoadIconW);
+  hnd := BeginTransaction();
+  @Trampoline_user32_GetSysColor := InterceptCreate(user32, 'GetSysColor', @Detour_GetSysColor);
+  @Trampoline_user32_GetSysColorBrush := InterceptCreate(user32, 'GetSysColorBrush', @Detour_GetSysColorBrush);
+  @Trampoline_user32_FillRect := InterceptCreate(user32, 'FillRect', @Detour_FillRect);
+  @Trampoline_user32_DrawEdge := InterceptCreate(user32, 'DrawEdge', @Detour_DrawEdge);
+  @Trampoline_user32_DrawFrameControl :=  InterceptCreate(user32, 'DrawFrameControl', @Detour_WinApi_DrawFrameControl);
+  @Trampoline_user32_LoadIconW := InterceptCreate(user32, 'LoadIconW', @Detour_LoadIconW);
 {$IFDEF HOOK_UXTHEME}
   if TOSVersion.Check(6) then
    @Trampoline_user32_LoadImageW := InterceptCreate(user32, 'LoadImageW', @Detour_LoadImageW);

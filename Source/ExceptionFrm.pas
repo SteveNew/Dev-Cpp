@@ -382,9 +382,14 @@ begin
 
   // Hack fix, assume stack leftovers are not erased
 // CROSSVCL
-//  asm
-//		mov walker, esp
-//  end;
+{$IFDEF MSWINDOWS}
+  asm
+		mov walker, esp
+  end;
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
+
   max := StackStop;
   repeat
     result := result + AddressInfo(Cardinal(walker^));
@@ -519,11 +524,11 @@ begin
 end;
 
 procedure TExceptionFrm.btnSendClick(Sender: TObject);
-var
-  I: integer;
+//var
+  // I: integer;
   //	SocketResult: integer;
   //	Buffer: array[0..1024] of Char;
-  Cmd, EmailBody, EmailSubject: String;
+  // Cmd, EmailBody, EmailSubject: String;
 begin
   {// Move focus to other button
   btnSend.Default := false;
@@ -610,7 +615,7 @@ end;
 procedure TExceptionFrm.btnTerminateClick(Sender: TObject);
 begin
   if MessageDlg('Are you sure you want to terminate the application?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-  {$IFDEF MSWINDOWS}
+{$IFDEF MSWINDOWS}
 // Windows-only code
   TerminateProcess(GetCurrentProcess, 0);
 {$ELSE}

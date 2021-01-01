@@ -22,10 +22,8 @@ unit CodeCompletionForm;
 interface
 
 uses
-//{$IFDEF WIN32}
   Windows, Classes, Graphics, Forms, StdCtrls, Controls,
   CodeCompletion, CppParser, CBUtils, Winapi.Messages, Vcl.ExtCtrls;
-//{$ENDIF}
 
 type
   TCodeComplForm = class(TForm)

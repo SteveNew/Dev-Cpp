@@ -22,7 +22,7 @@ unit Utils;
 interface
 
 uses
-  Windows, Classes, Sysutils, Dateutils, Forms, ShellAPI, Dialogs, SynEdit, SynEditHighlighter,
+  System.Classes, System.Types, System.SysUtils, Dateutils, Forms, ShellAPI, Dialogs, SynEdit, SynEditHighlighter,
   Menus, Registry, Controls, ComCtrls, Messages, System.AnsiStrings, Vcl.ExtDlgs;
 
 type
@@ -109,8 +109,6 @@ function ProgramHasConsole(const Path: String): boolean;
 
 function GetBuildTime(const Path: String): String;
 
-function IsKeyDown(key: integer): boolean;
-
 function GetPrettyLine(hwnd: TListView; i: integer = -1): String; // removes #10 subitem delimiters
 
 function IsWindows64: boolean;
@@ -164,7 +162,7 @@ type
 implementation
 
 uses
-  devcfg, version, Graphics, StrUtils, MultiLangSupport, main, editor, ShlObj, ActiveX, System.IOUtils, CharUtils, {Vcl.Styles.Utils.SysControls,} Winapi.CommCtrl, Vcl.Themes;
+  Winapi.Windows, devcfg, version, Graphics, StrUtils, MultiLangSupport, main, editor, ShlObj, ActiveX, System.IOUtils, CharUtils, {Vcl.Styles.Utils.SysControls,} Winapi.CommCtrl, Vcl.Themes;
 
 function FastStringReplace(const S, OldPattern, NewPattern: String; Flags: TReplaceFlags): String;
 var
@@ -216,18 +214,18 @@ end;
 //  end;
 //end;
 
-function IsKeyDown(key: integer): boolean;
-begin
-  result := (GetKeyState(key) < 0);
-end;
-
 function IsWindows64: boolean;
+{$IFDEF MSWINDOWS}
 var
-  buffer: array[0..1023] of char;
+  buffer: string;
 begin
-  // IsWow64Process not available in Delphi 7, so using this instead
-// CROSSVCL  GetEnvironmentVariable('PROGRAMFILES', buffer, 1024);
-  result := EndsStr(' (x86)', String(buffer));
+  // Should be IsWow64Process ?
+  buffer := System.SysUtils.GetEnvironmentVariable('PROGRAMFILES');
+  Result := EndsStr(' (x86)', buffer);
+{$ELSE}
+begin
+  Result := False;
+{$ENDIF}
 end;
 
 function GetPrettyLine(hwnd: TListView; i: integer): String;
@@ -369,6 +367,8 @@ begin
 end;
 
 function ProgramHasConsole(const path: String): boolean;
+{$IFDEF MSWINDOWS}
+// Windows-only code
 var
   handle: Cardinal;
   bytesread: DWORD;
@@ -376,6 +376,9 @@ var
   dos_header: _IMAGE_DOS_HEADER;
   pe_header: _IMAGE_FILE_HEADER;
   opt_header: _IMAGE_OPTIONAL_HEADER;
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 begin
 {$IFDEF MSWINDOWS}
 // Windows-only code
@@ -394,35 +397,15 @@ begin
   CloseHandle(handle);
 {$ELSE}
 // CrossVcl code
+  Result := false;
 {$ENDIF}
 end;
 
 function GetBuildTime(const Path: String): String;
 var
-//  dateinteger: integer;
   datedouble: TDateTime;
-  //	handle : Cardinal;
-  //	bytesread : DWORD;
-  //	signature : DWORD;
-  //	dos_header : _IMAGE_DOS_HEADER;
-  //	pe_header  : _IMAGE_FILE_HEADER;
 begin
   FileAge(path, datedouble);
-//  datedouble := FileDateToDateTime(dateinteger);
-
-  //	handle := CreateFile(PChar(path),GENERIC_READ,FILE_SHARE_READ,nil,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,0);
-  //	if handle <> INVALID_HANDLE_VALUE then begin
-  //		ReadFile(Handle, dos_header, sizeof(dos_header), bytesread, nil);
-  //		SetFilePointer(Handle, dos_header._lfanew, nil, 0);
-  //		ReadFile(Handle, signature,  sizeof(signature),  bytesread, nil);
-  //		ReadFile(Handle, pe_header,  sizeof(pe_header),  bytesread, nil);
-
-  //		Result := UnixToDateTime(pe_header.TimeDateStamp);
-  //	end else
-  //		Result := 0;
-
-  //	CloseHandle(handle);
-
   DateTimeToString(Result, 'mmmm d yyyy - hh:nn', datedouble);
 end;
 
@@ -455,7 +438,7 @@ begin
       if Multitasking then
         Application.ProcessMessages;
     end;
-    FindClose(SearchRec);
+    System.SysUtils.FindClose(SearchRec);
   end;
 
   // Then walk through all subdirectories.
@@ -471,7 +454,7 @@ begin
             Subdirs, ShowDirs, Multitasking);
         Error := FindNext(SearchRec);
       end;
-      FindClose(SearchRec);
+      System.SysUtils.FindClose(SearchRec);
     end;
   end;
 end;
@@ -495,16 +478,18 @@ function RunAndGetOutput(const Cmd, WorkDir: String;
   CheckAbortFunc: TCheckAbortFunc;
   ShowReturnValue: Boolean): String;
 var
+  sa: TSecurityAttributes;
+{$IFDEF MSWINDOWS}
+  aBuf: TBytes;
   si: TStartupInfo;
   pi: TProcessInformation;
   nRead: DWORD;
-  aBuf: TBytes;
-  sa: TSecurityAttributes;
   hOutputReadTmp, hOutputRead, hOutputWrite, hInputWriteTmp, hInputRead,
     hInputWrite, hErrorWrite: THandle;
+  bAbort: boolean;
+{$ENDIF}
   FOutput: String;
   CurrentLine: String;
-  bAbort: boolean;
 begin
   FOutput := '';
   CurrentLine := '';
@@ -576,10 +561,10 @@ begin
   si.hStdError := hErrorWrite;
 
   // Launch the process that we want to redirect.
-//  if not CreateProcess(nil, PChar(Cmd), nil, nil, true, 0, nil, PChar(WorkDir), si, pi) then begin
-//    Result := 'CreateProcess error: ' + SysErrorMessage(GetLastError);
-//    Exit;
-//  end;
+  if not CreateProcess(nil, PChar(Cmd), nil, nil, true, 0, nil, PChar(WorkDir), si, pi) then begin
+    Result := 'CreateProcess error: ' + SysErrorMessage(GetLastError);
+    Exit;
+  end;
 
   // Close any unnecessary handles.
   if not CloseHandle(pi.hThread) then begin
@@ -612,12 +597,7 @@ begin
     if Assigned(CheckAbortFunc) then
       CheckAbortFunc(bAbort);
     if bAbort then begin
-    {$IFDEF MSWINDOWS}
-// Windows-only code
-  TerminateProcess(pi.hProcess, 1);
-{$ELSE}
-// CrossVcl code
-{$ENDIF}
+      TerminateProcess(pi.hProcess, 1);
       Break;
     end;
     if (not ReadFile(hOutputRead, (@aBuf[0])^, SizeOf(aBuf) - 1, nRead, nil)) or (nRead = 0) then begin
@@ -665,7 +645,7 @@ end;
 
 procedure SetPath(const Add: String; UseOriginal: boolean = TRUE);
 var
-  OldPath: array[0..2048] of char;
+  OldPath: string;
   NewPath: String;
 begin
   NewPath := Add;
@@ -682,11 +662,15 @@ begin
   if UseOriginal then
     NewPath := NewPath + devDirs.OriginalPath
   else begin
-//CROSSVCL    GetEnvironmentVariable(PChar('PATH'), @OldPath, SizeOf(OldPath));
-    NewPath := NewPath + String(OldPath);
+    OldPath := System.SysUtils.GetEnvironmentVariable('PATH');
+    NewPath := NewPath + OldPath;
   end;
 
-//CROSSVCL  SetEnvironmentVariable(PChar('PATH'), PChar(NewPath));
+{$IFDEF MSWINDOWS}
+  SetEnvironmentVariable(PChar('PATH'), PChar(NewPath));
+{$ELSE}
+  // CrossVcl
+{$ENDIF}
 end;
 
 function ValidateFile(const FileName: String; const WorkPath: String; const CheckDirs: boolean = FALSE):
@@ -719,15 +703,17 @@ begin
 end;
 
 function GetShortName(const FileName: String): String;
+{$IFDEF MSWINDOWS}
 var
   pFileName: array[0..2048] of char;
+{$ENDIF}
 begin
 {$IFDEF MSWINDOWS}
 // Windows-only code
   GetShortPathName(PChar(FileName), pFileName, 2048);
   result := StrPas(pFileName);
 {$ELSE}
-// CrossVcl code
+// CrossVcl code / get short names does not make any sense in 2020
 {$ENDIF}
 end;
 
@@ -1262,8 +1248,12 @@ end;
 { TOpenTextFileDialogHelper }
 procedure TOpenTextFileDialogHelper.DoShow(Sender: TObject);
 begin
+{$IFDEF MSWINDOWS}
 //  with Self do
 //    TSysStyleManager.AddControlDirectly(FComboBox.Handle, WC_COMBOBOX);
+{$ELSE}
+  // CrossVcl code
+{$ENDIF}
 end;
 
 procedure TOpenTextFileDialogHelper.FixStyle;

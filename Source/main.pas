@@ -28,18 +28,21 @@ uses
   Menus, StdCtrls, ComCtrls, ToolWin, ExtCtrls, Buttons, utils, SynEditPrint,
   Project, editor, DateUtils, compiler, ActnList, ToolFrm, AppEvnts,
   debugger, ClassBrowser, CodeCompletion, CppParser, CppTokenizer, SyncObjs,
-  StrUtils, SynEditTypes, devFileMonitor, devMonitorTypes, {DdeMan, }EditorList,
+  StrUtils, SynEditTypes, devFileMonitor, devMonitorTypes, {$IFDEF MSWINDOWS} Vcl.DdeMan, {$ENDIF}EditorList,
   devShortcuts, debugreader, ExceptionFrm, CommCtrl, devcfg, SynEditTextBuffer,
   CppPreprocessor, CBUtils, StatementList, FormatterOptionsFrm, System.Actions,
-  vcl.Themes, Vcl.Imaging.pngimage, {Vcl.WinXCtrls, Vcl.WinXPanels, }Vcl.ExtDlgs
-  {Vcl.Styles.Hooks, }
-//  Vcl.Styles.Utils.Menus, //Style Popup and Shell Menus (class #32768)
-//  Vcl.Styles.Utils.Forms, //Style dialogs box (class #32770)
-//  Vcl.Styles.Utils.StdCtrls, //Style buttons, static, and so on
-//  Vcl.Styles.Utils.ComCtrls, //Style SysTreeView32, SysListView32
-//  Vcl.Styles.Utils.ScreenTips, //Style the tooltips_class32 class
-//  Vcl.Styles.Utils.SysControls,
-//  Vcl.Styles.Utils.SysStyleHook, Vcl.VirtualImage {,Vcl.DdeMan}
+  vcl.Themes, Vcl.Imaging.pngimage, {$IFDEF MSWINDOWS} SVGColor, Vcl.WinXCtrls, Vcl.WinXPanels, {$ENDIF}
+  Vcl.ExtDlgs
+  {$IFDEF MSWINDOWS}
+  ,Vcl.Styles.Hooks,
+  Vcl.Styles.Utils.Menus, //Style Popup and Shell Menus (class #32768)
+  Vcl.Styles.Utils.Forms, //Style dialogs box (class #32770)
+  Vcl.Styles.Utils.StdCtrls, //Style buttons, static, and so on
+  Vcl.Styles.Utils.ComCtrls, //Style SysTreeView32, SysListView32
+  Vcl.Styles.Utils.ScreenTips, //Style the tooltips_class32 class
+  Vcl.Styles.Utils.SysControls,
+  Vcl.Styles.Utils.SysStyleHook, Vcl.VirtualImage 
+  {$ENDIF}
   ;
 
 type
@@ -358,6 +361,9 @@ type
     actViewCPU: TAction;
     actExecParams: TAction;
     mnuExecParameters: TMenuItem;
+	{$IFDEF MSWINDOWS}
+    DevCppDDEServer: TDdeServerConv;
+	{$ENDIF}
     actShowTips: TAction;
     ShowTipsItem: TMenuItem;
     N42: TMenuItem;
@@ -585,14 +591,14 @@ type
     ConsolePopupMenu: TPopupMenu;
     CloseCMDMNU: TMenuItem;
     actConsoleClose: TAction;
+    ImageEmbarcadero: TImage;
     LabelSponsor: TLabel;
     PanelDescOpen: TPanel;
     PanelDescSave: TPanel;
     PanelDescZoom: TPanel;
     PanelDescRun: TPanel;
     PanelDescCompile: TPanel;
-    PanelDescClear: TPanel;
-    ImageEmbarcadero: TImage;
+    PanelDescClear: TPanel;    
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormDestroy(Sender: TObject);
     procedure ToggleBookmarkClick(Sender: TObject);
@@ -611,6 +617,7 @@ type
     procedure actSaveAsExecute(Sender: TObject);
     procedure actSaveAllExecute(Sender: TObject);
     procedure actCloseExecute(Sender: TObject);
+    procedure actCloseExecuteByTab(Sender: TObject; CloseEditor:TEditor = nil);
     procedure actCloseAllExecute(Sender: TObject);
     procedure actCloseProjectExecute(Sender: TObject);
     procedure actExportHTMLExecute(Sender: TObject);
@@ -926,8 +933,7 @@ type
     procedure LoadStyle;
 {$IFDEF MSWINDOWS}
 // Windows-only code
-// CROSSVCL
-//  procedure LoadThemeStyle;
+    procedure LoadThemeStyle;
 {$ELSE}
 // CrossVcl code
 {$ENDIF}
@@ -996,12 +1002,14 @@ uses
 
 procedure TMainForm.LoadTheme;
 begin
-  //if devImageThemes.IndexOf(devData.Theme) = -1 then
-    //devData.Theme := devImageThemes.Themes[0].Title; // 0 = New look (see ImageTheme.pas)
+{$IFDEF MSWINDOWS}
+// Windows-only code
+  if devImageThemes.IndexOf(devData.Theme) = -1 then
+    devData.Theme := devImageThemes.Themes[0].Title; // 0 = New look (see ImageTheme.pas)
 
   // make sure the theme in question is in the list
-  //if devImageThemes.IndexOf(devData.Theme) <> -1 then begin
-    //devImageThemes.ActivateTheme(devData.Theme);
+  if devImageThemes.IndexOf(devData.Theme) <> -1 then begin
+    devImageThemes.ActivateTheme(devData.Theme);
 
     with devImageThemes do begin
       // Misc items images
@@ -1047,7 +1055,10 @@ begin
       ButtonChangeLanguage.ImageIndex := -1;
     end;
     LoadStyle;
-  //end;
+  end;
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 end;
 
 procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -1101,6 +1112,13 @@ begin
 
   SaveOptions;
 
+  //  --  --  --  --  --  --  --  --  --  --  --  --  --
+  //      This is a cheat.    Also don't hard-code 'Windows10'.
+  //  --  --  --  --  --  --  --  --  --  --  --  --  --
+      MainForm.Visible := false;
+      TStyleManager.TrySetStyle('Windows10');
+  //  --  --  --  --  --  --  --  --  --  --  --  --  --
+
   Action := caFree;
 end;
 
@@ -1118,6 +1136,10 @@ begin
   FreeAndNil(dmMain);
   devExecutor.Free; // sets itself to nil
   Lang.Free; // sets itself to nil
+{$IFDEF MSWINDOWS}
+  DevCppDDEServer.Free;
+{$ELSE}
+{$ENDIF}
   DestroyOptions;
 end;
 
@@ -2198,10 +2220,17 @@ begin
 end;
 
 procedure TMainForm.actCloseExecute(Sender: TObject);
+begin
+  actCloseExecuteByTab(Sender);
+end;
+procedure TMainForm.actCloseExecuteByTab(Sender: TObject; CloseEditor:TEditor = nil);
 var
   e: TEditor;
 begin
-  e := fEditorList.GetEditor;
+  if CloseEditor = nil then
+    e := fEditorList.GetEditor
+  else
+    e := CloseEditor;
   if Assigned(e) then
     fEditorList.CloseEditor(e);
 
@@ -3413,21 +3442,26 @@ begin
 
       // Rebuild recent file list (max count could have changed
       dmMain.RebuildMRU;
+    end;
+  finally
+    Close;
+  end;
       //Load Delphi Style
       if devData.StyleChange then
       begin
         if devData.Style > 0 then
         begin
-//          LoadThemeStyle;
+{$IFDEF MSWINDOWS}
+// Windows-only code
+    LoadThemeStyle;
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
           LoadStyle;
         end
         else
           Loadtheme;
       end;
-    end;
-  finally
-    Close;
-  end;
 end;
 
 procedure TMainForm.actUpdatePageCount(Sender: TObject);
@@ -4456,7 +4490,7 @@ begin
 
     if Button = mbLeft then
     begin
-      for I := 0 to PageControl.PageCount - 1 do
+      for I := PageControl.PageCount - 1 downto 0 do            // tabs can disappear 
       begin
         if not (PageControl.Pages[i] is TCloseTabSheet) then Continue;
         TabSheet:=PageControl.Pages[i] as TCloseTabSheet;
@@ -6119,6 +6153,14 @@ end;
 procedure TMainForm.FormCreate(Sender: TObject);
 
 begin
+{$IFDEF MSWINDOWS}
+  DevCppDDEServer := TDdeServerConv.Create(Self);
+  DevCppDDEServer.Name := 'DevCppDDEServer';
+  DevCppDDEServer.OnExecuteMacro := DevCppDDEServerExecuteMacro;
+{$ELSE}
+  // CrossVCl code - not we want this
+{$ENDIF}
+
   fFirstShow := true;
 
   // Backup PATH variable
@@ -6126,7 +6168,7 @@ begin
 // Windows-only code
   devDirs.OriginalPath := System.SysUtils.GetEnvironmentVariable('PATH');
 //{$ELSE}
-// CrossVcl code
+// CrossVcl code - not sure we want/need this
 //{$ENDIF}
 
   // Create a compiler
@@ -6287,7 +6329,7 @@ begin
   // Try to fix the file associations. Needs write access to registry, which might cause exceptions to be thrown
 {$IFDEF MSWINDOWS}
 // Windows-only code
-//CROSSVCL  DDETopic := DevCppDDEServer.Name;
+  DDETopic := DevCppDDEServer.Name;
 {$ELSE}
 // CrossVcl code
 {$ENDIF}
@@ -6307,7 +6349,12 @@ begin
   devImageThemes.LoadFromDirectory(devDirs.Themes);
   if devdata.Style > 0 then
   begin
-//    LoadThemeStyle;
+{$IFDEF MSWINDOWS}
+// Windows-only code
+    LoadThemeStyle;
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
     LoadStyle;
   end
   else
@@ -7081,9 +7128,9 @@ procedure TMainForm.LoadStyle;
 begin
   TStyleManager.TrySetStyle(cDelphiStyle[devData.Style]);
   LabelNumVersion.Font.Color := clRed;
+// CROSSVCL TODO: TVirtualImage not supported.
 {$IFDEF MSWINDOWS}
 // Windows-only code
-// CROSSVCL
 //  case devData.Style of
 //    2, 3, 4, 5, 6: ImageEmbarcadero.ImageIndex := 1;
 //  else
@@ -7097,8 +7144,8 @@ end;
 {$IFDEF MSWINDOWS}
 // Windows-only code
 // CROSSVCL
-//  procedure TMainForm.LoadThemeStyle;
-//  begin
+  procedure TMainForm.LoadThemeStyle;
+  begin
 //      dmMain.SVGImageListMenuStyle.DisabledGrayScale := False;
 //      dmMain.SVGImageListMenuStyle.FixedColor := StringToColor(cSVGColor[devData.Style]);
 //      dmMain.SVGImageListMessageStyle.FixedColor := StringToColor(cSVGColor[devData.Style]);
@@ -7141,7 +7188,7 @@ end;
 //      ButtonOptions.Images := dmMain.SVGIconImageWelcomeScreen;
 //      ButtonOptions.ImageIndex := 2;
 //      ButtonOptions.ImageAlignment := TImageAlignment(2);
-//  end;
+  end;
 
 {$ELSE}
 // CrossVcl code
@@ -7235,18 +7282,19 @@ begin
   LabelView.Left := (PageControlPanel.Width div 4) - (LabelView.Width + 30);
   LabelDocumentation.Left := (PageControlPanel.Width div 4) - 23;
   LabelHotkeys.Left := (PageControlPanel.Width div 4) - (LabelHotkeys.Width div 2);
-  LabelOpen.Left := (PageControlPanel.Width div 4) - 35;
-  LabelSave.Left := (PageControlPanel.Width div 4) - 33;
-  LabelZoom.Left := (PageControlPanel.Width div 4) - 38;
-  LabelRun.Left := (PageControlPanel.Width div 4) - 28;
-  LabelCompile.Left := (PageControlPanel.Width div 4) - 50;
-  LabelClear.left := (PageControlPanel.Width div 4) - 34;
-  PanelDescOpen.Left := (PageControlPanel.Width div 4) + 18;
-  PanelDescSave.Left := (PageControlPanel.Width div 4) + 18;
-  PanelDescZoom.Left := (PageControlPanel.Width div 4) + 18;
-  PanelDescRun.Left := (PageControlPanel.Width div 4) + 18;
-  PanelDescCompile.Left := (PageControlPanel.Width div 4) + 18;
-  PanelDescClear.Left := (PageControlPanel.Width div 4) + 18;
+  var  adj := 45;
+  LabelOpen   .Left     := (PageControlPanel.Width div 4) - adj - LabelOpen   .width;
+  LabelSave   .Left     := (PageControlPanel.Width div 4) - adj - LabelSave   .width;
+  LabelZoom   .Left     := (PageControlPanel.Width div 4) - adj - LabelZoom   .width;
+  LabelRun    .Left     := (PageControlPanel.Width div 4) - adj - LabelRun    .width;
+  LabelCompile.Left     := (PageControlPanel.Width div 4) - adj - LabelCompile.width;
+  LabelClear  .left     := (PageControlPanel.Width div 4) - adj - LabelClear  .width;
+  PanelDescOpen   .Left := (PageControlPanel.Width div 4) + adj;
+  PanelDescSave   .Left := (PageControlPanel.Width div 4) + adj;
+  PanelDescZoom   .Left := (PageControlPanel.Width div 4) + adj;
+  PanelDescRun    .Left := (PageControlPanel.Width div 4) + adj;
+  PanelDescCompile.Left := (PageControlPanel.Width div 4) + adj;
+  PanelDescClear  .Left := (PageControlPanel.Width div 4) + adj;
   ButtonNewDocument.Left := Max(50, (PanelRight.Width div 2) - ButtonNewDocument.Width - (ButtonOpenDocument.Width div 2) - 65);
   ButtonOpenDocument.Left := ButtonNewDocument.Left + ButtonNewDocument.Width + 25;
   ButtonOptions.Left := ButtonOpenDocument.Left + ButtonOpenDocument.Width + 25;
@@ -7379,12 +7427,13 @@ var
   I: Integer;
   PageControl: TPageControl;
   TabSheet: TCloseTabSheet;
+  e: TEditor;
 begin
   PageControl := Sender as TPageControl;
 
   if Button = mbLeft then
   begin
-    for I := 0 to PageControl.PageCount - 1 do
+    for I := PageControl.PageCount - 1 downto 0 do            // tabs can disappear
     begin
       if not (PageControl.Pages[i] is TCloseTabSheet) then Continue;
       TabSheet:=PageControl.Pages[i] as TCloseTabSheet;
@@ -7393,6 +7442,8 @@ begin
         FCloseButtonMouseDownTab := TabSheet;
         FCloseButtonShowPushed := True;
         PageControl.Repaint;
+        e := fEditorList.GetEditor(I,PageControl);            // determine tab being closed
+        actCloseExecuteByTab(Sender, e);
       end;
     end;
   end;
@@ -7442,7 +7493,7 @@ begin
         TThread.Synchronize(nil, procedure begin
           //FCloseButtonMouseDownTab.DoClose;
           //FCloseButtonMouseDownTab := nil;
-          actCloseExecute(Sender);
+          //actCloseExecute(Sender);                //  can close wrong tab
           PageControl.Repaint;
         end);
       end);

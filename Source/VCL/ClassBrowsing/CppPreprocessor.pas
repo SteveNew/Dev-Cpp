@@ -22,9 +22,7 @@ unit CppPreprocessor;
 interface
 
 uses
-//{$IFDEF WIN32}
   Windows, Classes, SysUtils, StrUtils, ComCtrls, Math, IntList, cbutils, CharUtils;
-//{$ENDIF}
 
 type
   PFile = ^TFile;

@@ -91,12 +91,16 @@ begin
     else
       wShowWindow := SW_HIDE;
   end;
-//  if CreateProcess(nil, PChar('"' + fFile + '" ' + fParams), nil, nil, False, NORMAL_PRIORITY_CLASS, nil,
-//    PChar(fPath),
-//    StartupInfo, ProcessInfo) then begin
-//    fProcess := ProcessInfo.hProcess;
-//    WaitForSingleObject(ProcessInfo.hProcess, fTimeOut);
-//  end;
+{$IFDEF MSWINDOWS}
+  if CreateProcess(nil, PChar('"' + fFile + '" ' + fParams), nil, nil, False, NORMAL_PRIORITY_CLASS, nil,
+    PChar(fPath),
+    StartupInfo, ProcessInfo) then begin
+    fProcess := ProcessInfo.hProcess;
+    WaitForSingleObject(ProcessInfo.hProcess, fTimeOut);
+  end;
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
   CloseHandle(ProcessInfo.hProcess);
   CloseHandle(ProcessInfo.hThread);
 end;

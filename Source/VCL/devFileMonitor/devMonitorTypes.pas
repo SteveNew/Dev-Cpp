@@ -22,10 +22,7 @@ unit devMonitorTypes;
 interface
 
 uses
-//{$IFDEF WIN32}
   Classes, Windows;
-//{$ENDIF}
-
 
 type
   TdevMonitorChangeType = (mctChanged, mctDeleted);

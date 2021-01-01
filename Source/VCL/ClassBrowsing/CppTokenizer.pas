@@ -22,9 +22,7 @@ unit CppTokenizer;
 interface
 
 uses
-//{$IFDEF WIN32}
   Windows, Classes, SysUtils, StrUtils, ComCtrls, Math, cbutils, CharUtils;
-//{$ENDIF}
 
 type
   PToken = ^TToken;

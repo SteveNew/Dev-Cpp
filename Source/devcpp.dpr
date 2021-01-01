@@ -18,15 +18,31 @@
 }
 
 program devcpp;
+
 {$R 'icons.res' 'icons.rc'}
-// {$R 'DefaultFiles.res' 'DefaultFiles.rc'}
+{$IFDEF MSWINDOWS}
+// Windows-only code
+  {$R 'DefaultFiles.res' 'DefaultFiles.rc'}
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
 
 uses
-//  FastMM5 in 'FastMM5.pas',
+{$IFDEF MSWINDOWS}
+// Windows-only code
+  FastMM5,
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
   Windows,
   Forms,
   sysUtils,
-//  SHFolder,
+{$IFDEF MSWINDOWS}
+// Windows-only code
+  SHFolder,
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
   Messages,
   System.IOUtils,
   main in 'main.pas' {MainForm},
@@ -89,9 +105,14 @@ uses
   Instances in 'Instances.pas',
   CharUtils in 'CharUtils.pas',
   ConsoleAppHostFrm in 'ConsoleAppHostFrm.pas' {ConsoleAppHost},
-  Vcl.Themes;
-  {,
-  Vcl.Styles; }
+  Vcl.Themes
+{$IFDEF MSWINDOWS}
+// Windows-only code
+  ,Vcl.Styles
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
+;
 
 {$R *.res}
 
@@ -186,7 +207,7 @@ begin
     // default dir should be %APPDATA%\Embarcadero\Dev-Cpp
     AppData := IncludeTrailingBackslash(TPath.GetHomePath);
 
-    const DevCppDir = 'Embarcadero\Dev-Cpp\';
+    const DevCppDir = TPath.Combine('Embarcadero','Dev-Cpp') + TPath.DirectorySeparatorChar;
 
     // Store the INI file in %APPDATA% or if we are not allowed to do so, in the exe directory
     if (not devData.IsPortable) and ((AppData <> '') and (DirectoryExists(AppData + DevCppDir) or ForceDirectories(AppData + DevCppDir))) then
@@ -196,7 +217,7 @@ begin
     else
     begin
       // store it in the default portable config folder anyways...
-      devData.INIFileName := ExeFolder + 'config\' + INIFileName;
+      devData.INIFileName := TPath.Combine(ExeFolder,'config') + TPath.DirectorySeparatorChar + INIFileName;
       TDirectory.CreateDirectory(TPath.GetDirectoryName(devData.INIFileName));
     end;
   end;

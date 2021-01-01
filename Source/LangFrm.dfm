@@ -178,29 +178,29 @@ object LangForm: TLangForm
       TabOrder = 0
       object lblTheme: TLabel
         Left = 8
-        Top = 104
+        Top = 123
         Width = 39
         Height = 15
         Caption = 'Theme:'
       end
       object lblColor: TLabel
         Left = 8
-        Top = 72
+        Top = 78
         Width = 32
         Height = 15
         Caption = 'Color:'
       end
       object lblFont: TLabel
         Left = 8
-        Top = 32
+        Top = 20
         Width = 27
         Height = 15
         Caption = 'Font:'
       end
       object cmbTheme: TComboBox
-        Left = 56
-        Top = 102
-        Width = 201
+        Left = 8
+        Top = 140
+        Width = 249
         Height = 23
         Style = csDropDownList
         TabOrder = 0
@@ -214,12 +214,12 @@ object LangForm: TLangForm
           'Glossy'
           'Calypso'
           'Flat UI Light'
-          'Material Pattens Blue')
+          'Material Patterns Blue')
       end
       object cmbColors: TComboBox
-        Left = 56
-        Top = 70
-        Width = 201
+        Left = 8
+        Top = 95
+        Width = 249
         Height = 23
         Style = csDropDownList
         TabOrder = 1
@@ -241,9 +241,9 @@ object LangForm: TLangForm
           'Visual Studio Dark')
       end
       object cmbFont: TComboBox
-        Left = 56
-        Top = 22
-        Width = 201
+        Left = 8
+        Top = 37
+        Width = 249
         Height = 36
         AutoComplete = False
         Style = csOwnerDrawVariable

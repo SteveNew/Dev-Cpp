@@ -160,12 +160,17 @@ begin
   if CompilerSet.BinDir.Count > 0 then begin
     GDBFile := CompilerSet.BinDir[0] + pd + CompilerSet.gdbName;
     GDBCommand := '"' + GDBFile + '"' + ' --annotate=2 --silent';
-//    if not CreateProcess(nil, PChar(GDBCommand), nil, nil, true, CREATE_NEW_CONSOLE, nil, nil, si, pi) then begin
-//      MessageDlg(Format(Lang[ID_ERR_ERRORLAUNCHINGGDB], [GDBFile, SysErrorMessage(GetLastError)]), mtError,
-//        [mbOK], 0);
-//      Executing := false;
-//      Exit;
-//    end;
+{$IFDEF MSWINDOWS}
+// Windows-only code
+    if not CreateProcess(nil, PChar(GDBCommand), nil, nil, true, CREATE_NEW_CONSOLE, nil, nil, si, pi) then begin
+      MessageDlg(Format(Lang[ID_ERR_ERRORLAUNCHINGGDB], [GDBFile, SysErrorMessage(GetLastError)]), mtError,
+        [mbOK], 0);
+      Executing := false;
+      Exit;
+    end;
+{$ELSE}
+// CrossVcl code
+{$ENDIF}
   end else
     MessageDlg(Lang[ID_ERR_GDBNOUTFOUND], mtError, [mbOK], 0);
 
@@ -196,7 +201,7 @@ begin
     // Close CPU window
     if Assigned(CPUForm) then
       CPUForm.Close;
-    {$IFDEF MSWINDOWS}
+{$IFDEF MSWINDOWS}
 // Windows-only code
   TerminateProcess(fProcessID, 0); // stop gdb
 {$ELSE}
@@ -231,7 +236,7 @@ begin
 
     Buff := TEncoding.ANSI.GetBytes((command + ' ' + params).Trim) + [10];
 
-        {$IFDEF MSWINDOWS}
+{$IFDEF MSWINDOWS}
 // Windows-only code
   if not WriteFile(fInputwrite, (@Buff[Low(Buff)])^, Length(Buff), nBytesWrote, nil) then
       MessageDlg(Lang[ID_ERR_WRITEGDB], mtError, [mbOK], 0);

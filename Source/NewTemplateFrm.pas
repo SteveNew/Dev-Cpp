@@ -86,7 +86,7 @@ type
 implementation
 
 uses
-  utils, IconFrm, devcfg, version, Templates, main, MultiLangSupport, ProjectTypes{$IFNDEF MSWINDOWS}, posix.Unistd {$ENDIF};
+  System.IOUtils, utils, IconFrm, devcfg, version, Templates, main, MultiLangSupport, ProjectTypes{$IFNDEF MSWINDOWS}, posix.Unistd {$ENDIF};
 
 {$R *.dfm}
 
@@ -293,7 +293,7 @@ begin
     WriteInteger('Template', 'ver', 1);
     WriteString('Template', 'Name', cmbName.Text);
     if IconFiles[0] <> '' then begin
-//CROSSVCL      CopyFile(PChar(IconFiles[0]), PChar(devDirs.Templates + cmbName.Text + '.ico'), False);
+      TFile.Copy(IconFiles[0], devDirs.Templates + cmbName.Text + '.ico');
       WriteString('Template', 'Icon', cmbName.Text + '.ico');
     end;
     WriteString('Template', 'Description', txtDescr.Text);
@@ -305,7 +305,7 @@ begin
         WriteString('Unit' + IntToStr(C), 'CppName', lstFiles.Items[I]);
         S := StringReplace(cmbName.Text + '_' + lstFiles.Items[I] + '.txt', ' ', '_', [rfReplaceAll]);
         WriteString('Unit' + IntToStr(C), 'Cpp', S);
-//CROSSVCL        CopyFile(PChar(TempProject.Units[I].FileName), PChar(devDirs.Templates + S), False);
+        TFile.Copy(TempProject.Units[I].FileName, devDirs.Templates + S);
         Inc(C);
       end;
 
@@ -328,7 +328,7 @@ begin
       WriteString('Project', 'ResourceIncludes', TempProject.Options.ResourceIncludes.DelimitedText);
 
     if IconFiles[1] <> '' then begin
-//CROSSVCL      CopyFile(PChar(IconFiles[1]), PChar(devDirs.Templates + cmbName.Text + '.project.ico'), False);
+      TFile.Copy(IconFiles[1], devDirs.Templates + cmbName.Text + '.project.ico');
       WriteString('Project', 'Icon', cmbName.Text + '.project.ico');
     end;
     MessageDlg('The new template has been created!'#10#10 +

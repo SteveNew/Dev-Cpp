@@ -946,7 +946,7 @@ begin
     FillChar(tmp[totalbytesread], chunklen, 0);
 
     // ReadFile returns when there's something to read
-    {$IFDEF MSWINDOWS}
+{$IFDEF MSWINDOWS}
 // Windows-only code
   if not ReadFile(fPipeRead, (@tmp[totalbytesread])^, chunklen, bytesread, nil) or (bytesread = 0) then
       break;

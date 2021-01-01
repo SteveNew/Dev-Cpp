@@ -22,9 +22,7 @@ unit devShortcuts;
 interface
 
 uses
-//{$IFDEF WIN32}
   Windows, Messages, SysUtils, Classes, Menus, Controls, IniFiles, Graphics, ActnList;
-//{$ENDIF}
 
 type
   TShortCutItem = record
@@ -58,10 +56,8 @@ procedure Register;
 
 implementation
 
-//{$IFDEF WIN32}
 uses
   devShortcutsEditorForm, Forms;
-//{$ENDIF}
 
 procedure Register;
 begin

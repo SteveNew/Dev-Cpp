@@ -331,7 +331,11 @@ procedure TDevImageTheme.SetMenuImages(const Img: TImageList);
 begin
   if Img <> FMenuImages then
   begin
+{$IFDEF MSWINDOWS}
     FMenuImages.Assign(Img);
+{$ELSE}
+    // CrossVCL not able to ImageList_Write - due to not being 256 color images?
+{$ENDIF}
   end;
 end;
 
@@ -341,7 +345,11 @@ procedure TDevImageTheme.SetProjectImages(const Img: TImageList);
 begin
   if Img <> FProjectImages then
   begin
+{$IFDEF MSWINDOWS}
     FProjectImages.Assign(Img);
+{$ELSE}
+    // CrossVCL not able to ImageList_Write - due to not being 256 color images?
+{$ENDIF}
   end;
 end;
 
@@ -351,7 +359,11 @@ procedure TDevImageTheme.SetBrowserImages(const Img: TImageList);
 begin
   if Img <> FBrowserImages then
   begin
+{$IFDEF MSWINDOWS}
     FBrowserImages.Assign(Img);
+{$ELSE}
+    // CrossVCL not able to ImageList_Write - due to not being 256 color images?
+{$ENDIF}
   end;
 end;
 

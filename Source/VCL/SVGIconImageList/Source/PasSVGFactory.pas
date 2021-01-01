@@ -8,7 +8,7 @@ unit PasSVGFactory;
 
 interface
 Uses
-//  Winapi.D2D1,
+  Winapi.D2D1,
   SVGInterfaces;
 
 // Factory Methods

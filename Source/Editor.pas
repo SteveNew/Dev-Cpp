@@ -377,8 +377,9 @@ var
  YesSequences, NoSequences: integer;
 
 begin
-   if not FileExists(FileName) then
-     Exit;
+// Should not test that since caller does and not its responability
+//   if not FileExists(FileName) then
+//     Exit;
    YesSequences := 0;
    NoSequences := 0;
    Stream := TMemoryStream.Create;
@@ -2070,11 +2071,10 @@ begin
         Exit;
 
       // Yes, remove read-only attribute
-      // CROSSVCL
-//      if FileSetAttr(fFileName, FileGetAttr(fFileName) - faReadOnly) <> 0 then begin
-//        MessageDlg(Format(Lang[ID_MSG_FILEREADONLYERROR], [fFileName]), mtError, [mbOk], 0);
-//        Exit;
-//      end;
+      if FileSetReadOnly(fFileName, False) then begin
+        MessageDlg(Format(Lang[ID_MSG_FILEREADONLYERROR], [fFileName]), mtError, [mbOk], 0);
+        Exit;
+      end;
     end;
 
     // Filename already present? Save without dialog

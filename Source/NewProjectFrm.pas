@@ -24,7 +24,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, ExtCtrls, ImgList, Buttons, ComCtrls, Templates, Inifiles,
-  System.ImageList;
+  System.ImageList{$IFDEF MSWINDOWS}, SVGIconImageListBase, SVGIconImageList{$ENDIF};
 
 type
   TNewProjectForm = class(TForm)
@@ -39,6 +39,9 @@ type
     ProjView: TListView;
     TemplateLabel: TLabel;
     btnHelp: TBitBtn;
+	{$IFDEF MSWINDOWS}
+    SVGIconImageList: TSVGIconImageList;
+	{$ENDIF}
     ImageList: TImageList;
     procedure ProjViewChange(Sender: TObject; Item: TListItem; Change: TItemChange);
     procedure FormCreate(Sender: TObject);
@@ -72,8 +75,12 @@ begin
   fTemplates := TList.Create;
   LoadText;
   ReadTemplateDir;
-//  if devdata.Style > 0 then
-//    SVGIconImageList.FixedColor := StringToColor(cSVGColor[devData.Style]);
+{$IFDEF MSWINDOWS}
+  if devdata.Style > 0 then
+    SVGIconImageList.FixedColor := StringToColor(cSVGColor[devData.Style]);
+{$ELSE}
+  // CrossVcl code
+{$ENDIF}
 end;
 
 procedure TNewProjectForm.FormDestroy(Sender: TObject);
@@ -92,9 +99,13 @@ var
 begin
   if not FileExists(FileName) then
     Exit;
-//  if devdata.Style > 0 then
-//    TypeImage := 'svg'
-//  else
+{$IFDEF MSWINDOWS}
+  if devdata.Style > 0 then
+    TypeImage := 'svg'
+  else
+{$ELSE}
+  // CrossVcl code
+{$ENDIF}
     TypeImage := 'Icon';
 
   Template := TTemplate.Create;
@@ -199,7 +210,11 @@ begin
   svgFileName := TStringList.Create;
   ProjView.Items.BeginUpdate;
   try
-//    ProjView.LargeImages := SVGIConImageList;
+{$IFDEF MSWINDOWS}
+    ProjView.LargeImages := SVGIConImageList;
+{$ELSE}
+  // CrossVcl code
+{$ENDIF}
     ProjView.Items.Clear;
 
     // Walk all items
@@ -225,9 +240,17 @@ begin
           // Add svg image to central dump and tell ListItem to use it
           svgFileName.Clear;
           svgFileName.Add(IconFileName);
-//          SVGIconImageList.LoadFromFiles(svgFileName);
+{$IFDEF MSWINDOWS}
+          SVGIconImageList.LoadFromFiles(svgFileName);
+{$ELSE}
+  // CrossVcl code
+{$ENDIF}
           svgName :=  Copy(TemplateItem.Icon, 1, length(TemplateItem.Icon)-4);
-//          SVGIndex := SVGIconImageList.GetIndexByName(svgName);
+{$IFDEF MSWINDOWS}
+          SVGIndex := SVGIconImageList.GetIndexByName(svgName);
+{$ELSE}
+  // CrossVcl code
+{$ENDIF}
           ListItem.ImageIndex := SVGIndex;
           if ListItem.ImageIndex = -1 then
             ListItem.ImageIndex := 0;

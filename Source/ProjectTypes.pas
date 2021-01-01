@@ -22,7 +22,7 @@ unit ProjectTypes;
 interface
 
 uses
-  Classes, editor, ComCtrls, Windows, SysUtils;
+  System.Classes, editor, ComCtrls, System.SysUtils;
 
 const
   dptGUI = 0;
@@ -43,7 +43,7 @@ type
     Minor: integer;
     Release: integer;
     Build: integer;
-    LanguageID: TLocaleID; //integer;
+    LanguageID: TLocaleID;
     CharsetID: integer;
     CompanyName: String;
     FileVersion: String;
@@ -120,7 +120,7 @@ begin
   Minor := 0;
   Release := 0;
   Build := 0;
-  LanguageID := TLanguages.UserDefaultLocale; // $0409; // US English //CROSSVCL
+  LanguageID := TLanguages.UserDefaultLocale; //$0409; // US English
   CharsetID := $04E4; // Windows multilingual
   CompanyName := '';
   FileVersion := '';

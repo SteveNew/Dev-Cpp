@@ -160,8 +160,8 @@ begin
   end;
 end;
 
-//function TranslateCharsetInfoEx(lpSrc: PDWORD; var lpCs: TCharsetInfo; dwFlags: DWORD): BOOL; stdcall;
-//  external 'gdi32.dll' name 'TranslateCharsetInfo';
+function TranslateCharsetInfoEx(lpSrc: PDWORD; var lpCs: TCharsetInfo; dwFlags: DWORD): BOOL; stdcall;
+  external {$IFDEF MSWINDOWS}'gdi32.dll'{$ELSE}CrossVclLib{$ENDIF} name 'TranslateCharsetInfo';
 
 function CharSetFromLocale(Language: LCID): TFontCharSet;
 var
@@ -169,8 +169,7 @@ var
   CSI: TCharsetInfo;
 begin
   CP:= CodePageFromLocale(Language);
-// CROSSVCL
-//  TranslateCharsetInfoEx(Pointer(CP), CSI, TCI_SRCCODEPAGE);
+  TranslateCharsetInfoEx(Pointer(CP), CSI, TCI_SRCCODEPAGE);
   Result:= CSI.ciCharset;
 end;
 

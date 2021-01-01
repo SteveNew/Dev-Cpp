@@ -195,7 +195,7 @@ begin
 	if FileExists(fFilename) then begin
 		if MessageDlg(fFilename + ' already exists. Are you sure you want to overwrite it?', mtConfirmation, [mbYes, mbNo], 0) = mrNo then
 			Exit;
-    System.SysUtils.DeleteFile(fFilename);
+      System.SysUtils.DeleteFile(fFilename);
 	end;
 
 	// Defaults

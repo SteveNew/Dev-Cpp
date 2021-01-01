@@ -58,7 +58,7 @@ implementation
 }
 
 uses
-//  DDetours,
+  DDetours,
   System.SyncObjs,
   System.SysUtils,
   System.Classes,
@@ -284,25 +284,24 @@ begin
 end;
 
 {$IF CompilerVersion >= 30}
-//function InterceptCreateOrdinal(const Module: string; MethodName: Integer; const InterceptProc: Pointer;
-//  ForceLoadModule: Boolean = True; const Options: TInterceptOptions = DefaultInterceptOptions): Pointer;
-//var
-//  pOrgPointer: Pointer;
-//  LModule: THandle;
-//begin
-// CROSSVCL
-//  Result := nil;
-//  LModule := GetModuleHandle(PChar(Module));
-//  if (LModule = 0) and ForceLoadModule then
-//    LModule := LoadLibrary(PChar(Module));
-//
-//  if LModule <> 0 then
-//  begin
-//    pOrgPointer := GetProcAddress(LModule, PChar(MethodName));
-//    if Assigned(pOrgPointer) then
-//      DDetours.InterceptCreate(pOrgPointer, InterceptProc, Result, nil, Options);
-//  end;
-//end;
+function InterceptCreateOrdinal(const Module: string; MethodName: Integer; const InterceptProc: Pointer;
+  ForceLoadModule: Boolean = True; const Options: TInterceptOptions = DefaultInterceptOptions): Pointer;
+var
+  pOrgPointer: Pointer;
+  LModule: THandle;
+begin
+  Result := nil;
+  LModule := GetModuleHandle(PChar(Module));
+  if (LModule = 0) and ForceLoadModule then
+    LModule := LoadLibrary(PChar(Module));
+
+  if LModule <> 0 then
+  begin
+    pOrgPointer := GetProcAddress(LModule, PChar(MethodName));
+    if Assigned(pOrgPointer) then
+      DDetours.InterceptCreate(pOrgPointer, InterceptProc, Result, nil, Options);
+  end;
+end;
 {$IFEND}
 
 {$IFDEF HOOK_Menu}
@@ -3554,7 +3553,7 @@ begin
       end
   end;
 
-   // OutputDebugString(PChar(Format('UxTheme_TaskDialog  class %s hTheme %d iPartId %d iStateId %d', [THThemesClasses.Items[hTheme],hTheme, iPartId, iStateId])));
+   OutputDebugString(PChar(Format('UxTheme_TaskDialog  class %s hTheme %d iPartId %d iStateId %d', [THThemesClasses.Items[hTheme],hTheme, iPartId, iStateId])));
   exit(Trampoline(hTheme, hdc, iPartId, iStateId, pRect, Foo));
 end;
 {$ENDIF}
@@ -4740,43 +4739,43 @@ begin
 {$ENDIF}
 
   // General hooks
-//  @Trampoline_UxTheme_OpenThemeData := InterceptCreate(themelib, 'OpenThemeData', @Detour_UxTheme_OpenThemeData);
+  @Trampoline_UxTheme_OpenThemeData := InterceptCreate(themelib, 'OpenThemeData', @Detour_UxTheme_OpenThemeData);
   {$IF CompilerVersion >= 30}
-//  if TOSVersion.Check(10) then
-//  begin
-//    @Trampoline_UxTheme_OpenThemeDataForDPI := InterceptCreate(themelib, 'OpenThemeDataForDpi', @Detour_UxTheme_OpenThemeDataForDPI);
-//    if (@Trampoline_UxTheme_OpenThemeDataForDPI = nil) and (TOSVersion.Build < 15063) then // W10 Creators Update?
-//      @Trampoline_UxTheme_OpenThemeDataForDPI := InterceptCreateOrdinal(themelib, 129, @Detour_UxTheme_OpenThemeDataForDPI);
-//  end;
+  if TOSVersion.Check(10) then
+  begin
+    @Trampoline_UxTheme_OpenThemeDataForDPI := InterceptCreate(themelib, 'OpenThemeDataForDpi', @Detour_UxTheme_OpenThemeDataForDPI);
+    if (@Trampoline_UxTheme_OpenThemeDataForDPI = nil) and (TOSVersion.Build < 15063) then // W10 Creators Update?
+      @Trampoline_UxTheme_OpenThemeDataForDPI := InterceptCreateOrdinal(themelib, 129, @Detour_UxTheme_OpenThemeDataForDPI);
+  end;
   {$IFEND}
-//  @Trampoline_UxTheme_OpenThemeDataEx := InterceptCreate(themelib, 'OpenThemeDataEx', @Detour_UxTheme_OpenThemeDataEx);
-//  @Trampoline_UxTheme_DrawThemeBackground := InterceptCreate(themelib, 'DrawThemeBackground', @Detour_UxTheme_DrawThemeBackground);
-//  @Trampoline_UxTheme_DrawThemeBackgroundEx := InterceptCreate(themelib, 'DrawThemeBackgroundEx', @Detour_UxTheme_DrawThemeBackgroundEx);
-//  @Trampoline_UxTheme_DrawThemeEdge := InterceptCreate(themelib, 'DrawThemeEdge', @Detour_UxTheme_DrawThemeEdge);
-//
-//  @Trampoline_UxTheme_DrawThemeText := InterceptCreate(themelib, 'DrawThemeText', @Detour_UxTheme_DrawThemeText);
-//  @Trampoline_UxTheme_DrawThemeTextEx := InterceptCreate(themelib, 'DrawThemeTextEx', @Detour_UxTheme_DrawThemeTextEx);
-//  @Trampoline_UxTheme_GetThemeSysColor := InterceptCreate(themelib, 'GetThemeSysColor', @Detour_UxTheme_GetThemeSysColor);
-//  @Trampoline_UxTheme_GetThemeSysColorBrush := InterceptCreate(themelib, 'GetThemeSysColorBrush', @Detour_UxTheme_GetThemeSysColorBrush);
-//  @Trampoline_UxTheme_GetThemeColor := InterceptCreate(themelib, 'GetThemeColor', @Detour_UxTheme_GetThemeColor);
+  @Trampoline_UxTheme_OpenThemeDataEx := InterceptCreate(themelib, 'OpenThemeDataEx', @Detour_UxTheme_OpenThemeDataEx);
+  @Trampoline_UxTheme_DrawThemeBackground := InterceptCreate(themelib, 'DrawThemeBackground', @Detour_UxTheme_DrawThemeBackground);
+  @Trampoline_UxTheme_DrawThemeBackgroundEx := InterceptCreate(themelib, 'DrawThemeBackgroundEx', @Detour_UxTheme_DrawThemeBackgroundEx);
+  @Trampoline_UxTheme_DrawThemeEdge := InterceptCreate(themelib, 'DrawThemeEdge', @Detour_UxTheme_DrawThemeEdge);
+
+  @Trampoline_UxTheme_DrawThemeText := InterceptCreate(themelib, 'DrawThemeText', @Detour_UxTheme_DrawThemeText);
+  @Trampoline_UxTheme_DrawThemeTextEx := InterceptCreate(themelib, 'DrawThemeTextEx', @Detour_UxTheme_DrawThemeTextEx);
+  @Trampoline_UxTheme_GetThemeSysColor := InterceptCreate(themelib, 'GetThemeSysColor', @Detour_UxTheme_GetThemeSysColor);
+  @Trampoline_UxTheme_GetThemeSysColorBrush := InterceptCreate(themelib, 'GetThemeSysColorBrush', @Detour_UxTheme_GetThemeSysColorBrush);
+  @Trampoline_UxTheme_GetThemeColor := InterceptCreate(themelib, 'GetThemeColor', @Detour_UxTheme_GetThemeColor);
 end;
 
 finalization
 
-//InterceptRemove(@Trampoline_UxTheme_GetThemeSysColor);
-//InterceptRemove(@Trampoline_UxTheme_GetThemeSysColorBrush);
-//InterceptRemove(@Trampoline_UxTheme_OpenThemeData);
+InterceptRemove(@Trampoline_UxTheme_GetThemeSysColor);
+InterceptRemove(@Trampoline_UxTheme_GetThemeSysColorBrush);
+InterceptRemove(@Trampoline_UxTheme_OpenThemeData);
 {$IF CompilerVersion >= 30}
-//if TOSVersion.Check(10) then
-//  InterceptRemove(@Trampoline_UxTheme_OpenThemeDataForDPI);
+if TOSVersion.Check(10) then
+  InterceptRemove(@Trampoline_UxTheme_OpenThemeDataForDPI);
 {$IFEND}
-//InterceptRemove(@Trampoline_UxTheme_OpenThemeDataEx);
-//InterceptRemove(@Trampoline_UxTheme_GetThemeColor);
-//InterceptRemove(@Trampoline_UxTheme_DrawThemeBackground);
-//InterceptRemove(@Trampoline_UxTheme_DrawThemeText);
-//InterceptRemove(@Trampoline_UxTheme_DrawThemeTextEx);
-//InterceptRemove(@Trampoline_UxTheme_DrawThemeBackgroundEx);
-//InterceptRemove(@Trampoline_UxTheme_DrawThemeEdge);
+InterceptRemove(@Trampoline_UxTheme_OpenThemeDataEx);
+InterceptRemove(@Trampoline_UxTheme_GetThemeColor);
+InterceptRemove(@Trampoline_UxTheme_DrawThemeBackground);
+InterceptRemove(@Trampoline_UxTheme_DrawThemeText);
+InterceptRemove(@Trampoline_UxTheme_DrawThemeTextEx);
+InterceptRemove(@Trampoline_UxTheme_DrawThemeBackgroundEx);
+InterceptRemove(@Trampoline_UxTheme_DrawThemeEdge);
 
 THThemesClasses.Free;
 THThemesHWND.Free;
