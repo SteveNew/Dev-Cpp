@@ -4,79 +4,13 @@
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>
     <PropertyGroup/>
-    <ItemGroup Condition="'$(Platform)'=='Win32'">
-        <DeployFile Include="Images\New images\DEV C++ 48x48.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp\Assets\</RemoteDir>
-            <RemoteName>Logo44x44.png</RemoteName>
-            <DeployClass>UWP_DelphiLogo44</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\..\bin\devcpp.exe" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp\</RemoteDir>
-            <RemoteName>devcpp.exe</RemoteName>
-            <DeployClass>ProjectOutput</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-            <Required>True</Required>
-        </DeployFile>
-        <DeployFile Include="Images\New images\DEV C++ 140x140.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp\Assets\</RemoteDir>
-            <RemoteName>Logo150x150.png</RemoteName>
-            <DeployClass>UWP_DelphiLogo150</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="LangIDs.inc" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp\</RemoteDir>
-            <RemoteName>LangIDs.inc</RemoteName>
-            <DeployClass>ProjectFile</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-    </ItemGroup>
+    <ItemGroup Condition="'$(Platform)'=='Win32'"/>
     <ItemGroup Condition="'$(Platform)'=='Win64'"/>
     <ItemGroup Condition="'$(Platform)'=='Linux64'">
         <DeployFile Include="..\Lang\English.lng" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp\</RemoteDir>
             <RemoteName>English.lng</RemoteName>
             <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\devcpp" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp\</RemoteDir>
-            <RemoteName>devcpp</RemoteName>
-            <DeployClass>ProjectOutput</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-            <Required>True</Required>
-        </DeployFile>
-        <DeployFile Include="$(crossvcl)\Redist\libcrossvcl.so">
-            <RemoteDir>devcpp\</RemoteDir>
-            <RemoteName>libcrossvcl.so</RemoteName>
-            <DeployClass/>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="LangIDs.inc" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp\</RemoteDir>
-            <RemoteName>LangIDs.inc</RemoteName>
-            <DeployClass>ProjectFile</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -93,17 +27,251 @@
         </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='OSX64'">
-        <DeployFile Include="..\devcpp.dSYM" Condition="'$(Config)'=='Release'">
-            <RemoteDir>devcpp.app\..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF\</RemoteDir>
-            <RemoteName>devcpp</RemoteName>
-            <DeployClass>ProjectOSXDebug</DeployClass>
-            <Operation>1</Operation>
+        <DeployFile Include="..\Lang\Dutch.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Dutch.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Czech.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Czech.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Hungarian.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Hungarian.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Slovak.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Slovak.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Galego.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Galego.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Ukrainian.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Ukrainian.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Czech.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Czech.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Chinese.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Chinese.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Slovenian.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Slovenian.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Italian.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Italian.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Latvian.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Latvian.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Galego.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Galego.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Russian.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Russian.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Estonian.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Estonian.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Japanese.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Japanese.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Spanish.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Spanish.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Polish.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Polish.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\English.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>English.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\German.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>German.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Croatian.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Croatian.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Greek.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Greek.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Polish.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Polish.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\English.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>English.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="C:\Dev-Cpp\Source\devcpp.icns">
+            <RemoteDir>devcpp.app\Contents\Resources\</RemoteDir>
+            <RemoteName>devcpp.icns</RemoteName>
+            <DeployClass/>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Catalan.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Catalan.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Japanese.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Japanese.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Hebrew.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Hebrew.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="..\Lang\Korean.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Korean.tips</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -112,7 +280,7 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="..\Lang\German.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>German.lng</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -121,7 +289,7 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="..\Lang\Catalan.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Catalan.tips</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -129,17 +297,8 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Dutch.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Dutch.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="..\Lang\SpanishColombia.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>SpanishColombia.tips</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -148,7 +307,7 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="..\Lang\Chinese.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Chinese.tips</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -165,17 +324,8 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Czech.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Czech.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="..\Lang\Danish.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Danish.tips</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -184,7 +334,7 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="..\Lang\Norwegian.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Norwegian.tips</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -193,7 +343,7 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="..\Lang\Dutch.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Dutch.tips</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -202,7 +352,7 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="..\Lang\Romanian.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Romanian.lng</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -211,7 +361,7 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="..\Lang\Bulgarian.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Bulgarian.lng</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -219,26 +369,8 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Hungarian.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Hungarian.tips</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\Slovak.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Slovak.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="..\Lang\Slovenian.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Slovenian.lng</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -247,7 +379,7 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="..\Lang\Korean.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Korean.lng</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -265,7 +397,7 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="..\Lang\Latvian.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Latvian.lng</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -282,17 +414,8 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Galego.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Galego.tips</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="..\Lang\Hebrew.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Hebrew.tips</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -301,7 +424,7 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="..\Lang\SpanishCastellano.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>SpanishCastellano.tips</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -309,35 +432,8 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Ukrainian.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Ukrainian.tips</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\Czech.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Czech.tips</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\Chinese.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Chinese.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="..\Lang\SpanishColombia.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>SpanishColombia.lng</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -345,79 +441,7 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Slovenian.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Slovenian.tips</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="LangIDs.inc" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>LangIDs.inc</RemoteName>
-            <DeployClass>ProjectFile</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\Italian.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Italian.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\Estonian.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Estonian.tips</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\Galego.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Galego.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\devcpp.info.plist" Condition="'$(Config)'=='Release'">
-            <RemoteDir>devcpp.app\Contents\</RemoteDir>
-            <RemoteName>Info.plist</RemoteName>
-            <DeployClass>ProjectOSXInfoPList</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\Latvian.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Latvian.tips</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\Russian.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Russian.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="LangIDs.inc" Condition="'$(Config)'=='Release'">
             <RemoteDir>devcpp.app\Contents\Resources\StartUp\</RemoteDir>
             <RemoteName>LangIDs.inc</RemoteName>
             <DeployClass>ProjectFile</DeployClass>
@@ -426,8 +450,17 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="..\Lang\Estonian.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Estonian.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="..\Lang\Russian.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Russian.tips</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -444,17 +477,8 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Estonian.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Estonian.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="..\Lang\Portuguese.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Portuguese.tips</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -462,17 +486,8 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Japanese.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Japanese.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="..\Lang\Danish.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Danish.lng</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -481,7 +496,7 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="..\Lang\Swedish.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Swedish.tips</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -490,7 +505,7 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="..\Lang\French.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\StartUp\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>French.lng</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -499,7 +514,7 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="..\Lang\Ukrainian.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Ukrainian.lng</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -508,7 +523,7 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="..\Lang\Spanish.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Spanish.lng</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -516,17 +531,8 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Spanish.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Spanish.tips</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="..\Lang\Norwegian.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Norwegian.lng</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -534,35 +540,8 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Polish.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Polish.tips</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\English.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>English.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\German.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>German.tips</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="..\Lang\Turkish.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Turkish.tips</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -580,53 +559,8 @@
             <Overwrite>True</Overwrite>
             <Required>True</Required>
         </DeployFile>
-        <DeployFile Include="..\Lang\Croatian.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Croatian.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\Greek.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Greek.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\Polish.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Polish.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\French.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>French.tips</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\Romanian.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Romanian.tips</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="..\Lang\Swedish.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Swedish.lng</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -634,8 +568,35 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="..\Lang\Romanian.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Romanian.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\French.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>French.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Turkish.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Turkish.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="..\Lang\Hungarian.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Hungarian.lng</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -644,7 +605,7 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="..\Lang\Italian.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Italian.tips</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -652,26 +613,8 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Turkish.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Turkish.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\English.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>English.tips</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="..\Lang\SpanishCastellano.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>SpanishCastellano.lng</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -679,35 +622,8 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Catalan.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Catalan.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\devcpp.entitlements" Condition="'$(Config)'=='Release'">
-            <RemoteDir>devcpp.app\..\</RemoteDir>
-            <RemoteName>devcpp.entitlements</RemoteName>
-            <DeployClass>ProjectOSXEntitlements</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\Japanese.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Japanese.tips</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="..\Lang\Chinese_TC.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Chinese_TC.lng</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
@@ -716,37 +632,9 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="..\Lang\Portuguese.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Portuguese.lng</RemoteName>
             <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\Hebrew.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\MacOS\Lang\</RemoteDir>
-            <RemoteName>Hebrew.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\devcpp" Condition="'$(Config)'=='Release'">
-            <RemoteDir>devcpp.app\Contents\MacOS\</RemoteDir>
-            <RemoteName>devcpp</RemoteName>
-            <DeployClass>ProjectOutput</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-            <Required>True</Required>
-        </DeployFile>
-        <DeployFile Include="$(crossvcl)\Redist\crossvcl.icns">
-            <RemoteDir>devcpp.app\Contents\Resources\</RemoteDir>
-            <RemoteName>devcpp.icns</RemoteName>
-            <DeployClass/>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>

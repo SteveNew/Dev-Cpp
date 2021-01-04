@@ -1052,7 +1052,11 @@ begin
     fStruct.rcNormalPosition.Bottom := fBottom;
     fStruct.showCmd := fShowCmd;
     fStruct.flags := fFlags;
+{$IFDEF MSWINDOWS}
     SetWindowPlacement(Destination, @fStruct);
+{$ELSE}
+  // CrossVCL code alternative
+{$ENDIF}
   end;
 end;
 
@@ -2284,15 +2288,22 @@ begin
 end;
 
 procedure TdevDirs.SettoDefaults;
+var
+  fResourcePath: string;
 begin
-  fExec := IncludeTrailingPathDelimiter(ExtractFilePath(Application.ExeName));
+  fExec := TPath.GetDirectoryName(ParamStr(0));
+{$IFDEF MSWINDOWS}
+  fResourcePath := fExec;
+{$ELSE}
+  fResourcePath := TPath.Combine(StringReplace(fExec, '/MacOS', '', []), 'Resources/');
+{$ENDIF}
   fConfig := fExec;
 
-  fHelp := fExec + HELP_DIR;
-  fIcons := fExec + ICON_DIR;
-  fLang := fExec + LANGUAGE_DIR;
-  fTemp := fExec + TEMPLATE_DIR;
-  fThemes := fExec + THEME_DIR;
+  fHelp := fResourcePath + HELP_DIR;
+  fIcons := fResourcePath + ICON_DIR;
+  fLang := fResourcePath + LANGUAGE_DIR;
+  fTemp := fResourcePath + TEMPLATE_DIR;
+  fThemes := fResourcePath + THEME_DIR;
 
   if devData.IsPortable then
   begin
@@ -2307,19 +2318,37 @@ begin
 end;
 
 procedure TdevDirs.LoadSettings;
+var
+  fResourcePath: string;
+  fPathConst: string;
 begin
   devData.ReadObject('Directories', Self);
+{$IFDEF MSWINDOWS}
+  fResourcePath := fExec;
+{$ELSE}
+  fResourcePath := TPath.Combine(StringReplace(fExec, '/MacOS', '', []), 'Resources/');
+{$ENDIF}
 
   fConfig := ExtractFilePath(devData.INIFileName);
-  fHelp := ReplaceFirstStr(fHelp, '%path%\', fExec);
+{$IFDEF MSWINDOWS}
+  fHelp := ReplaceFirstStr(fHelp, fPathConst, fExec);
   fIcons := ReplaceFirstStr(fIcons, '%path%\', fExec);
   fLang := ReplaceFirstStr(fLang, '%path%\', fExec);
   fTemp := ReplaceFirstStr(fTemp, '%path%\', fExec);
   fThemes := ReplaceFirstStr(fThemes, '%path%\', fExec);
+{$ELSE}
+  fHelp := ReplaceFirstStr(fHelp, '%path%\', fResourcePath).DeQuotedString('"');
+  fIcons := ReplaceFirstStr(fIcons, '%path%\', fResourcePath).DeQuotedString('"');
+  fLang := ReplaceFirstStr(fLang, '%path%\', fResourcePath).DeQuotedString('"');
+  fTemp := ReplaceFirstStr(fTemp, '%path%\', fResourcePath).DeQuotedString('"');
+  fThemes := ReplaceFirstStr(fThemes, '%path%\', fResourcePath).DeQuotedString('"');
+{$ENDIF}
+
 end;
 
 procedure TdevDirs.SaveSettings;
 begin
+{$IFDEF MSWINDOWS}
   fHelp := ReplaceFirstStr(fHelp, fExec, '%path%\');
   fIcons := ReplaceFirstStr(fIcons, fExec, '%path%\');
   fLang := ReplaceFirstStr(fLang, fExec, '%path%\');
@@ -2333,6 +2362,7 @@ begin
   fLang := ReplaceFirstStr(fLang, '%path%\', fExec);
   fTemp := ReplaceFirstStr(fTemp, '%path%\', fExec);
   fThemes := ReplaceFirstStr(fThemes, '%path%\', fExec);
+{$ENDIF}
 end;
 
 constructor TdevEditor.Create;

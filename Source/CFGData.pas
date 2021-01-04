@@ -149,7 +149,7 @@ begin
         tkString,
         tkLString,
         tkUString,
-        tkWString: SetStrProp(Obj, PropName, fINI.ReadString(Section, PropName, ''));
+        tkWString: SetStrProp(Obj, PropName, fINI.ReadString(Section, PropName, '').DeQuotedString('"'));
 
       tkChar,
         tkEnumeration,

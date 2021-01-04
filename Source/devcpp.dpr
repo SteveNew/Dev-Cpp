@@ -28,21 +28,17 @@ program devcpp;
 {$ENDIF}
 
 uses
-{$IFDEF MSWINDOWS}
-// Windows-only code
+  {$IFDEF MSWINDOWS}
   FastMM5,
-{$ELSE}
-// CrossVcl code
-{$ENDIF}
+  {$ELSE}
+  {$ENDIF }
   Windows,
   Forms,
   sysUtils,
-{$IFDEF MSWINDOWS}
-// Windows-only code
+  {$IFDEF MSWINDOWS}
   SHFolder,
-{$ELSE}
-// CrossVcl code
-{$ENDIF}
+  {$ELSE}
+  {$ENDIF }
   Messages,
   System.IOUtils,
   main in 'main.pas' {MainForm},
@@ -105,14 +101,7 @@ uses
   Instances in 'Instances.pas',
   CharUtils in 'CharUtils.pas',
   ConsoleAppHostFrm in 'ConsoleAppHostFrm.pas' {ConsoleAppHost},
-  Vcl.Themes
-{$IFDEF MSWINDOWS}
-// Windows-only code
-  ,Vcl.Styles
-{$ELSE}
-// CrossVcl code
-{$ENDIF}
-;
+  Vcl.Themes;
 
 {$R *.res}
 
