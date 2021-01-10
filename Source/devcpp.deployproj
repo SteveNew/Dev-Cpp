@@ -1126,18 +1126,18 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Templates\Project3.template" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="..\Templates\MDIEditor_rc.txt" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
-            <RemoteName>Project3.template</RemoteName>
+            <RemoteName>MDIEditor_rc.txt</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Templates\MDIEditor_rc.txt" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="..\Templates\Project3.template" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
-            <RemoteName>MDIEditor_rc.txt</RemoteName>
+            <RemoteName>Project3.template</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>

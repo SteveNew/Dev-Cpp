@@ -182,449 +182,6 @@ object MainForm: TMainForm
     ExplicitTop = 474
     ExplicitWidth = 999
   end
-  object MessageControl: TPageControl
-    Left = 0
-    Top = 500
-    Width = 1285
-    Height = 169
-    ActivePage = tsConsole
-    Align = alBottom
-    Images = dmMain.MenuImages_NewLook
-    MultiLine = True
-    PopupMenu = MessagePopup
-    TabOrder = 2
-    OnChange = MessageControlChange
-    object CompSheet: TTabSheet
-      Caption = 'Compiler'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
-      object CompilerOutput: TListView
-        Left = 0
-        Top = 0
-        Width = 1277
-        Height = 138
-        Align = alClient
-        BevelOuter = bvNone
-        BorderStyle = bsNone
-        Columns = <
-          item
-            Caption = 'Line'
-            Width = 40
-          end
-          item
-            Caption = 'Col'
-            Width = 40
-          end
-          item
-            Caption = 'Unit'
-            Width = 320
-          end
-          item
-            AutoSize = True
-            Caption = 'Message'
-          end>
-        ColumnClick = False
-        GridLines = True
-        HideSelection = False
-        ReadOnly = True
-        RowSelect = True
-        ParentShowHint = False
-        ShowHint = True
-        TabOrder = 0
-        ViewStyle = vsReport
-        OnAdvancedCustomDraw = CompilerOutputAdvancedCustomDraw
-        OnAdvancedCustomDrawItem = CompilerOutputAdvancedCustomDrawItem
-        OnDblClick = CompilerOutputDblClick
-        OnDeletion = CompilerOutputDeletion
-        OnKeyDown = CompilerOutputKeyDown
-      end
-    end
-    object ResSheet: TTabSheet
-      Caption = 'Resource'
-      ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
-      object ResourceOutput: TListView
-        Left = 0
-        Top = 0
-        Width = 1277
-        Height = 138
-        Align = alClient
-        BevelOuter = bvNone
-        BorderStyle = bsNone
-        Columns = <
-          item
-            Caption = 'Line'
-            Width = 40
-          end
-          item
-            Caption = 'Col'
-            Width = 40
-          end
-          item
-            Caption = 'Unit'
-            Width = 320
-          end
-          item
-            AutoSize = True
-            Caption = 'Message'
-          end>
-        ColumnClick = False
-        GridLines = True
-        HideSelection = False
-        ReadOnly = True
-        RowSelect = True
-        ParentShowHint = False
-        ShowHint = True
-        TabOrder = 0
-        ViewStyle = vsReport
-        OnAdvancedCustomDraw = CompilerOutputAdvancedCustomDraw
-        OnAdvancedCustomDrawItem = CompilerOutputAdvancedCustomDrawItem
-        OnDblClick = CompilerOutputDblClick
-        OnDeletion = ResourceOutputDeletion
-        OnKeyDown = CompilerOutputKeyDown
-      end
-    end
-    object LogSheet: TTabSheet
-      Caption = 'Compile log'
-      ImageIndex = 2
-      object InfoGroupBox: TPanel
-        Left = 0
-        Top = 0
-        Width = 156
-        Height = 135
-        Align = alLeft
-        BevelOuter = bvNone
-        TabOrder = 0
-        DesignSize = (
-          156
-          135)
-        object btnAbortCompilation: TSpeedButton
-          Left = 4
-          Top = 4
-          Width = 144
-          Height = 30
-          Action = actAbortCompilation
-        end
-        object pbCompilation: TProgressBar
-          Left = 4
-          Top = 40
-          Width = 144
-          Height = 24
-          Anchors = [akLeft, akTop, akRight]
-          Step = 1
-          TabOrder = 0
-        end
-        object chkShortenPaths: TCheckBox
-          Left = 4
-          Top = 69
-          Width = 144
-          Height = 17
-          Action = actShortenCompPaths
-          Anchors = [akLeft, akTop, akRight]
-          TabOrder = 1
-        end
-      end
-      object CompResGroupBox: TPanel
-        Left = 156
-        Top = 0
-        Width = 1121
-        Height = 135
-        Align = alClient
-        BevelOuter = bvNone
-        TabOrder = 1
-        ExplicitHeight = 138
-        object LogOutput: TMemo
-          Left = 0
-          Top = 0
-          Width = 1121
-          Height = 138
-          Align = alClient
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Courier New'
-          Font.Style = []
-          ParentFont = False
-          ReadOnly = True
-          ScrollBars = ssBoth
-          TabOrder = 0
-          WantTabs = True
-          WordWrap = False
-        end
-      end
-    end
-    object DebugSheet: TTabSheet
-      Caption = 'Debugging'
-      ImageIndex = 3
-      object DebugSendPanel: TPanel
-        Left = 589
-        Top = 0
-        Width = 688
-        Height = 135
-        Align = alClient
-        BevelOuter = bvNone
-        TabOrder = 0
-        DesignSize = (
-          688
-          135)
-        object lblSendCommandGdb: TLabel
-          Left = 4
-          Top = 7
-          Width = 135
-          Height = 19
-          Caption = 'Send command to GDB:'
-        end
-        object edGdbCommand: TComboBox
-          Left = 136
-          Top = 3
-          Width = 548
-          Height = 27
-          Anchors = [akLeft, akTop, akRight]
-          TabOrder = 0
-          OnKeyPress = edGdbCommandKeyPress
-        end
-        object DebugOutput: TMemo
-          Left = 4
-          Top = 30
-          Width = 681
-          Height = 98
-          Anchors = [akLeft, akTop, akRight, akBottom]
-          ReadOnly = True
-          ScrollBars = ssVertical
-          TabOrder = 1
-          ExplicitHeight = 101
-        end
-      end
-      object DebugStartPanel: TPanel
-        Left = 0
-        Top = 0
-        Width = 589
-        Height = 135
-        Align = alLeft
-        BevelOuter = bvNone
-        BiDiMode = bdLeftToRight
-        ParentBiDiMode = False
-        TabOrder = 1
-        DesignSize = (
-          589
-          135)
-        object DDebugBtn: TSpeedButton
-          Left = 4
-          Top = 8
-          Width = 112
-          Height = 25
-          Action = actDebug
-          Images = dmMain.MenuImages_NewLook
-        end
-        object StopExecBtn: TSpeedButton
-          Left = 4
-          Top = 38
-          Width = 112
-          Height = 25
-          Action = actStopExecute
-          Images = dmMain.MenuImages_NewLook
-        end
-        object lblEvaluate: TLabel
-          Left = 4
-          Top = 76
-          Width = 51
-          Height = 19
-          Caption = 'Evaluate:'
-        end
-        object NextLineBtn: TButton
-          Left = 236
-          Top = 8
-          Width = 112
-          Height = 25
-          Action = actNextLine
-          TabOrder = 0
-        end
-        object StepOverBtn: TButton
-          Left = 352
-          Top = 8
-          Width = 112
-          Height = 25
-          Action = actStepOver
-          TabOrder = 1
-        end
-        object IntoLineBtn: TButton
-          Left = 236
-          Top = 38
-          Width = 112
-          Height = 25
-          Action = actStepLine
-          TabOrder = 2
-        end
-        object AddWatchBtn: TButton
-          Left = 120
-          Top = 8
-          Width = 112
-          Height = 25
-          Action = actAddWatch
-          TabOrder = 4
-        end
-        object ViewCPUBtn: TButton
-          Left = 120
-          Top = 38
-          Width = 112
-          Height = 25
-          Action = actViewCPU
-          TabOrder = 3
-        end
-        object EvaluateInput: TComboBox
-          Left = 64
-          Top = 72
-          Width = 518
-          Height = 27
-          Anchors = [akLeft, akTop, akRight]
-          TabOrder = 5
-          OnKeyPress = EvaluateInputKeyPress
-        end
-        object EvalOutput: TMemo
-          Left = 4
-          Top = 100
-          Width = 578
-          Height = 27
-          Anchors = [akLeft, akTop, akRight, akBottom]
-          ReadOnly = True
-          ScrollBars = ssBoth
-          TabOrder = 6
-          ExplicitHeight = 30
-        end
-        object SkipFuncBtn: TButton
-          Left = 352
-          Top = 38
-          Width = 112
-          Height = 25
-          Action = actSkipFunction
-          TabOrder = 7
-        end
-        object IntoInsBtn: TButton
-          Left = 468
-          Top = 38
-          Width = 112
-          Height = 25
-          Action = actStepIns
-          TabOrder = 8
-        end
-        object NextInsBtn: TButton
-          Left = 468
-          Top = 8
-          Width = 112
-          Height = 25
-          Action = actNextIns
-          TabOrder = 9
-        end
-      end
-    end
-    object FindSheet: TTabSheet
-      Caption = 'Find results'
-      ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
-      object FindOutput: TListView
-        Left = 0
-        Top = 0
-        Width = 1277
-        Height = 138
-        Align = alClient
-        BevelOuter = bvNone
-        BorderStyle = bsNone
-        Columns = <
-          item
-            Width = 15
-          end
-          item
-            Caption = 'Line'
-            Width = 40
-          end
-          item
-            Caption = 'Col'
-            Width = 40
-          end
-          item
-            Caption = 'Unit'
-            Width = 320
-          end
-          item
-            AutoSize = True
-            Caption = 'Message'
-          end>
-        ColumnClick = False
-        GridLines = True
-        ReadOnly = True
-        RowSelect = True
-        ParentShowHint = False
-        ShowHint = True
-        TabOrder = 0
-        ViewStyle = vsReport
-        OnAdvancedCustomDraw = FindOutputAdvancedCustomDraw
-        OnAdvancedCustomDrawSubItem = FindOutputAdvancedCustomDrawSubItem
-        OnDblClick = FindOutputDblClick
-        OnDeletion = FindOutputDeletion
-        OnKeyDown = FindOutputKeyDown
-        OnSelectItem = FindOutputSelectItem
-      end
-    end
-    object tsConsole: TTabSheet
-      Caption = 'Console'
-      Highlighted = True
-      ImageIndex = 5
-      object pcConsoleHost: TPageControl
-        Left = 33
-        Top = 0
-        Width = 1244
-        Height = 135
-        Align = alClient
-        MultiLine = True
-        PopupMenu = ConsolePopupMenu
-        Style = tsButtons
-        TabOrder = 0
-      end
-      object Panel1: TPanel
-        Left = 0
-        Top = 0
-        Width = 33
-        Height = 135
-        Align = alLeft
-        BevelOuter = bvNone
-        TabOrder = 1
-        object SpeedButton5: TSpeedButton
-          Left = 0
-          Top = 0
-          Width = 33
-          Height = 33
-          Action = actCMD
-          Align = alTop
-        end
-        object SpeedButton6: TSpeedButton
-          Left = 0
-          Top = 33
-          Width = 33
-          Height = 33
-          Action = actPowerShell
-          Align = alTop
-          ExplicitLeft = 7
-          ExplicitTop = 64
-        end
-      end
-    end
-    object CloseSheet: TTabSheet
-      Caption = 'Close'
-      ImageIndex = 6
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
-    end
-  end
   object ToolbarDock: TControlBar
     Left = 0
     Top = 0
@@ -1032,111 +589,6 @@ object MainForm: TMainForm
     Height = 0
     OnNotifyChange = FileMonitorNotifyChange
   end
-  object LeftPageControl: TPageControl
-    Left = 0
-    Top = 56
-    Width = 209
-    Height = 441
-    ActivePage = LeftProjectSheet
-    Align = alLeft
-    Images = dmMain.ProjectImage_NewLook
-    TabOrder = 1
-    OnChange = LeftPageControlChange
-    object LeftProjectSheet: TTabSheet
-      Caption = 'Project'
-      ImageIndex = -1
-      object ProjectView: TTreeView
-        Left = 0
-        Top = 0
-        Width = 201
-        Height = 407
-        Align = alClient
-        Anchors = [akLeft, akTop, akBottom]
-        BevelInner = bvNone
-        BevelOuter = bvNone
-        BorderStyle = bsNone
-        ChangeDelay = 1
-        DragMode = dmAutomatic
-        HideSelection = False
-        HotTrack = True
-        Images = dmMain.ProjectImage_NewLook
-        Indent = 19
-        MultiSelect = True
-        MultiSelectStyle = [msControlSelect, msShiftSelect]
-        ReadOnly = True
-        RightClickSelect = True
-        SortType = stText
-        TabOrder = 0
-        OnClick = ProjectViewClick
-        OnCompare = ProjectViewCompare
-        OnContextPopup = ProjectViewContextPopup
-        OnDragDrop = ProjectViewDragDrop
-        OnDragOver = ProjectViewDragOver
-        OnKeyDown = ProjectViewKeyDown
-        OnKeyPress = ProjectViewKeyPress
-        OnMouseDown = ProjectViewMouseDown
-      end
-    end
-    object LeftClassSheet: TTabSheet
-      Caption = 'Classes'
-      ImageIndex = -1
-      object ClassBrowser: TClassBrowser
-        Left = 0
-        Top = 0
-        Width = 201
-        Height = 407
-        Align = alClient
-        Images = dmMain.ClassImages
-        ReadOnly = True
-        Indent = 0
-        TabOrder = 0
-        PopupMenu = BrowserPopup
-        BorderStyle = bsNone
-        MultiSelectStyle = []
-        ShowFilter = sfAll
-        OnSelect = ClassBrowserSelect
-        Parser = CppParser
-        ItemImages.Globals = 0
-        ItemImages.Classes = 1
-        ItemImages.VariablePrivate = 2
-        ItemImages.VariableProtected = 3
-        ItemImages.VariablePublic = 4
-        ItemImages.MethodPrivate = 5
-        ItemImages.MethodProtected = 6
-        ItemImages.MethodPublic = 7
-        ItemImages.InheritedMethodProtected = 8
-        ItemImages.InheritedMethodPublic = 10
-        ItemImages.InheritedVariableProtected = 9
-        ItemImages.InheritedVariablePublic = 11
-        ShowInheritedMembers = False
-        TabVisible = False
-      end
-    end
-    object LeftDebugSheet: TTabSheet
-      Caption = 'Debug'
-      ImageIndex = -1
-      object DebugView: TTreeView
-        Left = 0
-        Top = 0
-        Width = 201
-        Height = 407
-        Align = alClient
-        BevelInner = bvNone
-        BevelOuter = bvNone
-        BorderStyle = bsNone
-        ChangeDelay = 1
-        Images = dmMain.MenuImages_NewLook
-        Indent = 19
-        MultiSelectStyle = []
-        PopupMenu = DebugPopup
-        ReadOnly = True
-        RightClickSelect = True
-        TabOrder = 0
-        OnAdvancedCustomDrawItem = DebugViewAdvancedCustomDrawItem
-        OnKeyDown = DebugViewKeyDown
-      end
-    end
-  end
   object PageControlPanel: TPanel
     Left = 212
     Top = 56
@@ -1144,7 +596,7 @@ object MainForm: TMainForm
     Height = 441
     Align = alClient
     BevelOuter = bvNone
-    TabOrder = 5
+    TabOrder = 3
     OnResize = PageControlPanelResize
     object EditorPageControlSplitter: TSplitter
       Left = 1073
@@ -4758,6 +4210,582 @@ object MainForm: TMainForm
           Visible = False
           Zoom = 100
         end
+      end
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 56
+    Width = 209
+    Height = 441
+    Align = alLeft
+    TabOrder = 4
+    object LeftPageControl: TPageControl
+      Left = 1
+      Top = 1
+      Width = 207
+      Height = 439
+      ActivePage = LeftProjectSheet
+      Align = alClient
+      Images = dmMain.ProjectImage_NewLook
+      TabOrder = 0
+      OnChange = LeftPageControlChange
+      ExplicitWidth = 209
+      object LeftProjectSheet: TTabSheet
+        Caption = 'Project'
+        ImageIndex = -1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
+        object ProjectView: TTreeView
+          Left = 0
+          Top = 0
+          Width = 199
+          Height = 405
+          Align = alClient
+          Anchors = [akLeft, akTop, akBottom]
+          BevelInner = bvNone
+          BevelOuter = bvNone
+          BorderStyle = bsNone
+          ChangeDelay = 1
+          DragMode = dmAutomatic
+          HideSelection = False
+          HotTrack = True
+          Images = dmMain.ProjectImage_NewLook
+          Indent = 19
+          MultiSelect = True
+          MultiSelectStyle = [msControlSelect, msShiftSelect]
+          ReadOnly = True
+          RightClickSelect = True
+          SortType = stText
+          TabOrder = 0
+          OnClick = ProjectViewClick
+          OnCompare = ProjectViewCompare
+          OnContextPopup = ProjectViewContextPopup
+          OnDragDrop = ProjectViewDragDrop
+          OnDragOver = ProjectViewDragOver
+          OnKeyDown = ProjectViewKeyDown
+          OnKeyPress = ProjectViewKeyPress
+          OnMouseDown = ProjectViewMouseDown
+          ExplicitWidth = 201
+          ExplicitHeight = 407
+        end
+      end
+      object LeftClassSheet: TTabSheet
+        Caption = 'Classes'
+        ImageIndex = -1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
+        object ClassBrowser: TClassBrowser
+          Left = 0
+          Top = 0
+          Width = 199
+          Height = 405
+          Align = alClient
+          Images = dmMain.ClassImages
+          ReadOnly = True
+          Indent = 0
+          TabOrder = 0
+          PopupMenu = BrowserPopup
+          BorderStyle = bsNone
+          MultiSelectStyle = []
+          ShowFilter = sfAll
+          OnSelect = ClassBrowserSelect
+          Parser = CppParser
+          ItemImages.Globals = 0
+          ItemImages.Classes = 1
+          ItemImages.VariablePrivate = 2
+          ItemImages.VariableProtected = 3
+          ItemImages.VariablePublic = 4
+          ItemImages.MethodPrivate = 5
+          ItemImages.MethodProtected = 6
+          ItemImages.MethodPublic = 7
+          ItemImages.InheritedMethodProtected = 8
+          ItemImages.InheritedMethodPublic = 10
+          ItemImages.InheritedVariableProtected = 9
+          ItemImages.InheritedVariablePublic = 11
+          ShowInheritedMembers = False
+          TabVisible = False
+          ExplicitWidth = 201
+        end
+      end
+      object LeftDebugSheet: TTabSheet
+        Caption = 'Debug'
+        ImageIndex = -1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
+        object DebugView: TTreeView
+          Left = 0
+          Top = 0
+          Width = 199
+          Height = 405
+          Align = alClient
+          BevelInner = bvNone
+          BevelOuter = bvNone
+          BorderStyle = bsNone
+          ChangeDelay = 1
+          Images = dmMain.MenuImages_NewLook
+          Indent = 19
+          MultiSelectStyle = []
+          PopupMenu = DebugPopup
+          ReadOnly = True
+          RightClickSelect = True
+          TabOrder = 0
+          OnAdvancedCustomDrawItem = DebugViewAdvancedCustomDrawItem
+          OnKeyDown = DebugViewKeyDown
+          ExplicitWidth = 201
+          ExplicitHeight = 407
+        end
+      end
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 500
+    Width = 1285
+    Height = 169
+    Align = alBottom
+    TabOrder = 5
+    ExplicitTop = 456
+    object MessageControl: TPageControl
+      Left = 1
+      Top = 1
+      Width = 1283
+      Height = 167
+      ActivePage = tsConsole
+      Align = alClient
+      Images = dmMain.MenuImages_NewLook
+      MultiLine = True
+      PopupMenu = MessagePopup
+      TabOrder = 0
+      OnChange = MessageControlChange
+      ExplicitTop = -1
+      ExplicitHeight = 169
+      object CompSheet: TTabSheet
+        Caption = 'Compiler'
+        ExplicitHeight = 135
+        object CompilerOutput: TListView
+          Left = 0
+          Top = 0
+          Width = 1275
+          Height = 133
+          Align = alClient
+          BevelOuter = bvNone
+          BorderStyle = bsNone
+          Columns = <
+            item
+              Caption = 'Line'
+              Width = 40
+            end
+            item
+              Caption = 'Col'
+              Width = 40
+            end
+            item
+              Caption = 'Unit'
+              Width = 320
+            end
+            item
+              AutoSize = True
+              Caption = 'Message'
+            end>
+          ColumnClick = False
+          GridLines = True
+          HideSelection = False
+          ReadOnly = True
+          RowSelect = True
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 0
+          ViewStyle = vsReport
+          OnAdvancedCustomDraw = CompilerOutputAdvancedCustomDraw
+          OnAdvancedCustomDrawItem = CompilerOutputAdvancedCustomDrawItem
+          OnDblClick = CompilerOutputDblClick
+          OnDeletion = CompilerOutputDeletion
+          OnKeyDown = CompilerOutputKeyDown
+          ExplicitHeight = 135
+        end
+      end
+      object ResSheet: TTabSheet
+        Caption = 'Resource'
+        ImageIndex = 1
+        object ResourceOutput: TListView
+          Left = 0
+          Top = 0
+          Width = 1275
+          Height = 133
+          Align = alClient
+          BevelOuter = bvNone
+          BorderStyle = bsNone
+          Columns = <
+            item
+              Caption = 'Line'
+              Width = 40
+            end
+            item
+              Caption = 'Col'
+              Width = 40
+            end
+            item
+              Caption = 'Unit'
+              Width = 320
+            end
+            item
+              AutoSize = True
+              Caption = 'Message'
+            end>
+          ColumnClick = False
+          GridLines = True
+          HideSelection = False
+          ReadOnly = True
+          RowSelect = True
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 0
+          ViewStyle = vsReport
+          OnAdvancedCustomDraw = CompilerOutputAdvancedCustomDraw
+          OnAdvancedCustomDrawItem = CompilerOutputAdvancedCustomDrawItem
+          OnDblClick = CompilerOutputDblClick
+          OnDeletion = ResourceOutputDeletion
+          OnKeyDown = CompilerOutputKeyDown
+        end
+      end
+      object LogSheet: TTabSheet
+        Caption = 'Compile log'
+        ImageIndex = 2
+        ExplicitHeight = 135
+        object InfoGroupBox: TPanel
+          Left = 0
+          Top = 0
+          Width = 156
+          Height = 133
+          Align = alLeft
+          BevelOuter = bvNone
+          TabOrder = 0
+          ExplicitHeight = 135
+          DesignSize = (
+            156
+            133)
+          object btnAbortCompilation: TSpeedButton
+            Left = 4
+            Top = 4
+            Width = 144
+            Height = 30
+            Action = actAbortCompilation
+          end
+          object pbCompilation: TProgressBar
+            Left = 4
+            Top = 40
+            Width = 144
+            Height = 24
+            Anchors = [akLeft, akTop, akRight]
+            Step = 1
+            TabOrder = 0
+          end
+          object chkShortenPaths: TCheckBox
+            Left = 4
+            Top = 69
+            Width = 144
+            Height = 17
+            Action = actShortenCompPaths
+            Anchors = [akLeft, akTop, akRight]
+            TabOrder = 1
+          end
+        end
+        object CompResGroupBox: TPanel
+          Left = 156
+          Top = 0
+          Width = 1119
+          Height = 133
+          Align = alClient
+          BevelOuter = bvNone
+          TabOrder = 1
+          object LogOutput: TMemo
+            Left = 0
+            Top = 0
+            Width = 1119
+            Height = 133
+            Align = alClient
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            Font.Style = []
+            ParentFont = False
+            ReadOnly = True
+            ScrollBars = ssBoth
+            TabOrder = 0
+            WantTabs = True
+            WordWrap = False
+          end
+        end
+      end
+      object DebugSheet: TTabSheet
+        Caption = 'Debugging'
+        ImageIndex = 3
+        ExplicitHeight = 135
+        object DebugSendPanel: TPanel
+          Left = 589
+          Top = 0
+          Width = 686
+          Height = 133
+          Align = alClient
+          BevelOuter = bvNone
+          TabOrder = 0
+          ExplicitHeight = 135
+          DesignSize = (
+            686
+            133)
+          object lblSendCommandGdb: TLabel
+            Left = 4
+            Top = 7
+            Width = 135
+            Height = 19
+            Caption = 'Send command to GDB:'
+          end
+          object edGdbCommand: TComboBox
+            Left = 136
+            Top = 3
+            Width = 546
+            Height = 27
+            Anchors = [akLeft, akTop, akRight]
+            TabOrder = 0
+            OnKeyPress = edGdbCommandKeyPress
+          end
+          object DebugOutput: TMemo
+            Left = 4
+            Top = 30
+            Width = 679
+            Height = 96
+            Anchors = [akLeft, akTop, akRight, akBottom]
+            ReadOnly = True
+            ScrollBars = ssVertical
+            TabOrder = 1
+          end
+        end
+        object DebugStartPanel: TPanel
+          Left = 0
+          Top = 0
+          Width = 589
+          Height = 133
+          Align = alLeft
+          BevelOuter = bvNone
+          BiDiMode = bdLeftToRight
+          ParentBiDiMode = False
+          TabOrder = 1
+          ExplicitHeight = 135
+          DesignSize = (
+            589
+            133)
+          object DDebugBtn: TSpeedButton
+            Left = 4
+            Top = 8
+            Width = 112
+            Height = 25
+            Action = actDebug
+            Images = dmMain.MenuImages_NewLook
+          end
+          object StopExecBtn: TSpeedButton
+            Left = 4
+            Top = 38
+            Width = 112
+            Height = 25
+            Action = actStopExecute
+            Images = dmMain.MenuImages_NewLook
+          end
+          object lblEvaluate: TLabel
+            Left = 4
+            Top = 76
+            Width = 51
+            Height = 19
+            Caption = 'Evaluate:'
+          end
+          object NextLineBtn: TButton
+            Left = 236
+            Top = 8
+            Width = 112
+            Height = 25
+            Action = actNextLine
+            TabOrder = 0
+          end
+          object StepOverBtn: TButton
+            Left = 352
+            Top = 8
+            Width = 112
+            Height = 25
+            Action = actStepOver
+            TabOrder = 1
+          end
+          object IntoLineBtn: TButton
+            Left = 236
+            Top = 38
+            Width = 112
+            Height = 25
+            Action = actStepLine
+            TabOrder = 2
+          end
+          object AddWatchBtn: TButton
+            Left = 120
+            Top = 8
+            Width = 112
+            Height = 25
+            Action = actAddWatch
+            TabOrder = 4
+          end
+          object ViewCPUBtn: TButton
+            Left = 120
+            Top = 38
+            Width = 112
+            Height = 25
+            Action = actViewCPU
+            TabOrder = 3
+          end
+          object EvaluateInput: TComboBox
+            Left = 64
+            Top = 72
+            Width = 518
+            Height = 27
+            Anchors = [akLeft, akTop, akRight]
+            TabOrder = 5
+            OnKeyPress = EvaluateInputKeyPress
+          end
+          object EvalOutput: TMemo
+            Left = 4
+            Top = 100
+            Width = 578
+            Height = 25
+            Anchors = [akLeft, akTop, akRight, akBottom]
+            ReadOnly = True
+            ScrollBars = ssBoth
+            TabOrder = 6
+          end
+          object SkipFuncBtn: TButton
+            Left = 352
+            Top = 38
+            Width = 112
+            Height = 25
+            Action = actSkipFunction
+            TabOrder = 7
+          end
+          object IntoInsBtn: TButton
+            Left = 468
+            Top = 38
+            Width = 112
+            Height = 25
+            Action = actStepIns
+            TabOrder = 8
+          end
+          object NextInsBtn: TButton
+            Left = 468
+            Top = 8
+            Width = 112
+            Height = 25
+            Action = actNextIns
+            TabOrder = 9
+          end
+        end
+      end
+      object FindSheet: TTabSheet
+        Caption = 'Find results'
+        ImageIndex = 4
+        object FindOutput: TListView
+          Left = 0
+          Top = 0
+          Width = 1275
+          Height = 133
+          Align = alClient
+          BevelOuter = bvNone
+          BorderStyle = bsNone
+          Columns = <
+            item
+              Width = 15
+            end
+            item
+              Caption = 'Line'
+              Width = 40
+            end
+            item
+              Caption = 'Col'
+              Width = 40
+            end
+            item
+              Caption = 'Unit'
+              Width = 320
+            end
+            item
+              AutoSize = True
+              Caption = 'Message'
+            end>
+          ColumnClick = False
+          GridLines = True
+          ReadOnly = True
+          RowSelect = True
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 0
+          ViewStyle = vsReport
+          OnAdvancedCustomDraw = FindOutputAdvancedCustomDraw
+          OnAdvancedCustomDrawSubItem = FindOutputAdvancedCustomDrawSubItem
+          OnDblClick = FindOutputDblClick
+          OnDeletion = FindOutputDeletion
+          OnKeyDown = FindOutputKeyDown
+          OnSelectItem = FindOutputSelectItem
+        end
+      end
+      object tsConsole: TTabSheet
+        Caption = 'Console'
+        Highlighted = True
+        ImageIndex = 5
+        ExplicitHeight = 135
+        object pcConsoleHost: TPageControl
+          Left = 33
+          Top = 0
+          Width = 1242
+          Height = 133
+          Align = alClient
+          MultiLine = True
+          PopupMenu = ConsolePopupMenu
+          Style = tsButtons
+          TabOrder = 0
+          ExplicitHeight = 135
+        end
+        object Panel1: TPanel
+          Left = 0
+          Top = 0
+          Width = 33
+          Height = 133
+          Align = alLeft
+          BevelOuter = bvNone
+          TabOrder = 1
+          ExplicitHeight = 135
+          object SpeedButton5: TSpeedButton
+            Left = 0
+            Top = 0
+            Width = 33
+            Height = 33
+            Action = actCMD
+            Align = alTop
+          end
+          object SpeedButton6: TSpeedButton
+            Left = 0
+            Top = 33
+            Width = 33
+            Height = 33
+            Action = actPowerShell
+            Align = alTop
+            ExplicitLeft = 7
+            ExplicitTop = 64
+          end
+        end
+      end
+      object CloseSheet: TTabSheet
+        Caption = 'Close'
+        ImageIndex = 6
       end
     end
   end
