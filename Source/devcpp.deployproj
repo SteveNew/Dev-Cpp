@@ -7,9 +7,181 @@
     <ItemGroup Condition="'$(Platform)'=='Win32'"/>
     <ItemGroup Condition="'$(Platform)'=='Win64'"/>
     <ItemGroup Condition="'$(Platform)'=='Linux64'">
-        <DeployFile Include="..\Lang\English.lng" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="..\Lang\Croatian.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Croatian.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Romanian.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Romanian.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Chinese_TC.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Chinese_TC.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Ukrainian.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Ukrainian.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\WinApp_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>WinApp_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Czech.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Czech.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Direct3D.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>Direct3D.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\OpenGL.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>OpenGL.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\devcpp" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp\</RemoteDir>
-            <RemoteName>English.lng</RemoteName>
+            <RemoteName>devcpp</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Portuguese.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Portuguese.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\OpenGL.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>OpenGL.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\WinAnim_rc.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>WinAnim_rc.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\MDIEditor_rc.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>MDIEditor_rc.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Swedish.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Swedish.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Dll_h.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>Dll_h.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Japanese.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Japanese.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Images\devcpplogo.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\</RemoteDir>
+            <RemoteName>devcpplogo.png</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="LangIDs.inc" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\</RemoteDir>
+            <RemoteName>LangIDs.inc</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(crossvcl)\Redist\libcrossvcl.so">
+            <RemoteDir>devcpp\</RemoteDir>
+            <RemoteName>libcrossvcl.so</RemoteName>
+            <DeployClass/>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\SpanishCastellano.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>SpanishCastellano.tips</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -17,8 +189,800 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="..\Lang\English.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp\</RemoteDir>
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
             <RemoteName>English.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Korean.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Korean.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\FileEditor_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>FileEditor_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Romanian.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Romanian.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Norwegian.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Norwegian.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Hungarian.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Hungarian.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\ballmask.bmp" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>ballmask.bmp</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\MDIEditor_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>MDIEditor_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Turkish.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Turkish.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Hello_cpp.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>Hello_cpp.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\WinAnim.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>WinAnim.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Greek.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Greek.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Swedish.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Swedish.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Estonian.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Estonian.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Russian.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Russian.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Portuguese.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Portuguese.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\OpenMP_cpp.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>OpenMP_cpp.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\WinAnim_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>WinAnim_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\ConsoleApp_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>ConsoleApp_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\FileEditor_h.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>FileEditor_h.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\FileEditor.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>FileEditor.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Chinese.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Chinese.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Polish.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Polish.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Estonian.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Estonian.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Spanish.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Spanish.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\5-Empty.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>5-Empty.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Hebrew.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Hebrew.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\English.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>English.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Korean.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Korean.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\OpenMP.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>OpenMP.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Dutch.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Dutch.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Ukrainian.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Ukrainian.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Hello.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>Hello.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Bulgarian.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Bulgarian.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Spanish.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Spanish.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\StdThread.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>StdThread.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Norwegian.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Norwegian.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\ball.bmp" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>ball.bmp</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\SpanishColombia.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>SpanishColombia.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Catalan.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Catalan.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\SpanishColombia.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>SpanishColombia.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Dll_cpp.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>Dll_cpp.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Italian.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Italian.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Dll_hpp.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>Dll_hpp.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\FileEditor_rc.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>FileEditor_rc.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\2-ConsoleApp.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>2-ConsoleApp.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Latvian.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Latvian.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Slovak.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Slovak.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\ConsoleApp_cpp.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>ConsoleApp_cpp.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Latvian.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Latvian.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\German.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>German.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Dutch.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Dutch.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\StdThread_cpp.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>StdThread_cpp.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Danish.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Danish.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Project3.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>Project3.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Jackpot_cpp.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>Jackpot_cpp.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\German.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>German.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Japanese.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Japanese.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Slovenian.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Slovenian.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\French.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>French.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Catalan.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Catalan.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Turkish.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Turkish.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\1-WinApp.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>1-WinApp.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Hebrew.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Hebrew.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\SpanishCastellano.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>SpanishCastellano.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\StdThread_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>StdThread_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Czech.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Czech.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\French.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>French.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Polish.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Polish.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\OpenMP_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>OpenMP_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\HelloInput_cpp.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>HelloInput_cpp.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Russian.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Russian.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Italian.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Italian.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\MDIEditor_h.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>MDIEditor_h.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Direct3D.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>Direct3D.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Galego.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Galego.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\HelloInput.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>HelloInput.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\MDIEditor.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>MDIEditor.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Galego.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Galego.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Danish.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Danish.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Hungarian.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Hungarian.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\4-DLL.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>4-DLL.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Jackpot.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>Jackpot.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Hello_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>Hello_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\HelloInput_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>HelloInput_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\3-StaticLib.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>3-StaticLib.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Chinese.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Chinese.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Slovenian.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Lang\</RemoteDir>
+            <RemoteName>Slovenian.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Dll_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp\Resources\Templates\</RemoteDir>
+            <RemoteName>Dll_c.txt</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -27,6 +991,15 @@
         </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='OSX64'">
+        <DeployFile Include="..\Templates\StdThread_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>StdThread_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="..\Lang\Dutch.lng" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Dutch.lng</RemoteName>
@@ -36,9 +1009,36 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Czech.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Czech.lng</RemoteName>
+        <DeployFile Include="..\Templates\Dll_h.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Dll_h.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Hello_c.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Hello_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\StdThread_cpp.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>StdThread_cpp.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\WinAnim_rc.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>WinAnim_rc.txt</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -63,15 +1063,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Galego.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Galego.tips</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="..\Lang\Ukrainian.tips" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Ukrainian.tips</RemoteName>
@@ -90,18 +1081,9 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Chinese.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Chinese.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\Slovenian.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Slovenian.tips</RemoteName>
+        <DeployFile Include="..\Templates\FileEditor_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>FileEditor_c.txt</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -111,15 +1093,6 @@
         <DeployFile Include="..\Lang\Italian.lng" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Italian.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\Latvian.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Latvian.tips</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -144,9 +1117,36 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Estonian.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Estonian.lng</RemoteName>
+        <DeployFile Include="..\Templates\Jackpot_cpp.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Jackpot_cpp.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Project3.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Project3.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\MDIEditor_rc.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>MDIEditor_rc.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\2-ConsoleApp.template" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>2-ConsoleApp.template</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -162,36 +1162,18 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Spanish.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Spanish.tips</RemoteName>
+        <DeployFile Include="..\Templates\FileEditor_rc.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>FileEditor_rc.txt</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Polish.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Polish.tips</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\English.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>English.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\German.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>German.tips</RemoteName>
+        <DeployFile Include="..\Templates\Hello_cpp.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Hello_cpp.txt</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -216,9 +1198,9 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Polish.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Polish.lng</RemoteName>
+        <DeployFile Include="..\Templates\2-ConsoleApp.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>2-ConsoleApp.template</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -234,18 +1216,9 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="C:\Dev-Cpp\Source\devcpp.icns">
-            <RemoteDir>devcpp.app\Contents\Resources\</RemoteDir>
-            <RemoteName>devcpp.icns</RemoteName>
-            <DeployClass/>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\Catalan.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Catalan.lng</RemoteName>
+        <DeployFile Include="..\Templates\Dll_hpp.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Dll_hpp.txt</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -279,18 +1252,27 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\German.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>German.lng</RemoteName>
+        <DeployFile Include="..\Templates\ConsoleApp_cpp.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>ConsoleApp_cpp.txt</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Catalan.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Catalan.tips</RemoteName>
+        <DeployFile Include="..\Templates\FileEditor_c.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>FileEditor_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\OpenMP_cpp.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>OpenMP_cpp.txt</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -315,6 +1297,15 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="..\Templates\Jackpot.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Jackpot.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="..\devcpp.entitlements" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp.app\..\</RemoteDir>
             <RemoteName>devcpp.entitlements</RemoteName>
@@ -327,15 +1318,6 @@
         <DeployFile Include="..\Lang\Danish.tips" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Danish.tips</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\Lang\Norwegian.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Norwegian.tips</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -360,9 +1342,9 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Bulgarian.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Bulgarian.lng</RemoteName>
+        <DeployFile Include="..\Templates\OpenGL.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>OpenGL.txt</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -396,9 +1378,27 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Latvian.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Latvian.lng</RemoteName>
+        <DeployFile Include="..\Templates\Hello.template" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Hello.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\WinAnim_rc.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>WinAnim_rc.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\HelloInput_cpp.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>HelloInput_cpp.txt</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -414,15 +1414,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Hebrew.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Hebrew.tips</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="..\Lang\SpanishCastellano.tips" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>SpanishCastellano.tips</RemoteName>
@@ -432,19 +1423,37 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\SpanishColombia.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>SpanishColombia.lng</RemoteName>
+        <DeployFile Include="..\Templates\FileEditor.template" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>FileEditor.template</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="LangIDs.inc" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\StartUp\</RemoteDir>
-            <RemoteName>LangIDs.inc</RemoteName>
-            <DeployClass>ProjectFile</DeployClass>
+        <DeployFile Include="..\Templates\3-StaticLib.template" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>3-StaticLib.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\ballmask.bmp" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>ballmask.bmp</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Direct3D.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Direct3D.txt</RemoteName>
+            <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -453,6 +1462,24 @@
         <DeployFile Include="..\Lang\Estonian.tips" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Estonian.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\HelloInput_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>HelloInput_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\OpenMP.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>OpenMP.template</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -468,11 +1495,38 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="..\Templates\1-WinApp.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>1-WinApp.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="..\devcpp.dSYM" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp.app\..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF\</RemoteDir>
             <RemoteName>devcpp</RemoteName>
             <DeployClass>ProjectOSXDebug</DeployClass>
             <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\FileEditor_h.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>FileEditor_h.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\MDIEditor_h.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>MDIEditor_h.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -486,18 +1540,18 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Danish.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Danish.lng</RemoteName>
+        <DeployFile Include="..\Templates\4-DLL.template" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>4-DLL.template</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Swedish.tips" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="..\Lang\Ukrainian.lng" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Swedish.tips</RemoteName>
+            <RemoteName>Ukrainian.lng</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -513,9 +1567,9 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Ukrainian.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Ukrainian.lng</RemoteName>
+        <DeployFile Include="..\Templates\StdThread.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>StdThread.template</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -540,9 +1594,9 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Turkish.tips" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Turkish.tips</RemoteName>
+        <DeployFile Include="..\Templates\ConsoleApp_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>ConsoleApp_c.txt</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -559,9 +1613,702 @@
             <Overwrite>True</Overwrite>
             <Required>True</Required>
         </DeployFile>
+        <DeployFile Include="..\Templates\FileEditor_rc.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>FileEditor_rc.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Turkish.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Turkish.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Jackpot.template" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Jackpot.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\4-DLL.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>4-DLL.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Chinese_TC.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Chinese_TC.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\ballmask.bmp" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>ballmask.bmp</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Czech.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Czech.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\HelloInput.template" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>HelloInput.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Dll_h.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Dll_h.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\ball.bmp" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>ball.bmp</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Project3.template" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Project3.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Hello.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Hello.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Galego.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Galego.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\WinApp_c.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>WinApp_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Chinese.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Chinese.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Slovenian.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Slovenian.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Latvian.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Latvian.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\HelloInput_cpp.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>HelloInput_cpp.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Estonian.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Estonian.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\5-Empty.template" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>5-Empty.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\5-Empty.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>5-Empty.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Dll_cpp.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Dll_cpp.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\OpenGL.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>OpenGL.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Spanish.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Spanish.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Dll_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Dll_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Polish.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Polish.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\English.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>English.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\German.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>German.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\OpenMP.template" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>OpenMP.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\3-StaticLib.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>3-StaticLib.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Polish.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Polish.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\ConsoleApp_c.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>ConsoleApp_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\MDIEditor_h.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>MDIEditor_h.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Dll_hpp.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Dll_hpp.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="C:\Dev-Cpp\Source\devcpp.icns">
+            <RemoteDir>devcpp.app\Contents\Resources\</RemoteDir>
+            <RemoteName>devcpp.icns</RemoteName>
+            <DeployClass/>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Catalan.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Catalan.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Jackpot_cpp.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Jackpot_cpp.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Direct3D.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Direct3D.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\OpenMP_cpp.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>OpenMP_cpp.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\WinAnim_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>WinAnim_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\1-WinApp.template" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>1-WinApp.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\WinAnim.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>WinAnim.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\German.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>German.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\HelloInput_c.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>HelloInput_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Catalan.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Catalan.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\WinAnim.template" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>WinAnim.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\StdThread.template" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>StdThread.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\ball.bmp" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>ball.bmp</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Norwegian.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Norwegian.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\MDIEditor_rc.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>MDIEditor_rc.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\MDIEditor.template" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>MDIEditor.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Bulgarian.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Bulgarian.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\FileEditor.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>FileEditor.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\HelloInput.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>HelloInput.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Latvian.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Latvian.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\ConsoleApp_cpp.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>ConsoleApp_cpp.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\OpenMP_c.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>OpenMP_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Direct3D.template" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Direct3D.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Hebrew.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Hebrew.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\FileEditor_h.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>FileEditor_h.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Hello_cpp.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Hello_cpp.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\SpanishColombia.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>SpanishColombia.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\StdThread_cpp.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>StdThread_cpp.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="LangIDs.inc" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\StartUp\</RemoteDir>
+            <RemoteName>LangIDs.inc</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\MDIEditor_c.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>MDIEditor_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Dll_c.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Dll_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\OpenGL.template" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>OpenGL.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\OpenMP_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>OpenMP_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\WinApp_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>WinApp_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\OpenGL.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>OpenGL.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Danish.lng" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Danish.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Swedish.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Swedish.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Direct3D.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Direct3D.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\MDIEditor.template" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>MDIEditor.template</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\MDIEditor_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>MDIEditor_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Lang\Turkish.tips" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
+            <RemoteName>Turkish.tips</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="..\Lang\Swedish.lng" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Swedish.lng</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Dll_cpp.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Dll_cpp.txt</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -586,15 +2333,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Turkish.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Turkish.lng</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="..\Lang\Hungarian.lng" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>Hungarian.lng</RemoteName>
@@ -613,6 +2351,24 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="..\Templates\StdThread_c.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>StdThread_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Templates\Hello_c.txt" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>Hello_c.txt</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="..\Lang\SpanishCastellano.lng" Condition="'$(Config)'=='Debug'">
             <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
             <RemoteName>SpanishCastellano.lng</RemoteName>
@@ -622,9 +2378,9 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\Lang\Chinese_TC.lng" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>devcpp.app\Contents\Resources\Lang\</RemoteDir>
-            <RemoteName>Chinese_TC.lng</RemoteName>
+        <DeployFile Include="..\Templates\WinAnim_c.txt" Condition="'$(Config)'=='Release'">
+            <RemoteDir>devcpp.app\Contents\Resources\Templates\</RemoteDir>
+            <RemoteName>WinAnim_c.txt</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>

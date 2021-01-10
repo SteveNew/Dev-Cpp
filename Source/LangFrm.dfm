@@ -133,7 +133,13 @@ object LangForm: TLangForm
     Font.Style = []
     Font.Quality = fqClearTypeNatural
     TabOrder = 3
+    CodeFolding.GutterShapeSize = 11
+    CodeFolding.CollapsedLineColor = clGrayText
+    CodeFolding.FolderBarLinesColor = clGrayText
+    CodeFolding.IndentGuidesColor = clGray
+    CodeFolding.IndentGuides = True
     CodeFolding.ShowCollapsedLine = True
+    CodeFolding.ShowHintMark = True
     UseCodeFolding = False
     Gutter.Font.Charset = DEFAULT_CHARSET
     Gutter.Font.Color = clWindowText
@@ -148,6 +154,7 @@ object LangForm: TLangForm
       #9'std::cout << "Hello world!\n";'
       #9'return 0;'
       '}')
+    FontSmoothing = fsmNone
   end
   object EditPanel: TPanel
     Left = 260

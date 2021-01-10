@@ -172,6 +172,8 @@ begin
     FontIndex := cmbFont.Items.IndexOf('Consolas');
   if FontIndex = -1 then
     FontIndex := cmbFont.Items.IndexOf('Courier');
+  if FontIndex = -1 then
+    FontIndex := cmbFont.Items.IndexOf('Default');
   cmbFont.ItemIndex := FontIndex; // set ItemIndex once
 
   // Editor colors

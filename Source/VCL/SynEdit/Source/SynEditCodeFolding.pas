@@ -8,6 +8,10 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
   the specific language governing rights and limitations under the License.
 
+  The Original Code is SynEditWordWrap.pas by Flávio Etrusco, released 2003-12-11.
+  Unicode translation by Maël Hörz.
+  All Rights Reserved.
+
   Contributors to the SynEdit and mwEdit projects are listed in the
   Contributors.txt file.
 
@@ -192,10 +196,8 @@ type
     function FoldsOfType(aType : integer) : TArray<Integer>;
 
     {Scanning support}
-    procedure StoreCollapsedState; overload;
-    procedure RestoreCollapsedState; overload;
-    procedure StoreCollapsedState(Stream: TStream); overload;
-    procedure RestoreCollapsedState(Stream: TStream); overload;
+    procedure StoreCollapsedState;
+    procedure RestoreCollapsedState;
     procedure StartScanning;
     function  StopScanning(Lines : TStrings) : Boolean; // Returns True of Ranges were updated
     procedure AddLineInfo(ALine: Integer; AFoldType: Integer;
@@ -244,28 +246,25 @@ type
     procedure SetShowCollapsedLine(const Value: Boolean);
     procedure SetShowHintMark(const Value: Boolean);
     procedure SetGutterShapeSize(const Value: Integer);
-    function GetGutterShapeSize: Integer;
   public
     constructor Create;
     procedure Assign(Source: TPersistent); override;
-    procedure ChangeScale(M, D: Integer); virtual;
     property OnChange: TSynCodeFoldingChangeEvent read fOnChange write fOnChange;
   published
     // Size of the gutter shapes in pixels at 96 PPI - had to be odd number
-    property  GutterShapeSize: Integer read GetGutterShapeSize
-      write SetGutterShapeSize default 11;
+    property  GutterShapeSize: Integer read fGutterShapeSize
+      write SetGutterShapeSize;
     property CollapsedLineColor: TColor read fCollapsedLineColor
-      write SetCollapsedLineColor default clGrayText;
+      write SetCollapsedLineColor;
     property FolderBarLinesColor: TColor read fFolderBarLinesColor
-      write SetFolderBarLinesColor default clGrayText;
+      write SetFolderBarLinesColor;
     property IndentGuidesColor: TColor read fIndentGuidesColor
-      write SetIndentGuidesColor default clGray;
-    property IndentGuides: Boolean read fIndentGuides write SetIndentGuides
-      default True;
+      write SetIndentGuidesColor;
+    property IndentGuides: Boolean read fIndentGuides write SetIndentGuides;
     property ShowCollapsedLine: Boolean read fShowCollapsedLine
-      write SetShowCollapsedLine default False;
+      write SetShowCollapsedLine;
     property ShowHintMark: Boolean read fShowHintMark
-      write SetShowHintMark default True;
+      write SetShowHintMark;
   end;
 
   TSynCustomCodeFoldingHighlighter = class(TSynCustomHighlighter)
@@ -297,9 +296,8 @@ type
 implementation
 
 Uses
-  Winapi.Windows,
-  System.Math,
-  SynEditTextBuffer;
+  SynEditTextBuffer,
+  System.Math;
 
 { TSynEditFoldRanges }
 
@@ -814,19 +812,7 @@ begin
   fRangesNeedFixing := False;
 end;
 
-procedure TSynFoldRanges.RestoreCollapsedState(Stream: TStream);
-Var
-  Size, Line, Index : integer;
-begin
-  Size := Stream.Size;
-  while Stream.Position < Size do begin
-    Stream.ReadData(Line);
-    if FoldStartAtLine(Line, Index) then
-      fRanges.List[Index].Collapsed := True;
-  end;
-end;
-
-procedure TSynFoldRanges.RestoreCollapsedState;
+procedure TSynFoldRanges.ReStoreCollapsedState;
 Var
   i, Index : integer;
 begin
@@ -865,15 +851,6 @@ begin
     RestoreCollapsedState;
     fRangesNeedFixing := False;
   end;
-end;
-
-procedure TSynFoldRanges.StoreCollapsedState(Stream: TStream);
-Var
-  FoldRange : TSynFoldRange;
-begin
-  for FoldRange in fRanges do
-    if FoldRange.Collapsed then
-       Stream.WriteData(FoldRange.FromLine);
 end;
 
 procedure TSynFoldRanges.StoreCollapsedState;
@@ -928,11 +905,6 @@ begin
    inherited Assign(Source);
 end;
 
-procedure TSynCodeFolding.ChangeScale(M, D: Integer);
-begin
-  fGutterShapeSize := MulDiv(fGutterShapeSize, M, D);
-end;
-
 constructor TSynCodeFolding.Create;
 begin
   fIndentGuides := True;
@@ -942,14 +914,6 @@ begin
   fShowCollapsedLine := False;
   fShowHintMark := True;
   fGutterShapeSize := 11;
-end;
-
-function TSynCodeFolding.GetGutterShapeSize: Integer;
-{ Always returns an odd number }
-begin
-  Result := fGutterShapeSize;
-  if not Odd(Result) then
-    Dec(Result);
 end;
 
 { TSynFoldRanges.TLineFoldInfo }
@@ -1060,6 +1024,8 @@ Var
   NewValue: Integer;
 begin
   NewValue := Value;
+  if not Odd(NewValue) then
+    Dec(NewValue);
   if fGutterShapeSize <> NewValue then begin
     fGutterShapeSize := NewValue;
     if Assigned(fOnChange) then fOnChange(Self);

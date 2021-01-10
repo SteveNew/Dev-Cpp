@@ -160,7 +160,7 @@ object MainForm: TMainForm
   OnResize = FormResize
   OnShow = FormShow
   PixelsPerInch = 96
-  TextHeight = 16
+  TextHeight = 19
   object SplitterLeft: TSplitter
     Left = 209
     Top = 56
@@ -196,6 +196,10 @@ object MainForm: TMainForm
     OnChange = MessageControlChange
     object CompSheet: TTabSheet
       Caption = 'Compiler'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object CompilerOutput: TListView
         Left = 0
         Top = 0
@@ -240,6 +244,10 @@ object MainForm: TMainForm
     object ResSheet: TTabSheet
       Caption = 'Resource'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object ResourceOutput: TListView
         Left = 0
         Top = 0
@@ -288,13 +296,13 @@ object MainForm: TMainForm
         Left = 0
         Top = 0
         Width = 156
-        Height = 138
+        Height = 135
         Align = alLeft
         BevelOuter = bvNone
         TabOrder = 0
         DesignSize = (
           156
-          138)
+          135)
         object btnAbortCompilation: TSpeedButton
           Left = 4
           Top = 4
@@ -325,10 +333,11 @@ object MainForm: TMainForm
         Left = 156
         Top = 0
         Width = 1121
-        Height = 138
+        Height = 135
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 1
+        ExplicitHeight = 138
         object LogOutput: TMemo
           Left = 0
           Top = 0
@@ -356,25 +365,25 @@ object MainForm: TMainForm
         Left = 589
         Top = 0
         Width = 688
-        Height = 138
+        Height = 135
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
         DesignSize = (
           688
-          138)
+          135)
         object lblSendCommandGdb: TLabel
           Left = 4
           Top = 7
-          Width = 142
-          Height = 16
+          Width = 135
+          Height = 19
           Caption = 'Send command to GDB:'
         end
         object edGdbCommand: TComboBox
           Left = 136
           Top = 3
           Width = 548
-          Height = 24
+          Height = 27
           Anchors = [akLeft, akTop, akRight]
           TabOrder = 0
           OnKeyPress = edGdbCommandKeyPress
@@ -383,18 +392,19 @@ object MainForm: TMainForm
           Left = 4
           Top = 30
           Width = 681
-          Height = 101
+          Height = 98
           Anchors = [akLeft, akTop, akRight, akBottom]
           ReadOnly = True
           ScrollBars = ssVertical
           TabOrder = 1
+          ExplicitHeight = 101
         end
       end
       object DebugStartPanel: TPanel
         Left = 0
         Top = 0
         Width = 589
-        Height = 138
+        Height = 135
         Align = alLeft
         BevelOuter = bvNone
         BiDiMode = bdLeftToRight
@@ -402,7 +412,7 @@ object MainForm: TMainForm
         TabOrder = 1
         DesignSize = (
           589
-          138)
+          135)
         object DDebugBtn: TSpeedButton
           Left = 4
           Top = 8
@@ -422,8 +432,8 @@ object MainForm: TMainForm
         object lblEvaluate: TLabel
           Left = 4
           Top = 76
-          Width = 53
-          Height = 16
+          Width = 51
+          Height = 19
           Caption = 'Evaluate:'
         end
         object NextLineBtn: TButton
@@ -470,7 +480,7 @@ object MainForm: TMainForm
           Left = 64
           Top = 72
           Width = 518
-          Height = 24
+          Height = 27
           Anchors = [akLeft, akTop, akRight]
           TabOrder = 5
           OnKeyPress = EvaluateInputKeyPress
@@ -479,11 +489,12 @@ object MainForm: TMainForm
           Left = 4
           Top = 100
           Width = 578
-          Height = 30
+          Height = 27
           Anchors = [akLeft, akTop, akRight, akBottom]
           ReadOnly = True
           ScrollBars = ssBoth
           TabOrder = 6
+          ExplicitHeight = 30
         end
         object SkipFuncBtn: TButton
           Left = 352
@@ -514,6 +525,10 @@ object MainForm: TMainForm
     object FindSheet: TTabSheet
       Caption = 'Find results'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object FindOutput: TListView
         Left = 0
         Top = 0
@@ -566,7 +581,7 @@ object MainForm: TMainForm
         Left = 33
         Top = 0
         Width = 1244
-        Height = 138
+        Height = 135
         Align = alClient
         MultiLine = True
         PopupMenu = ConsolePopupMenu
@@ -577,7 +592,7 @@ object MainForm: TMainForm
         Left = 0
         Top = 0
         Width = 33
-        Height = 138
+        Height = 135
         Align = alLeft
         BevelOuter = bvNone
         TabOrder = 1
@@ -604,6 +619,10 @@ object MainForm: TMainForm
     object CloseSheet: TTabSheet
       Caption = 'Close'
       ImageIndex = 6
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
   end
   object ToolbarDock: TControlBar
@@ -933,7 +952,7 @@ object MainForm: TMainForm
         Left = 0
         Top = 0
         Width = 350
-        Height = 24
+        Height = 27
         Style = csDropDownList
         DropDownCount = 16
         TabOrder = 0
@@ -946,7 +965,7 @@ object MainForm: TMainForm
         Left = 350
         Top = 0
         Width = 350
-        Height = 24
+        Height = 27
         Style = csDropDownList
         Ctl3D = False
         DropDownCount = 16
@@ -975,7 +994,7 @@ object MainForm: TMainForm
         Left = 0
         Top = 0
         Width = 250
-        Height = 24
+        Height = 27
         Style = csDropDownList
         Ctl3D = False
         DropDownCount = 16
@@ -1030,7 +1049,7 @@ object MainForm: TMainForm
         Left = 0
         Top = 0
         Width = 201
-        Height = 410
+        Height = 407
         Align = alClient
         Anchors = [akLeft, akTop, akBottom]
         BevelInner = bvNone
@@ -1065,7 +1084,7 @@ object MainForm: TMainForm
         Left = 0
         Top = 0
         Width = 201
-        Height = 410
+        Height = 407
         Align = alClient
         Images = dmMain.ClassImages
         ReadOnly = True
@@ -1100,7 +1119,7 @@ object MainForm: TMainForm
         Left = 0
         Top = 0
         Width = 201
-        Height = 410
+        Height = 407
         Align = alClient
         BevelInner = bvNone
         BevelOuter = bvNone
@@ -1592,8 +1611,8 @@ object MainForm: TMainForm
           AlignWithMargins = True
           Left = 213
           Top = 240
-          Width = 84
-          Height = 19
+          Width = 83
+          Height = 24
           Alignment = taCenter
           Caption = 'WELCOME'
           Font.Charset = DEFAULT_CHARSET
@@ -1607,7 +1626,7 @@ object MainForm: TMainForm
           Left = 213
           Top = 309
           Width = 43
-          Height = 16
+          Height = 19
           Caption = 'Version'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1619,8 +1638,8 @@ object MainForm: TMainForm
         object LabelNumVersion: TLabel
           Left = 259
           Top = 309
-          Width = 18
-          Height = 16
+          Width = 17
+          Height = 19
           Caption = '6.2'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clRed
@@ -1634,7 +1653,7 @@ object MainForm: TMainForm
           Left = 194
           Top = 328
           Width = 28
-          Height = 16
+          Height = 19
           Caption = 'View'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1647,7 +1666,7 @@ object MainForm: TMainForm
           Left = 227
           Top = 328
           Width = 87
-          Height = 16
+          Height = 19
           Cursor = crHandPoint
           Caption = 'Documentation'
           Color = clWindow
@@ -1665,8 +1684,8 @@ object MainForm: TMainForm
           AlignWithMargins = True
           Left = 221
           Top = 356
-          Width = 49
-          Height = 16
+          Width = 54
+          Height = 19
           Alignment = taCenter
           Caption = 'Hotkeys'
           Font.Charset = DEFAULT_CHARSET
@@ -1679,8 +1698,8 @@ object MainForm: TMainForm
         object LabelOpen: TLabel
           Left = 188
           Top = 384
-          Width = 31
-          Height = 16
+          Width = 30
+          Height = 19
           Caption = 'Open'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1693,7 +1712,7 @@ object MainForm: TMainForm
           Left = 190
           Top = 413
           Width = 28
-          Height = 16
+          Height = 19
           Caption = 'Save'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1705,8 +1724,8 @@ object MainForm: TMainForm
         object LabelZoom: TLabel
           Left = 185
           Top = 442
-          Width = 32
-          Height = 16
+          Width = 33
+          Height = 19
           Caption = 'Zoom'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1718,8 +1737,8 @@ object MainForm: TMainForm
         object LabelRun: TLabel
           Left = 196
           Top = 470
-          Width = 23
-          Height = 16
+          Width = 22
+          Height = 19
           Caption = 'Run'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1731,8 +1750,8 @@ object MainForm: TMainForm
         object LabelCompile: TLabel
           Left = 172
           Top = 497
-          Width = 47
-          Height = 16
+          Width = 46
+          Height = 19
           Caption = 'Compile'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1744,8 +1763,8 @@ object MainForm: TMainForm
         object LabelClear: TLabel
           Left = 187
           Top = 525
-          Width = 30
-          Height = 16
+          Width = 29
+          Height = 19
           Caption = 'Clear'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -4283,8 +4302,8 @@ object MainForm: TMainForm
         object LabelSponsor: TLabel
           Left = 20
           Top = 375
-          Width = 80
-          Height = 16
+          Width = 77
+          Height = 19
           Caption = 'Sponsored by'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText

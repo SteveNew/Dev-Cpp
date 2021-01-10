@@ -34,16 +34,27 @@ located at http://SynEdit.SourceForge.net
 Known Issues:
 -------------------------------------------------------------------------------}
 
+{$IFNDEF QSYNEDITWILDCARDSEARCH}
 unit SynEditWildcardSearch;
+{$ENDIF}
 
 {$I SynEdit.inc}
 
 interface
 
 uses
+{$IFDEF SYN_CLX}
+  QSynEdit,
+  QSynEditTypes,
+  QSynRegExpr,
+  QSynEditMiscClasses,
+  QSynEditRegexSearch
+{$ELSE}
   SynEdit,
   SynEditTypes,
+  SynRegExpr,
   SynEditRegexSearch,
+{$ENDIF}
   Classes;
 
 type
@@ -69,7 +80,11 @@ type
 implementation
 
 uses
+{$IFDEF SYN_CLX}
+  QConsts;
+{$ELSE}
   Consts;
+{$ENDIF}
 
 { TSynEditWildcardSearch }
 

@@ -8,7 +8,7 @@
         <AppType>Application</AppType>
         <FrameworkType>VCL</FrameworkType>
         <ProjectVersion>19.1</ProjectVersion>
-        <Platform Condition="'$(Platform)'==''">OSX64</Platform>
+        <Platform Condition="'$(Platform)'==''">Linux64</Platform>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -104,7 +104,7 @@
         <Custom_Styles>Windows10|VCLSTYLE|$(BDSCOMMONDIR)\Styles\Windows10.vsf;&quot;Windows10 SlateGray|VCLSTYLE|$(BDSCOMMONDIR)\Styles\Windows10SlateGray.vsf&quot;;Calypso|VCLSTYLE|$(BDSCOMMONDIR)\Styles\Calypso.vsf;&quot;Flat UI Light|VCLSTYLE|$(BDSCOMMONDIR)\Styles\FlatUILight.vsf&quot;;Glossy|VCLSTYLE|$(BDSCOMMONDIR)\Styles\Glossy.vsf;&quot;Material Patterns Blue|VCLSTYLE|$(BDSCOMMONDIR)\Styles\MaterialPatternsBlue.vsf&quot;;&quot;Windows10 BlackPearl|VCLSTYLE|$(BDSCOMMONDIR)\Styles\Windows10BlackPearl.vsf&quot;;&quot;Windows10 Blue Whale|VCLSTYLE|$(BDSCOMMONDIR)\Styles\Windows10BlueWhale.vsf&quot;</Custom_Styles>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Linux64)'!=''">
-        <DCC_UnitSearchPath>$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Lib\$(ProductVersion)\$(Platform)\$(Config);$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Redist;$(crossvcl)\Lib\$(ProductVersion)\$(Platform)\$(Config);$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_OSX64)'!=''">
@@ -327,6 +327,10 @@
         <None Include="LangIDs.inc">
             <ContainerId>File</ContainerId>
         </None>
+        <RcItem Include="Images\devcpplogo.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>MAINICON</ResourceId>
+        </RcItem>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -359,10 +363,17 @@
                 <Platform value="Win64">False</Platform>
             </Platforms>
             <Deployment Version="3">
-                <DeployFile LocalName="..\devcpp.dSYM" Configuration="Release" Class="ProjectOSXDebug"/>
-                <DeployFile LocalName="..\Lang\English.lng" Configuration="Debug" Class="File">
+                <DeployFile LocalName="..\Lang\Croatian.lng" Configuration="Debug" Class="File">
                     <Platform Name="Linux64">
-                        <RemoteName>English.lng</RemoteName>
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Croatian.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\StdThread_c.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>StdThread_c.txt</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -373,14 +384,41 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\Czech.lng" Configuration="Debug" Class="File">
+                <DeployFile LocalName="..\Templates\Dll_h.txt" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Czech.lng</RemoteName>
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Dll_h.txt</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="LangIDs.inc" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="..\Templates\Hello_c.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Hello_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Romanian.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Romanian.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\StdThread_cpp.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>StdThread_cpp.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\WinAnim_rc.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>WinAnim_rc.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="..\Lang\Hungarian.tips" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
                         <RemoteDir>Contents\Resources\Lang\</RemoteDir>
@@ -395,10 +433,17 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\Galego.tips" Configuration="Debug" Class="File">
-                    <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Galego.tips</RemoteName>
+                <DeployFile LocalName="..\Lang\Chinese_TC.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Chinese_TC.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Ukrainian.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Ukrainian.lng</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -416,17 +461,24 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\Chinese.lng" Configuration="Debug" Class="File">
+                <DeployFile LocalName="..\Templates\FileEditor_c.txt" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Chinese.lng</RemoteName>
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>FileEditor_c.txt</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\Slovenian.tips" Configuration="Debug" Class="File">
-                    <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Slovenian.tips</RemoteName>
+                <DeployFile LocalName="..\Templates\WinApp_c.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>WinApp_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Czech.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Czech.lng</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -437,13 +489,6 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\Latvian.tips" Configuration="Debug" Class="File">
-                    <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Latvian.tips</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName="..\Lang\Galego.lng" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
                         <RemoteDir>Contents\Resources\Lang\</RemoteDir>
@@ -451,7 +496,6 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\devcpp.info.plist" Configuration="Release" Class="ProjectOSXInfoPList"/>
                 <DeployFile LocalName="..\Lang\Russian.lng" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
                         <RemoteDir>Contents\Resources\Lang\</RemoteDir>
@@ -459,14 +503,48 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\Estonian.lng" Configuration="Debug" Class="File">
+                <DeployFile LocalName="..\Templates\Jackpot_cpp.txt" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Estonian.lng</RemoteName>
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Jackpot_cpp.txt</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Images\New images\DEV C++ 140x140.png" Configuration="Debug" Class="UWP_DelphiLogo150"/>
+                <DeployFile LocalName="..\Templates\Project3.template" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Project3.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\MDIEditor_rc.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>MDIEditor_rc.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\2-ConsoleApp.template" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>2-ConsoleApp.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Direct3D.template" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>Direct3D.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\OpenGL.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>OpenGL.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="..\Lang\Japanese.lng" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
                         <RemoteDir>Contents\Resources\Lang\</RemoteDir>
@@ -474,33 +552,73 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\devcpp.info.plist" Configuration="Debug" Class="ProjectOSXInfoPList"/>
-                <DeployFile LocalName="..\Lang\Spanish.tips" Configuration="Debug" Class="File">
+                <DeployFile LocalName="..\devcpp" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Linux64">
+                        <RemoteName>devcpp</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\FileEditor_rc.txt" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Spanish.tips</RemoteName>
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>FileEditor_rc.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Portuguese.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Portuguese.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Hello_cpp.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Hello_cpp.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\OpenGL.template" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>OpenGL.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\WinAnim_rc.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>WinAnim_rc.txt</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="Images\New images\DEV C++ 48x48.png" Configuration="Debug" Class="UWP_DelphiLogo44"/>
-                <DeployFile LocalName="..\Lang\Polish.tips" Configuration="Debug" Class="File">
-                    <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Polish.tips</RemoteName>
+                <DeployFile LocalName="..\Templates\MDIEditor_rc.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>MDIEditor_rc.txt</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\English.lng" Configuration="Debug" Class="File">
-                    <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>English.lng</RemoteName>
+                <DeployFile LocalName="..\Lang\Swedish.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Swedish.lng</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\German.tips" Configuration="Debug" Class="File">
-                    <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>German.tips</RemoteName>
+                <DeployFile LocalName="..\Templates\Dll_h.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>Dll_h.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Japanese.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Japanese.tips</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -518,15 +636,30 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\Polish.lng" Configuration="Debug" Class="File">
-                    <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Polish.lng</RemoteName>
+                <DeployFile LocalName="$(crossvcl)\Redist\libcrossvcl.so">
+                    <Platform Name="Linux64">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Images\devcpplogo.png" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="..\..\bin\devcpp.exe" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="LangIDs.inc" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Images\devcpplogo.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\2-ConsoleApp.template" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>2-ConsoleApp.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="..\Lang\English.tips" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
                         <RemoteDir>Contents\Resources\Lang\</RemoteDir>
@@ -534,21 +667,13 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="C:\Dev-Cpp\Source\devcpp.icns">
+                <DeployFile LocalName="..\Templates\Dll_hpp.txt" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources</RemoteDir>
-                        <RemoteName>devcpp.icns</RemoteName>
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Dll_hpp.txt</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\Catalan.lng" Configuration="Debug" Class="File">
-                    <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Catalan.lng</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="..\devcpp.entitlements" Configuration="Release" Class="ProjectOSXEntitlements"/>
                 <DeployFile LocalName="..\Lang\Japanese.tips" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
                         <RemoteDir>Contents\Resources\Lang\</RemoteDir>
@@ -556,8 +681,16 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="..\Lang\SpanishCastellano.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>SpanishCastellano.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="..\Lang\English.tips" Configuration="Debug" Class="File">
                     <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
                         <RemoteName>English.tips</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -570,23 +703,79 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="..\Lang\Korean.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Korean.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\FileEditor_c.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>FileEditor_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Korean.tips" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
                         <RemoteDir>Contents\Resources\Lang\</RemoteDir>
                         <RemoteName>Korean.tips</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\German.lng" Configuration="Debug" Class="File">
+                <DeployFile LocalName="..\Templates\ConsoleApp_cpp.txt" Configuration="Release" Class="File">
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>German.lng</RemoteName>
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>ConsoleApp_cpp.txt</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\Catalan.tips" Configuration="Debug" Class="File">
+                <DeployFile LocalName="..\Lang\Romanian.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Romanian.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Norwegian.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Norwegian.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Hungarian.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Hungarian.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\ballmask.bmp" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>ballmask.bmp</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\FileEditor_c.txt" Configuration="Release" Class="File">
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Catalan.tips</RemoteName>
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>FileEditor_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\OpenMP_cpp.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>OpenMP_cpp.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\MDIEditor_c.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>MDIEditor_c.txt</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -598,11 +787,17 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="$(crossvcl)\Redist\libcrossvcl64.dylib"/>
-                <DeployFile LocalName="C:\Dev-Cpp\Source\devcpp.icns"/>
                 <DeployFile LocalName="..\Lang\Chinese.tips" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
                         <RemoteDir>Contents\Resources\Lang\</RemoteDir>
                         <RemoteName>Chinese.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Jackpot.template" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Jackpot.template</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -618,10 +813,10 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\Norwegian.tips" Configuration="Debug" Class="File">
-                    <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Norwegian.tips</RemoteName>
+                <DeployFile LocalName="..\Lang\Turkish.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Turkish.lng</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -632,7 +827,6 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\devcpp" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployFile LocalName="..\Lang\Romanian.lng" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
                         <RemoteDir>Contents\Resources\Lang\</RemoteDir>
@@ -641,10 +835,10 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="$(crossvcl)\Redist\crossvcl.icns"/>
-                <DeployFile LocalName="..\Lang\Bulgarian.lng" Configuration="Debug" Class="File">
+                <DeployFile LocalName="..\Templates\OpenGL.txt" Configuration="Release" Class="File">
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Bulgarian.lng</RemoteName>
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>OpenGL.txt</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -668,23 +862,37 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="..\Templates\Hello.template" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Hello.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\WinAnim_rc.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>WinAnim_rc.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\HelloInput_cpp.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>HelloInput_cpp.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="$(crossvcl)\Redist\libcrossvcl64.dylib">
                     <Platform Name="OSX64">
                         <RemoteDir>Contents\MacOS</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\Latvian.lng" Configuration="Debug" Class="File">
-                    <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Latvian.lng</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="..\Lang\Hebrew.tips" Configuration="Debug" Class="File">
-                    <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Hebrew.tips</RemoteName>
+                <DeployFile LocalName="..\Templates\Hello_cpp.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>Hello_cpp.txt</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -695,16 +903,45 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\SpanishColombia.lng" Configuration="Debug" Class="File">
+                <DeployFile LocalName="..\Templates\FileEditor.template" Configuration="Release" Class="File">
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>SpanishColombia.lng</RemoteName>
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>FileEditor.template</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="LangIDs.inc" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="..\Templates\WinAnim.template" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>WinAnim.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\3-StaticLib.template" Configuration="Release" Class="File">
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\StartUp\</RemoteDir>
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>3-StaticLib.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\ballmask.bmp" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>ballmask.bmp</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Direct3D.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Direct3D.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Greek.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Greek.lng</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -715,11 +952,38 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="LangIDs.inc" Configuration="Release" Class="ProjectFile"/>
+                <DeployFile LocalName="..\Templates\HelloInput_c.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>HelloInput_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\OpenMP.template" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>OpenMP.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Swedish.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Swedish.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="..\Lang\Russian.tips" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
                         <RemoteDir>Contents\Resources\Lang\</RemoteDir>
                         <RemoteName>Russian.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\1-WinApp.template" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>1-WinApp.template</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -729,7 +993,34 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\devcpp.entitlements" Configuration="Debug" Class="ProjectOSXEntitlements"/>
+                <DeployFile LocalName="..\Templates\FileEditor_h.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>FileEditor_h.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Estonian.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Estonian.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Russian.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Russian.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\MDIEditor_h.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>MDIEditor_h.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="..\Lang\Portuguese.tips" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
                         <RemoteDir>Contents\Resources\Lang\</RemoteDir>
@@ -737,24 +1028,24 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\Danish.lng" Configuration="Debug" Class="File">
-                    <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Danish.lng</RemoteName>
+                <DeployFile LocalName="..\Lang\Portuguese.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Portuguese.tips</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\Swedish.tips" Configuration="Debug" Class="File">
-                    <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Swedish.tips</RemoteName>
+                <DeployFile LocalName="..\Templates\OpenMP_cpp.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>OpenMP_cpp.txt</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\French.lng" Configuration="Debug" Class="File">
+                <DeployFile LocalName="..\Templates\4-DLL.template" Configuration="Release" Class="File">
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>French.lng</RemoteName>
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>4-DLL.template</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -765,10 +1056,31 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="..\Lang\French.lng" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>French.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\StdThread.template" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>StdThread.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="..\Lang\Spanish.lng" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
                         <RemoteDir>Contents\Resources\Lang\</RemoteDir>
                         <RemoteName>Spanish.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\WinAnim_c.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>WinAnim_c.txt</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -779,10 +1091,10 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\Turkish.tips" Configuration="Debug" Class="File">
+                <DeployFile LocalName="..\Templates\ConsoleApp_c.txt" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Turkish.tips</RemoteName>
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>ConsoleApp_c.txt</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -792,24 +1104,24 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\Swedish.lng" Configuration="Debug" Class="File">
+                <DeployFile LocalName="..\Templates\FileEditor_rc.txt" Configuration="Release" Class="File">
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Swedish.lng</RemoteName>
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>FileEditor_rc.txt</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\Romanian.tips" Configuration="Debug" Class="File">
-                    <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Romanian.tips</RemoteName>
+                <DeployFile LocalName="..\Templates\ConsoleApp_c.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>ConsoleApp_c.txt</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\Lang\French.tips" Configuration="Debug" Class="File">
-                    <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>French.tips</RemoteName>
+                <DeployFile LocalName="..\Templates\FileEditor_h.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>FileEditor_h.txt</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -820,6 +1132,969 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="..\Templates\Jackpot.template" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Jackpot.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\FileEditor.template" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>FileEditor.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\4-DLL.template" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>4-DLL.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Chinese_TC.lng" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Chinese_TC.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Chinese.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Chinese.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Polish.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Polish.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Estonian.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Estonian.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Spanish.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Spanish.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\5-Empty.template" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>5-Empty.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Hebrew.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Hebrew.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\English.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>English.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Korean.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Korean.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\OpenMP.template" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>OpenMP.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Dutch.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Dutch.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\ballmask.bmp" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>ballmask.bmp</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Ukrainian.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Ukrainian.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Czech.lng" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Czech.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\HelloInput.template" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>HelloInput.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Dll_h.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Dll_h.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="LangIDs.inc" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="..\Templates\ball.bmp" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>ball.bmp</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Hello.template" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>Hello.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Project3.template" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Project3.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Hello.template" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Hello.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Galego.tips" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Galego.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\WinApp_c.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>WinApp_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Bulgarian.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Bulgarian.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Spanish.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Spanish.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\StdThread.template" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>StdThread.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Chinese.lng" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Chinese.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Slovenian.tips" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Slovenian.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Latvian.tips" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Latvian.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Norwegian.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Norwegian.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\ball.bmp" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>ball.bmp</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\SpanishColombia.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>SpanishColombia.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\HelloInput_cpp.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>HelloInput_cpp.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Catalan.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Catalan.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Estonian.lng" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Estonian.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\5-Empty.template" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>5-Empty.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\SpanishColombia.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>SpanishColombia.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Images\New images\DEV C++ 140x140.png" Configuration="Debug" Class="UWP_DelphiLogo150"/>
+                <DeployFile LocalName="..\Templates\5-Empty.template" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>5-Empty.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Dll_cpp.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Dll_cpp.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Dll_cpp.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>Dll_cpp.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\OpenGL.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>OpenGL.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Italian.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Italian.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Dll_hpp.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>Dll_hpp.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\devcpp.info.plist" Configuration="Debug" Class="ProjectOSXInfoPList"/>
+                <DeployFile LocalName="..\Templates\FileEditor_rc.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>FileEditor_rc.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Spanish.tips" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Spanish.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Dll_c.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Dll_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Polish.tips" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Polish.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\English.lng" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>English.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\German.tips" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>German.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\OpenMP.template" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>OpenMP.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\2-ConsoleApp.template" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>2-ConsoleApp.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\3-StaticLib.template" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>3-StaticLib.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Polish.lng" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Polish.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\ConsoleApp_c.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>ConsoleApp_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\MDIEditor_h.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>MDIEditor_h.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Images\devcpplogo.png" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="..\Templates\Dll_hpp.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Dll_hpp.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Latvian.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Latvian.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Slovak.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Slovak.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\..\bin\devcpp.exe" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\Templates\ConsoleApp_cpp.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>ConsoleApp_cpp.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="C:\Dev-Cpp\Source\devcpp.icns">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources</RemoteDir>
+                        <RemoteName>devcpp.icns</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Latvian.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Latvian.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Catalan.lng" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Catalan.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Jackpot_cpp.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Jackpot_cpp.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Direct3D.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Direct3D.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\OpenMP_cpp.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>OpenMP_cpp.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\WinAnim_c.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>WinAnim_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\German.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>German.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\1-WinApp.template" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>1-WinApp.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Dutch.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Dutch.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\StdThread_cpp.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>StdThread_cpp.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\WinAnim.template" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>WinAnim.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="LangIDs.inc" Configuration="Release" Class="ProjectFile"/>
+                <DeployFile LocalName="..\Lang\German.lng" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>German.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\HelloInput_c.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>HelloInput_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Danish.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Danish.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Catalan.tips" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Catalan.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Project3.template" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>Project3.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\WinAnim.template" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>WinAnim.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Jackpot_cpp.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>Jackpot_cpp.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\StdThread.template" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>StdThread.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="C:\Dev-Cpp\Source\devcpp.icns"/>
+                <DeployFile LocalName="..\devcpp" Configuration="Release" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\Templates\ball.bmp" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>ball.bmp</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Norwegian.tips" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Norwegian.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\MDIEditor_rc.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>MDIEditor_rc.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\MDIEditor.template" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>MDIEditor.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\German.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>German.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\devcpp" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\Lang\Japanese.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Japanese.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Bulgarian.lng" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Bulgarian.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Slovenian.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Slovenian.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\FileEditor.template" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>FileEditor.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\HelloInput.template" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>HelloInput.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Latvian.lng" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Latvian.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\ConsoleApp_cpp.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>ConsoleApp_cpp.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\OpenMP_c.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>OpenMP_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Direct3D.template" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Direct3D.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Hebrew.tips" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Hebrew.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\French.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>French.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\FileEditor_h.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>FileEditor_h.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Catalan.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Catalan.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Hello_cpp.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Hello_cpp.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Turkish.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Turkish.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\1-WinApp.template" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>1-WinApp.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Hebrew.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Hebrew.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\SpanishColombia.lng" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>SpanishColombia.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\StdThread_cpp.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>StdThread_cpp.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="LangIDs.inc" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\MDIEditor_c.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>MDIEditor_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\SpanishCastellano.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>SpanishCastellano.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\StdThread_c.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>StdThread_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Dll_c.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Dll_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\OpenGL.template" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>OpenGL.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Czech.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Czech.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\French.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>French.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\devcpp.entitlements" Configuration="Debug" Class="ProjectOSXEntitlements"/>
+                <DeployFile LocalName="..\Templates\OpenMP_c.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>OpenMP_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\WinApp_c.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>WinApp_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Polish.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Polish.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\OpenMP_c.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>OpenMP_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\OpenGL.template" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>OpenGL.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\HelloInput_cpp.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>HelloInput_cpp.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Danish.lng" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Danish.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Russian.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Russian.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Swedish.tips" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Swedish.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Direct3D.template" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Direct3D.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\MDIEditor.template" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>MDIEditor.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\MDIEditor_c.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>MDIEditor_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Turkish.tips" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Turkish.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\devcpp.dSYM" Configuration="Release" Class="ProjectOSXDebug"/>
+                <DeployFile LocalName="..\Lang\Italian.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Italian.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\MDIEditor_h.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>MDIEditor_h.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Swedish.lng" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Swedish.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Dll_cpp.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Dll_cpp.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Direct3D.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>Direct3D.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Galego.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Galego.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Romanian.tips" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>Romanian.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\HelloInput.template" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>HelloInput.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\French.tips" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
+                        <RemoteName>French.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\MDIEditor.template" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>MDIEditor.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\devcpp.entitlements" Configuration="Release" Class="ProjectOSXEntitlements"/>
                 <DeployFile LocalName="..\Lang\Hungarian.lng" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
                         <RemoteDir>Contents\Resources\Lang\</RemoteDir>
@@ -834,6 +2109,41 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="..\Lang\Galego.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Galego.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\StdThread_c.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>StdThread_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Hello_c.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>Hello_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Danish.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Danish.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Hungarian.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Hungarian.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="$(crossvcl)\Redist\libcrossvcl.so"/>
                 <DeployFile LocalName="..\Lang\SpanishCastellano.lng" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
@@ -842,11 +2152,32 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\devcpp.dSYM" Configuration="Debug" Class="ProjectOSXDebug"/>
-                <DeployFile LocalName="..\Lang\Chinese_TC.lng" Configuration="Debug" Class="File">
+                <DeployFile LocalName="..\Templates\WinAnim_c.txt" Configuration="Release" Class="File">
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\Lang\</RemoteDir>
-                        <RemoteName>Chinese_TC.lng</RemoteName>
+                        <RemoteDir>Contents\Resources\Templates\</RemoteDir>
+                        <RemoteName>WinAnim_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\4-DLL.template" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>4-DLL.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Jackpot.template" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>Jackpot.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\devcpp.dSYM" Configuration="Debug" Class="ProjectOSXDebug"/>
+                <DeployFile LocalName="..\Templates\Hello_c.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>Hello_c.txt</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -857,7 +2188,42 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\devcpp" Configuration="Release" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\Templates\HelloInput_c.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>HelloInput_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\devcpp.info.plist" Configuration="Release" Class="ProjectOSXInfoPList"/>
+                <DeployFile LocalName="..\Templates\3-StaticLib.template" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>3-StaticLib.template</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Chinese.lng" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Chinese.lng</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Lang\Slovenian.tips" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Lang\</RemoteDir>
+                        <RemoteName>Slovenian.tips</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\Templates\Dll_c.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>.\Resources\Templates\</RemoteDir>
+                        <RemoteName>Dll_c.txt</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="iOSSimulator">
                         <Operation>1</Operation>

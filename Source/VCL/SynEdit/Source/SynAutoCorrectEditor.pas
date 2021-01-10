@@ -36,15 +36,30 @@ Known Issues:
 // TODO: use TntUnicode to enable unicode input
 
 
+{$IFNDEF QSYNAUTOCORRECTEDITOR}
 unit SynAutoCorrectEditor;
+{$ENDIF}
 
 interface
 
 {$I SynEdit.inc}
 
 uses
+{$IFDEF SYN_CLX}
+  QGraphics, QControls, QForms, QDialogs, QExtCtrls, QStdCtrls, QButtons, Types,
+  QSynAutoCorrect,
+  QSynUnicode,
+{$ELSE}
+  {$IFDEF SYN_COMPILER_17_UP}
+  Types,
+  {$ENDIF}
   Windows,  Messages, Graphics, Controls, Forms, Dialogs, ExtCtrls, StdCtrls,
-  Buttons, Registry, SynAutoCorrect, SynUnicode, SysUtils, Classes;
+  Buttons, Registry,
+  SynAutoCorrect,
+  SynUnicode,
+{$ENDIF}
+  SysUtils,
+  Classes;
 
 type
   TfrmAutoCorrectEditor = class(TForm)
@@ -69,8 +84,10 @@ type
   private
     procedure lbxItemsDrawItemCLX(Sender: TObject; Index: Integer;
       Rect: TRect; State: TOwnerDrawState; var Handled: Boolean);
+{$IFNDEF SYN_CLX}
     procedure lbxItemsDrawItem(Control: TWinControl; Index: Integer;
       Rect: TRect; State: TOwnerDrawState);
+{$ENDIF}
   public
     SynAutoCorrect: TSynAutoCorrect;
   end;
@@ -89,9 +106,6 @@ implementation
 
 {$R *.dfm}
 
-uses
-  Types;
-
 procedure TfrmAutoCorrectEditor.FormShow(Sender: TObject);
 begin
   lbxItems.Items.Assign(SynAutoCorrect.Items);
@@ -101,19 +115,20 @@ end;
 procedure TfrmAutoCorrectEditor.lbxItemsDrawItemCLX(Sender: TObject;
   Index: Integer; Rect: TRect; State: TOwnerDrawState; var Handled: Boolean);
 var
-  s: string;
+  s: UnicodeString;
 begin
   with lbxItems do
   begin
     s := Items[Index];
     Canvas.FillRect(Rect);
-    Canvas.TextOut(Rect.Left + 2, Rect.Top, SynAutoCorrect.HalfString(s, True));
-    Canvas.TextOut(Rect.Left + (lbxItems.ClientWidth div 2) + 2, Rect.Top,
+    TextOut(Canvas, Rect.Left + 2, Rect.Top, SynAutoCorrect.HalfString(s, True));
+    TextOut(Canvas, Rect.Left + (lbxItems.ClientWidth div 2) + 2, Rect.Top,
         SynAutoCorrect.HalfString(s, False));
     FormPaint(nil);
   end;
 end;
 
+{$IFNDEF SYN_CLX}
 procedure TfrmAutoCorrectEditor.lbxItemsDrawItem(Control: TWinControl;
   Index: Integer; Rect: TRect; State: TOwnerDrawState);
 var
@@ -122,6 +137,7 @@ begin
   Dummy := True;
   lbxItemsDrawItemCLX(Control, Index, Rect, State, Dummy);
 end;
+{$ENDIF}
 
 procedure TfrmAutoCorrectEditor.btnAddClick(Sender: TObject);
 var
@@ -149,7 +165,12 @@ procedure TfrmAutoCorrectEditor.btnDeleteClick(Sender: TObject);
 begin
   if lbxItems.ItemIndex < 0 then
   begin
+  {$IFDEF SYN_CLX}
+    ShowMessage(SPleaseSelectItem);  // TODO: use MessageDlg instead
+  {$ELSE}
     MessageBox(0, PChar(SPleaseSelectItem), PChar(SError), MB_ICONERROR or MB_OK);
+  {$ENDIF}
+
     Exit;
   end;
 
@@ -166,7 +187,11 @@ var
 begin
   if lbxItems.ItemIndex < 0 then
   begin
+  {$IFDEF SYN_CLX}
+    ShowMessage(SPleaseSelectItem); // TODO: use MessageDlg instead
+  {$ELSE}
     MessageBox(0, PChar(SPleaseSelectItem), PChar(SError), MB_ICONERROR or MB_OK);
+  {$ENDIF}
     Exit;
   end;
 
@@ -196,8 +221,10 @@ end;
 
 procedure TfrmAutoCorrectEditor.btnClearClick(Sender: TObject);
 begin
+{$IFNDEF SYN_CLX}                               // TODO: also a MsgBox for CLX
   if MessageBox(0, PChar(SClearListConfirmation), PChar(SConfirmation),
     MB_YESNO or MB_ICONQUESTION) <> IDYES then Exit;
+{$ENDIF}
   SynAutoCorrect.Items.Clear;
   lbxItems.Items.Clear;
 
@@ -215,8 +242,13 @@ procedure TfrmAutoCorrectEditor.FormCreate(Sender: TObject);
 begin
   ClientWidth := 521;
   ClientHeight := 377;
+{$IFDEF SYN_CLX}
+  lbxItems.OnDrawItem := lbxItemsDrawItemCLX;
+  BorderStyle := fbsSingle;
+{$ELSE}
   lbxItems.OnDrawItem := lbxItemsDrawItem;
   BorderStyle := bsSingle;
+{$ENDIF}
 end;
 
 procedure TfrmAutoCorrectEditor.FormPaint(Sender: TObject);

@@ -2594,8 +2594,9 @@ begin
         Options := Options + [eoShowSpecialChars];
       if fTrimTrailingSpaces then
         Options := Options + [eoTrimTrailingSpaces];
-      if fShowLigatures then
-        Options := Options + [eoShowLigatures];
+// CROSSVCL
+//      if fShowLigatures then
+//        Options := Options + [eoShowLigatures];
     finally
       EndUpdate;
     end;

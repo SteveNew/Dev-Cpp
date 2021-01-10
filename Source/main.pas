@@ -2075,16 +2075,21 @@ end;
 procedure TMainForm.actNewProjectExecute(Sender: TObject);
 var
   s: String;
+  NewProjForm: TNewProjectForm;
+  SaveDialog: TSaveDialog;
 begin
-  with TNewProjectForm.Create(nil) do try
-    rbCpp.Checked := devData.DefCpp;
-    rbC.Checked := not rbCpp.Checked;
-    if ShowModal = mrOk then begin
-      if cbDefault.Checked then
-        devData.DefCpp := rbCpp.Checked;
+  NewProjForm := TNewProjectForm.Create(nil);
+  try
+    NewProjForm.rbCpp.Checked := devData.DefCpp;
+    NewProjForm.rbC.Checked := not NewProjForm.rbCpp.Checked;
+    if NewProjForm.ShowModal = mrOk then
+    begin
+      if NewProjForm.cbDefault.Checked then
+        devData.DefCpp := NewProjForm.rbCpp.Checked;
 
       // Take care of the currently opened project
-      if Assigned(fProject) then begin
+      if Assigned(fProject) then
+      begin
         if fProject.Name = '' then
           s := fProject.FileName
         else
@@ -2101,22 +2106,24 @@ begin
       end;
 
       // Ask the user where he wants to save
-      with TSaveDialog.Create(nil) do try
-        Filter := FLT_PROJECTS;
-        InitialDir := devDirs.Default;
-        FileName := edProjectName.Text + DEV_EXT; // guess initial name
-        Options := Options + [ofOverwritePrompt];
-        DefaultExt := 'dev';
+      SaveDialog := TSaveDialog.Create(nil);
+      try
+        SaveDialog.Filter := FLT_PROJECTS;
+        SaveDialog.InitialDir := devDirs.Default;
+        SaveDialog.FileName := NewProjForm.edProjectName.Text + DEV_EXT; // guess initial name
+        SaveDialog.Options := SaveDialog.Options + [ofOverwritePrompt];
+        SaveDialog.DefaultExt := 'dev';
 
         // The user pressed the OK key. Save initial copy to disk
-        if Execute then begin
-          s := FileName;
+        if SaveDialog.Execute then
+        begin
+          s := SaveDialog.FileName;
 
           // Create an empty project
-          fProject := TProject.Create(s, edProjectName.Text);
+          fProject := TProject.Create(s, NewProjForm.edProjectName.Text);
 
           // Assign the selected template to it
-          if not fProject.AssignTemplate(s, GetTemplate) then begin
+          if not fProject.AssignTemplate(s, NewProjForm.GetTemplate) then begin
             FreeAndNil(fProject);
             MessageBox(Application.Handle, PChar(Lang[ID_ERR_TEMPLATE]), PChar(Lang[ID_ERROR]), MB_OK or
               MB_ICONERROR);
@@ -2128,11 +2135,11 @@ begin
         end;
       finally
         MainPanel.Visible := False;
-        Free;
+        SaveDialog.Free;
       end;
     end;
   finally
-    Free;
+    NewProjForm.Free;
   end;
 end;
 
@@ -4389,8 +4396,8 @@ begin
   e := fEditorList.GetEditor(-1, PageControl);
   if Assigned(e) then begin
     // Update focus so user can keep typing
-    if e.Text.CanFocus then // TODO: can fail for some reason
-      e.Text.SetFocus; // this should trigger then OnEnter even of the Text control
+//    if e.Text.CanFocus then // TODO: CROSSVCL (crash) can fail for some reason
+//      e.Text.SetFocus; // this should trigger then OnEnter even of the Text control
 
     // No editors are visible
   end else begin
@@ -6312,6 +6319,7 @@ begin
   end;
 
   // Set languages and other first time stuff
+// UBUNTU
   if devData.First or (devData.Language = '') then
     Lang.SelectLanguage
   else

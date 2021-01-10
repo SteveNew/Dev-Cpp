@@ -39,18 +39,28 @@ located at http://SynEdit.SourceForge.net
 Known Issues:
 -------------------------------------------------------------------------------}
 
+{$IFNDEF QSYNEXPORTHTML}
 unit SynExportHTML;
+{$ENDIF}
 
 {$I SynEdit.inc}
 
 interface
 
 uses
+{$IFDEF SYN_CLX}
+  Qt,
+  QGraphics,
+  QSynEditExport,
+  QSynEditHighlighter,
+  QSynUnicode,  
+{$ELSE}
   Windows,
   Graphics,
   SynEditExport,
   SynEditHighlighter,
-  SynUnicode,
+  SynUnicode,    
+{$ENDIF}
   Classes;
 
 type
@@ -69,27 +79,27 @@ type
       Attri: TSynHighlighterAttributes; UniqueAttriName: string;
       Params: array of Pointer): Boolean;
   protected
-    fCreateHTMLFragment: boolean;
+    FCreateHTMLFragment: Boolean;
     procedure FormatAfterLastAttribute; override;
-    procedure FormatAttributeDone(BackgroundChanged, ForegroundChanged: boolean;
+    procedure FormatAttributeDone(BackgroundChanged, ForegroundChanged: Boolean;
       FontStylesChanged: TFontStyles); override;
-    procedure FormatAttributeInit(BackgroundChanged, ForegroundChanged: boolean;
+    procedure FormatAttributeInit(BackgroundChanged, ForegroundChanged: Boolean;
       FontStylesChanged: TFontStyles); override;
     procedure FormatBeforeFirstAttribute(BackgroundChanged,
-      ForegroundChanged: boolean; FontStylesChanged: TFontStyles); override;
+      ForegroundChanged: Boolean; FontStylesChanged: TFontStyles); override;
     procedure FormatNewLine; override;
-    function GetFooter: string; override;
+    function GetFooter: UnicodeString; override;
     function GetFormatName: string; override;
-    function GetHeader: string; override;
-    function ReplaceReservedChar(AChar: WideChar): string; override;
+    function GetHeader: UnicodeString; override;
+    function ReplaceReservedChar(AChar: WideChar): UnicodeString; override;
     function UseBom: Boolean; override;
   public
     constructor Create(AOwner: TComponent); override;
     function SupportedEncodings: TSynEncodings; override;
   published
     property Color;
-    property CreateHTMLFragment: boolean read fCreateHTMLFragment
-      write fCreateHTMLFragment default False;
+    property CreateHTMLFragment: Boolean read FCreateHTMLFragment
+      write FCreateHTMLFragment default False;
     property DefaultFilter;
     property Encoding;
     property Font;
@@ -101,10 +111,17 @@ type
 implementation
 
 uses
+{$IFDEF SYN_CLX}
+  QSynEditMiscProcs,
+  QSynEditStrConst,
+  QSynHighlighterMulti,
+{$ELSE}
   SynEditMiscProcs,
-  SynEditStrConst,
+  SynEditStrConst,  
   SynHighlighterMulti,
+{$ENDIF}
   SysUtils;
+
 
 { TSynExporterHTML }
 
@@ -113,8 +130,10 @@ const
   CF_HTML = 'HTML Format';
 begin
   inherited Create(AOwner);
-  fClipboardFormat := RegisterClipboardFormat(CF_HTML);
-  fDefaultFilter := SYNS_FilterHTML;
+  {$IFNDEF SYN_CLX}
+  FClipboardFormat := RegisterClipboardFormat(CF_HTML);
+  {$ENDIF} // TODO: register for Kylix, too, see what Netscape Composer uses/accepts
+  FDefaultFilter := SYNS_FilterHTML;
   FEncoding := seUTF8;
 end;
 
@@ -156,7 +175,7 @@ end;
 
 function TSynExporterHTML.ColorToHTML(AColor: TColor): string;
 var
-  RGBColor: Integer;
+  RGBColor: longint;
   RGBValue: byte;
 const
   Digits: array[0..15] of Char = '0123456789ABCDEF';
@@ -189,13 +208,13 @@ begin
 end;
 
 procedure TSynExporterHTML.FormatAttributeDone(BackgroundChanged,
-  ForegroundChanged: boolean; FontStylesChanged: TFontStyles);
+  ForegroundChanged: Boolean; FontStylesChanged: TFontStyles);
 begin
   AddData('</span>');
 end;
 
 procedure TSynExporterHTML.FormatAttributeInit(BackgroundChanged,
-  ForegroundChanged: boolean; FontStylesChanged: TFontStyles);
+  ForegroundChanged: Boolean; FontStylesChanged: TFontStyles);
 var
   StyleName: string;
 begin
@@ -204,7 +223,7 @@ begin
 end;
 
 procedure TSynExporterHTML.FormatBeforeFirstAttribute(BackgroundChanged,
-  ForegroundChanged: boolean; FontStylesChanged: TFontStyles);
+  ForegroundChanged: Boolean; FontStylesChanged: TFontStyles);
 var
   StyleName: string;
 begin
@@ -217,14 +236,14 @@ begin
   AddNewLine;
 end;
 
-function TSynExporterHTML.GetFooter: string;
+function TSynExporterHTML.GetFooter: UnicodeString;
 begin
   Result := '';
   if fExportAsText then
     Result := '</span>'#13#10'</code></pre>'#13#10
   else
     Result := '</code></pre><!--EndFragment-->';
-  if not(fCreateHTMLFragment and fExportAsText) then
+  if not(FCreateHTMLFragment and fExportAsText) then
     Result := Result + '</body>'#13#10'</html>';
 end;
 
@@ -233,7 +252,7 @@ begin
   Result := SYNS_ExporterFormatHTML;
 end;
 
-function TSynExporterHTML.GetHeader: string;
+function TSynExporterHTML.GetHeader: UnicodeString;
 const
   DescriptionSize = 105;
   FooterSize1 = 47;
@@ -273,7 +292,7 @@ begin
   Result := '';
   if fExportAsText then
   begin
-    if not fCreateHTMLFragment then
+    if not FCreateHTMLFragment then
       Result := Header;
 
     Result := Result + Format('<pre>'#13#10'<code><span style="font: %dpt %s;">',
@@ -309,7 +328,7 @@ begin
       Delete(Result, i, 1);
 end;
 
-function TSynExporterHTML.ReplaceReservedChar(AChar: WideChar): string;
+function TSynExporterHTML.ReplaceReservedChar(AChar: WideChar): UnicodeString;
 begin
   case AChar of
     '&': Result := '&amp;';

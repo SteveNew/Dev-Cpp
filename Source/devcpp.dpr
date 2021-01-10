@@ -20,6 +20,7 @@
 program devcpp;
 
 {$R 'icons.res' 'icons.rc'}
+{$R *.dres}
 {$IFDEF MSWINDOWS}
 // Windows-only code
   {$R 'DefaultFiles.res' 'DefaultFiles.rc'}
