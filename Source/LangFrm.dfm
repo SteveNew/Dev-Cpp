@@ -20,18 +20,6 @@ object LangForm: TLangForm
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 15
-  object OkBtn: TBitBtn
-    Left = 270
-    Top = 280
-    Width = 280
-    Height = 30
-    Caption = '&Next'
-    Default = True
-    ImageIndex = 39
-    ImageName = 'iconsnew-34'
-    TabOrder = 0
-    OnClick = OkBtnClick
-  end
   object LangPanel: TPanel
     Left = 260
     Top = 0
@@ -121,41 +109,6 @@ object LangForm: TLangForm
       WordWrap = True
     end
   end
-  object synExample: TSynEdit
-    Left = 0
-    Top = 0
-    Width = 260
-    Height = 320
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Courier New'
-    Font.Style = []
-    Font.Quality = fqClearTypeNatural
-    TabOrder = 3
-    CodeFolding.GutterShapeSize = 11
-    CodeFolding.CollapsedLineColor = clGrayText
-    CodeFolding.FolderBarLinesColor = clGrayText
-    CodeFolding.IndentGuidesColor = clGray
-    CodeFolding.IndentGuides = True
-    CodeFolding.ShowCollapsedLine = True
-    CodeFolding.ShowHintMark = True
-    UseCodeFolding = False
-    Gutter.Font.Charset = DEFAULT_CHARSET
-    Gutter.Font.Color = clWindowText
-    Gutter.Font.Height = -11
-    Gutter.Font.Name = 'Courier New'
-    Gutter.Font.Style = []
-    Gutter.RightOffset = 21
-    Lines.Strings = (
-      '#include <iostream>'
-      ''
-      'int main(int argc, char** argv) {'
-      #9'std::cout << "Hello world!\n";'
-      #9'return 0;'
-      '}')
-    FontSmoothing = fsmNone
-  end
   object EditPanel: TPanel
     Left = 260
     Top = 0
@@ -185,7 +138,7 @@ object LangForm: TLangForm
       TabOrder = 0
       object lblTheme: TLabel
         Left = 8
-        Top = 123
+        Top = 132
         Width = 39
         Height = 15
         Caption = 'Theme:'
@@ -206,7 +159,7 @@ object LangForm: TLangForm
       end
       object cmbTheme: TComboBox
         Left = 8
-        Top = 140
+        Top = 149
         Width = 249
         Height = 23
         Style = csDropDownList
@@ -261,5 +214,52 @@ object LangForm: TLangForm
         OnDrawItem = cmbFontDrawItem
       end
     end
+  end
+  object OkBtn: TBitBtn
+    Left = 270
+    Top = 280
+    Width = 280
+    Height = 30
+    Caption = '&Next'
+    Default = True
+    ImageIndex = 39
+    ImageName = 'iconsnew-34'
+    TabOrder = 0
+    OnClick = OkBtnClick
+  end
+  object synExample: TSynEdit
+    Left = 0
+    Top = 0
+    Width = 260
+    Height = 320
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Courier New'
+    Font.Style = []
+    Font.Quality = fqClearTypeNatural
+    TabOrder = 3
+    CodeFolding.GutterShapeSize = 11
+    CodeFolding.CollapsedLineColor = clGrayText
+    CodeFolding.FolderBarLinesColor = clGrayText
+    CodeFolding.IndentGuidesColor = clGray
+    CodeFolding.IndentGuides = True
+    CodeFolding.ShowCollapsedLine = True
+    CodeFolding.ShowHintMark = True
+    UseCodeFolding = False
+    Gutter.Font.Charset = DEFAULT_CHARSET
+    Gutter.Font.Color = clWindowText
+    Gutter.Font.Height = -11
+    Gutter.Font.Name = 'Courier New'
+    Gutter.Font.Style = []
+    Gutter.RightOffset = 21
+    Lines.Strings = (
+      '#include <iostream>'
+      ''
+      'int main(int argc, char** argv) {'
+      #9'std::cout << "Hello world!\n";'
+      #9'return 0;'
+      '}')
+    FontSmoothing = fsmNone
   end
 end
